@@ -32,12 +32,12 @@ $$\def\ext{\text{ext}}$$
 
 ## 1. Introduction
 
-In my research, I encountered many interesting problems that is related to random matrices. There are many rigorous and powerful tools dealing with random matrices, like concentration inequalities, Stieltjes transform, leave-one-out method, etc. Besides these methods, there is one tool that is non-rigorous, but I find it to be extremely powerful. It is called the replica method, originated from statistical physics. I used several times this tool in my research, and it helped me a lot to "guess" the answer quickly. Though eventually I didn't write a paper presenting this non-rigorous method, I think it is very helpful to present it to the theorists' community. I present this material twice in Andrea's and Tengyu's group meeting. Now I think it is the time to summarize my talk and present it to the large audiences.
+In my research, I encountered many interesting problems that is related to random matrices. There are many rigorous and powerful tools dealing with random matrices, like concentration inequalities, Stieltjes transform, leave-one-out method, etc. Besides these methods, there is one tool that I find it to be extremely powerful. It is called the replica method, which is a non-rigorous method originated from statistical physics. I used several times this tool in my research, and it helped me a lot to "guess" the answer quickly. I gave two talks about this method, respectively in Andrea's and Tengyu's group meetings. Now I think it is the time to summarize my talks and present it to the large audiences.
 
 
 Replica method was used to calculate the free energy associated to some random Hamiltonians in statistical physics. Its first well-known application is calculating the free energy of Sherrington-Kirkpatrick model. Beyond the physicists' community, replica method is a very powerful tool studying random matrices. Its applications includes coding theory, compressed sensing, and high dimensional statistical inference problems. In this blog, I will discuss about how to use replica method to predict the spectral norm of spiked GOE matrix.
 
-For other references for replica method, I suggest people reading: .....
+For the references for replica method, I suggest people reading: .....
 
 
 
