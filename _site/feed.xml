@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-07-20T20:54:26-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog on machine learning and statistics. 
-</subtitle><author><name>Song Mei</name></author><entry><title type="html">Statistical physics and random matrix theory: Replica method I</title><link href="http://localhost:4000/jekyll/update/2019/07/20/Replica_method_1.html" rel="alternate" type="text/html" title="Statistical physics and random matrix theory: Replica method I" /><published>2019-07-20T00:09:06-07:00</published><updated>2019-07-20T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/20/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/20/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\bsigma{\boldsymbol \sigma}&lt;/script&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-04T22:43:25-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog on machine learning and statistics. 
+</subtitle><author><name>Song Mei</name></author><entry><title type="html">Statistical physics and random matrix theory: Replica method (I)</title><link href="http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1.html" rel="alternate" type="text/html" title="Statistical physics and random matrix theory: Replica method (I)" /><published>2019-08-02T00:09:06-07:00</published><updated>2019-08-02T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\P{\mathbb P}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bi{\boldsymbol i}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bG{\boldsymbol G}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bsigma{\boldsymbol \sigma}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bv{\boldsymbol v}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bu{\boldsymbol u}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\sT{\mathsf T}&lt;/script&gt;
@@ -19,35 +23,40 @@
 &lt;script type=&quot;math/tex&quot;&gt;\def\bzero{\boldsymbol 0}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\id{\mathbf I}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\ones{\mathbf 1}&lt;/script&gt;
-&lt;script type=&quot;math/tex&quot;&gt;\def\ext{\text{ext}}&lt;/script&gt;&lt;/p&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\ext{\text{ext}}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\|{\Vert}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bLambda{\boldsymbol \Lambda}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\const{\text{const}}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\Unif{\text{Unif}}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bSigma{\boldsymbol \Sigma}&lt;/script&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;1-introduction&quot;&gt;1. Introduction&lt;/h2&gt;
 
-&lt;p&gt;In my research, I encountered many interesting problems that is related to random matrices. There are many rigorous and powerful tools dealing with random matrices, like concentration inequalities, Stieltjes transform, leave-one-out method, etc. Besides these methods, there is one tool that is non-rigorous, but I find it to be extremely powerful. It is called the replica method, originated from statistical physics. I used several times this tool in my research, and it helped me a lot to “guess” the answer quickly. Though eventually I didn’t write a paper presenting this non-rigorous method, I think it is very helpful to present it to the theorists’ community. I present this material twice in Andrea’s and Tengyu’s group meeting. Now I think it is the time to summarize my talk and present it to the large audiences.&lt;/p&gt;
+&lt;p&gt;In my first several blogs, I will discuss about replica method. Replica method is a non-rigorous but powerful method that originated from statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used several times this method in my research. It helped me quickly guessing the answers.&lt;/p&gt;
 
-&lt;p&gt;Replica method was used to calculate the free energy associated to some random Hamiltonians in statistical physics. Its first well-known application is calculating the free energy of Sherrington-Kirkpatrick model. Beyond the physicists’ community, replica method is a very powerful tool studying random matrices. Its applications includes coding theory, compressed sensing, and high dimensional statistical inference problems. In this blog, I will discuss about how to use replica method to predict the spectral norm of spiked GOE matrix.&lt;/p&gt;
+&lt;p&gt;In this blog, I will discuss about how to use replica method to calculate the spectral norm of certain random matrices. In the next few blogs, I will discuss about how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices.&lt;/p&gt;
 
-&lt;p&gt;For other references for replica method, I suggest people reading: …..&lt;/p&gt;
+&lt;!-- In my research, I encountered many interesting problems that is related to random matrices. There are many rigorous and powerful tools dealing with random matrices, like concentration inequalities, Stieltjes transform, leave-one-out method, etc. Besides these methods, there is one tool that I find it to be extremely powerful. It is called the replica method, which is a non-rigorous method originated from statistical physics. I used several times this tool in my research, and it helped me a lot to &quot;guess&quot; the answer quickly. I gave two talks about this method, respectively in Andrea's and Tengyu's group meetings. Now I think it is the time to summarize my talks and present it to the large audiences. --&gt;
+&lt;!-- 
+Replica method was used to calculate the free energy associated to some random Hamiltonians in statistical physics. Its first well-known application is calculating the free energy of Sherrington-Kirkpatrick model. Beyond the physicists' community, replica method is a very powerful tool studying random matrices. Its applications includes coding theory, compressed sensing, and high dimensional statistical inference problems. In this blog, I will discuss about how to use replica method to predict the spectral norm of spiked GOE matrix.
+
+For the references for replica method, I suggest people reading: .....
+ --&gt;
 
 &lt;h2 id=&quot;2-a-motivating-example-spiked-goe-matrix&quot;&gt;2. A motivating example: spiked GOE matrix&lt;/h2&gt;
 
-&lt;h3 id=&quot;21-the-spiked-goe-model&quot;&gt;2.1. The spiked GOE model&lt;/h3&gt;
-
-&lt;p&gt;We consider a symmetric random matrix &lt;script type=&quot;math/tex&quot;&gt;\bA \in \R^{n \times n}&lt;/script&gt; with
+&lt;p&gt;We consider a symmetric random matrix &lt;script type=&quot;math/tex&quot;&gt;\bA \in \R^{n \times n}&lt;/script&gt;, 
 \[
 \bA= \lambda \bu \bu^\sT + \bW,
 \]
-where &lt;script type=&quot;math/tex&quot;&gt;\lambda \in \R_+&lt;/script&gt; is the signal to noise ratio, &lt;script type=&quot;math/tex&quot;&gt;\bu \in \S^{n-1} = \{ \bx \in \R^n: \| \bx \|_2 = 1 \}&lt;/script&gt; is a spike vector, and &lt;script type=&quot;math/tex&quot;&gt;\bW \sim \GOE(n)&lt;/script&gt;: that means, &lt;script type=&quot;math/tex&quot;&gt;\bW&lt;/script&gt; is a symmetric matrix, with &lt;script type=&quot;math/tex&quot;&gt;W_{ij} \sim \cN(0, 1/n)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
-1 \le i &lt; j \le n %]]&gt;&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;W_{ii} \sim \cN(0, 2/n)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;1 \le i \le n&lt;/script&gt;.&lt;/p&gt;
+where &lt;script type=&quot;math/tex&quot;&gt;\lambda \ge 0&lt;/script&gt; is the signal to noise ratio, &lt;script type=&quot;math/tex&quot;&gt;\bu \in \S^{n-1} \equiv \{ \bx \in \R^n: \| \bx \|_2 = 1 \}&lt;/script&gt; is a spike vector, and &lt;script type=&quot;math/tex&quot;&gt;\bW \sim \GOE(n)&lt;/script&gt;: that means, &lt;script type=&quot;math/tex&quot;&gt;\bW \in \R^{n \times n}&lt;/script&gt; is a symmetric matrix, &lt;script type=&quot;math/tex&quot;&gt;W_{ij} \sim \cN(0, 1/n)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+1 \le i &lt; j \le n %]]&gt;&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;W_{ii} \sim \cN(0, 2/n)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;1 \le i \le n&lt;/script&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;22-the-bbp-phase-transitions&quot;&gt;2.2. The BBP phase transitions&lt;/h3&gt;
-
-&lt;p&gt;The following properties of the spiked GOE matrix is called BBP phase
-transition.&lt;/p&gt;
+&lt;p&gt;We are interested in the largest eigenvalue and the corresponding eigenvector of &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt;, which are respectively denoted as &lt;script type=&quot;math/tex&quot;&gt;\lambda_{\max}(\bA)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bv_{\max}(\bA)&lt;/script&gt;. The result below is called BBP phase transition phenomenon (see &lt;a href=&quot;https://projecteuclid.org/euclid.aop/1127395869&quot;&gt;this paper&lt;/a&gt; for spiked Wishart matrix and &lt;a href=&quot;https://link.springer.com/article/10.1007/s00440-005-0466-z&quot;&gt;this paper&lt;/a&gt; for spiked Wigner matrix).&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;The largest eigenvalue of &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt;: &lt;br /&gt;
+    &lt;p&gt;The largest eigenvalue &lt;script type=&quot;math/tex&quot;&gt;\lambda_{\max}(\bA)&lt;/script&gt;: &lt;br /&gt;
 For &lt;script type=&quot;math/tex&quot;&gt;0 \le \lambda \le 1&lt;/script&gt;, we have
 \[
 \lim_{n \to \infty} \E[\lambda_{\max} ({\bA})] = 2;
@@ -58,7 +67,7 @@ For &lt;script type=&quot;math/tex&quot;&gt;\lambda &gt; 1&lt;/script&gt;, we ha
 \]&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;The correlation of &lt;script type=&quot;math/tex&quot;&gt;\bv_{\max}(\bA)&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;\bu&lt;/script&gt;: &lt;br /&gt;
+    &lt;p&gt;The correlation of top eigenvector &lt;script type=&quot;math/tex&quot;&gt;\bv_{\max}(\bA)&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;\bu&lt;/script&gt;: &lt;br /&gt;
 For &lt;script type=&quot;math/tex&quot;&gt;0 \le \lambda \le 1&lt;/script&gt;, we have
 \[
 \lim_{n \to \infty} \E[\langle \bv_{\max}(\bA), \bu \rangle^2] = 0;
@@ -70,35 +79,38 @@ For &lt;script type=&quot;math/tex&quot;&gt;\lambda &gt; 1&lt;/script&gt;, we ha
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;In the following section, we will discuss how to derive this result using replica method.&lt;/p&gt;
+&lt;p&gt;In the rest of this blog, we will derive this result using replica method.&lt;/p&gt;
 
 &lt;h2 id=&quot;3-tricks-in-statistical-physics&quot;&gt;3. Tricks in statistical physics&lt;/h2&gt;
 
 &lt;h3 id=&quot;31-the-free-energy-trick&quot;&gt;3.1. The free energy trick&lt;/h3&gt;
 
-&lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;H: \Omega \to \R&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f: \Omega \to \R&lt;/script&gt; are two functions. We would like to analytically calculate the following quantities
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;H: \Omega \to \R&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f: \Omega \to \R&lt;/script&gt; be two functions. We would like to calculate the following quantities
 \[
 \begin{aligned}
 &amp;amp;\max_{\bsigma \in \Omega} H(\bsigma),&lt;br /&gt;
 &amp;amp;f(\arg \max_{\bsigma} H(\bsigma)).
 \end{aligned}
-\]
-The free energy trick is the following. Define a Gibbs measure
+\]&lt;/p&gt;
+
+&lt;p&gt;The free energy trick works as follows. Define a Gibbs measure
 \[
 \mu_{\beta, h}(\de \bsigma) = \frac{1}{Z(\beta, h)} \exp\{ \beta H(\bsigma) + h f(\bsigma)\} \nu_0(\de \bsigma),
 \]
-where &lt;script type=&quot;math/tex&quot;&gt;Z(\beta, h)&lt;/script&gt; is the normalizing constant
+where &lt;script type=&quot;math/tex&quot;&gt;Z(\beta, h)&lt;/script&gt; denotes the normalizing constant
 \[
-Z(\beta, h) = \int_{\Omega} \exp\{ \beta H(\bsigma) + h f(\bsigma)\} \nu_0(\de \bsigma). 
+\begin{align}\tag{Def Z} \label{eqn:def_Z}
+Z(\beta, h) = \int_{\Omega} \exp\{ \beta H(\bsigma) + h f(\bsigma)\} \nu_0(\de \bsigma),
+\end{align}
 \]
-In physics, &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; stands for inverse temperature, and &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; stands for the strength of external field. Define the free energy function &lt;script type=&quot;math/tex&quot;&gt;\Psi&lt;/script&gt; to be 
+and &lt;script type=&quot;math/tex&quot;&gt;\nu_0&lt;/script&gt; denotes a reference measure on &lt;script type=&quot;math/tex&quot;&gt;\Omega&lt;/script&gt;. In physics, &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; stands for the inverse temperature, and &lt;script type=&quot;math/tex&quot;&gt;h&lt;/script&gt; stands for the strength of external field. Define the free energy function by 
 \[
 \Psi(\beta, h) = \log Z(\beta, h). 
 \]
-The following lemma shows that, as long as we can derive a formula for the free energy function $\Psi$, we can derive many interesting quantities including &lt;script type=&quot;math/tex&quot;&gt;\max_{\bsigma \in \Omega} H(\bsigma)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f(\arg \max_{\bsigma} H(\bsigma))&lt;/script&gt;. This lemma follows by basic calculus, which is the same as the calculus for exponential family.&lt;/p&gt;
+The following lemma shows that, the free energy function &lt;script type=&quot;math/tex&quot;&gt;\Psi&lt;/script&gt; can generate many interesting quantities, including &lt;script type=&quot;math/tex&quot;&gt;\max_{\bsigma \in \Omega} H(\bsigma)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;f(\arg \max_{\bsigma} H(\bsigma))&lt;/script&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;lemma&quot;&gt;
-Denote the ensemble average operator &lt;script type=&quot;math/tex&quot;&gt;\langle \cdot \rangle&lt;/script&gt; to be the following:
+Denote the ensemble average operator &lt;script type=&quot;math/tex&quot;&gt;\langle \cdot \rangle&lt;/script&gt; by
 \[
 \langle g \rangle_{\beta, h} = \int_\Omega g(\bsigma) \mu_{\beta, h}(\de \bsigma).
 \]
@@ -113,28 +125,28 @@ and
 \lim_{\beta \to \infty} \partial_h \Psi(\beta, h) =&amp;amp; f(\arg\max_{\bsigma \in \Omega} H(\bsigma) ).
 \end{align}
 &lt;/div&gt;
-&lt;p&gt;Equations \eqref{eq:1} follow from basic calculus of exponential family, and Equations \eqref{eq:2} follow from the fact that, for &lt;script type=&quot;math/tex&quot;&gt;h = 0&lt;/script&gt; and large &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, the measure &lt;script type=&quot;math/tex&quot;&gt;\mu_{\beta, 0}&lt;/script&gt; will concentrate at the maxima of &lt;script type=&quot;math/tex&quot;&gt;H&lt;/script&gt;.&lt;/p&gt;
+&lt;p&gt;Equation \eqref{eq:1} follows from basic calculus of exponential family. The intuition for Equation \eqref{eq:2} gives the following: for &lt;script type=&quot;math/tex&quot;&gt;h = 0&lt;/script&gt; and large &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt;, the measure &lt;script type=&quot;math/tex&quot;&gt;\mu_{\beta, 0}&lt;/script&gt; concentrates at the maxima of &lt;script type=&quot;math/tex&quot;&gt;H&lt;/script&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;32-free-energy-trick-for-spiked-goe-model&quot;&gt;3.2. Free energy trick for spiked GOE model&lt;/h3&gt;
+&lt;!-- ### 3.2. Free energy trick for spiked GOE model --&gt;
 
 &lt;p&gt;In the spiked GOE model, the Hamiltonian associated with the random matrix &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt; is defined as
 \[
 H_{n, \lambda}(\bsigma) = \langle \bsigma, \bA \bsigma \rangle = \lambda \langle \bu, \bsigma\rangle^2 + \langle \bsigma, \bW \bsigma\rangle. 
 \]
-Denote the (random) partition function associated with the Hamiltonian &lt;script type=&quot;math/tex&quot;&gt;H_{n, \lambda}&lt;/script&gt;:
+Denote the (random) partition function associated with the Hamiltonian &lt;script type=&quot;math/tex&quot;&gt;H_{n, \lambda}&lt;/script&gt; by
 \[
 Z(\beta, \lambda, n) = \int_{\S^{n-1}} \exp\{ \beta n H_{n, \lambda}( \bsigma ) \} \nu_0(\de \bsigma).
 \]
-Here &lt;script type=&quot;math/tex&quot;&gt;\nu_0&lt;/script&gt; is the uniform probability measure on &lt;script type=&quot;math/tex&quot;&gt;\S^{n-1}&lt;/script&gt;, and the &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; factor on the exponent serves for proper normalization.&lt;/p&gt;
+Here &lt;script type=&quot;math/tex&quot;&gt;\nu_0&lt;/script&gt; is the uniform probability measure on &lt;script type=&quot;math/tex&quot;&gt;\S^{n-1}&lt;/script&gt;, and the &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; factor in the exponent serves for proper normalization.&lt;/p&gt;
 
 &lt;p&gt;Define 
 \[
 \begin{align}\tag{3}\label{eq:3}
 \vphi_n(\lambda) =&amp;amp; \lim_{\beta \to \infty} \frac{1}{\beta n}\E[\log Z(\beta, \lambda, n)],\\
-\vphi(\lambda) =&amp;amp; \lim_{n\to \infty} \vphi_n(\lambda) = \lim_{n \to \infty} \lim_{\beta \to \infty} \frac{1}{\beta n}\E[\log Z(\beta, \lambda, n)].
+\vphi(\lambda) =&amp;amp; \lim_{n\to \infty} \vphi_n(\lambda) = \lim_{n \to \infty} \lim_{\beta \to \infty} \frac{1}{\beta n}\E[\log Z(\beta, \lambda, n)]. 
 \end{align}
 \]
-The following lemma tells us that, in order to get the asymptotics of &lt;script type=&quot;math/tex&quot;&gt;\E[\lambda_{\max}(\bA)]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\E[\langle \bv_{\max}(\bA), \bu\rangle^2]&lt;/script&gt;, we just need to calculate &lt;script type=&quot;math/tex&quot;&gt;\vphi(\lambda)&lt;/script&gt;.&lt;/p&gt;
+Due to the lemma below, in order to get the asymptotics of &lt;script type=&quot;math/tex&quot;&gt;\E[\lambda_{\max}(\bA)]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\E[\langle \bv_{\max}(\bA), \bu\rangle^2]&lt;/script&gt;, we just need to calculate &lt;script type=&quot;math/tex&quot;&gt;\vphi(\lambda)&lt;/script&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;lemma&quot;&gt;
 For &lt;script type=&quot;math/tex&quot;&gt;\bA = \lambda \bu \bu^\sT + \bW \in \R^{n \times n}&lt;/script&gt;, we have
@@ -145,17 +157,17 @@ For &lt;script type=&quot;math/tex&quot;&gt;\bA = \lambda \bu \bu^\sT + \bW \in 
 \end{aligned}
 \]
 &lt;/div&gt;
-&lt;p&gt;We leave the proof of this Lemma to the readers.&lt;/p&gt;
+&lt;p&gt;We leave the proof of this lemma to readers.&lt;/p&gt;
 
-&lt;h3 id=&quot;33-the-replica-trick&quot;&gt;3.3. The replica trick&lt;/h3&gt;
+&lt;h3 id=&quot;32-the-replica-trick&quot;&gt;3.2. The replica trick&lt;/h3&gt;
 
-&lt;p&gt;To calculate the function &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt;, we need to calculate &lt;script type=&quot;math/tex&quot;&gt;\E[\log Z]&lt;/script&gt;. However, it is hard to calculate this quantity, since we don’t know how to deal with the expectation of &lt;script type=&quot;math/tex&quot;&gt;\log&lt;/script&gt;. Instead, there is an easy way to calculate the moments of &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt;. The replica trick is to convert the problem of calculating the expectation of &lt;script type=&quot;math/tex&quot;&gt;\log&lt;/script&gt; into the moments calculations.&lt;/p&gt;
+&lt;p&gt;The difficulty of calculating &lt;script type=&quot;math/tex&quot;&gt;\vphi(\lambda)&lt;/script&gt; originated from the expectation of &lt;script type=&quot;math/tex&quot;&gt;\log Z&lt;/script&gt; as in Eq. \eqref{eq:3}. The replica trick can convert the problem of calculating the expectation of &lt;script type=&quot;math/tex&quot;&gt;\log Z&lt;/script&gt; into calculating the moments of &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt;. Calculating the moments of &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt; is an easier problem.&lt;/p&gt;
 
-&lt;p&gt;The following formula is called replica trick, 
+&lt;p&gt;In mathematics, the replica trick gives the following formula
 \[\tag{4} \label{eq:4}
-\E[\log Z] = \lim_{k \to 0} \frac{1}{k}\log \E[Z^k ], 
+\E[\log Z] = \lim_{k \to 0} \frac{1}{k}\log \E[Z^k ]. 
 \]
-with justification 
+Here is a simple proof of this equality. 
 \[
 \begin{aligned}
 \E[\log Z] =&amp;amp; \E[(\log Z^k) / k] = \lim_{k \to 0} \E [ \log(1 + Z^k - 1) / k] = \lim_{k \to 0} \E [ ( Z^k - 1 ) / k ] \\
@@ -163,9 +175,9 @@ with justification
 \end{aligned}
 \]&lt;/p&gt;
 
-&lt;h3 id=&quot;34-the-replica-trick-for-spiked-goe-model&quot;&gt;3.4. The replica trick for spiked GOE model&lt;/h3&gt;
+&lt;!-- ### 3.4. The replica trick for spiked GOE model --&gt;
 
-&lt;p&gt;Using the definition of &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; in Eq. \eqref{eq:3} and the replica trick Eq. \eqref{eq:4}, we can rewrite &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; to be
+&lt;p&gt;Using the definition of &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; in Eq. \eqref{eq:3} and the replica trick in Eq. \eqref{eq:4}, we can rewrite &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; as
 \[
 \begin{aligned}
 \vphi(\lambda) \equiv&amp;amp; \lim_{n\to \infty} \lim_{\beta \to \infty} \frac{1}{\beta n}\E[\log Z(\beta, \lambda, n)] = \lim_{n \to \infty}   \lim_{\beta \to \infty} \lim_{k \to 0}\frac{1}{\beta k n}\log \E[Z(\beta, \lambda, n)^k]. \\
@@ -175,56 +187,142 @@ With some heuristic change of limit (which we will not justify), we get
 \[
 \vphi(\lambda) \stackrel{\cdot}{=} \lim_{\beta \to \infty}  \lim_{k \to 0} \lim_{n \to \infty} \frac{1}{\beta k n}\log \E[Z(\beta, \lambda, n)^k]. 
 \]
-There are three limits in the right hand side. Define
+There are three limits in the right hand side of the above equation. Define
 \[
+\begin{align}\tag{Def S} \label{eqn:defS}
 S(k, \beta, \lambda) = \lim_{n \to \infty} \frac{1}{n}\log \E[Z(\beta, \lambda, n)^k],
+\end{align}
 \]
 and
 \[
+\begin{align}\tag{Def $\Psi$} \label{eqn:defPsi}
 \Psi(\beta, \lambda) = \lim_{k \to 0} \frac{1}{k} S(k, \beta, \lambda).
+\end{align}
 \]
 This gives
 \[
+\begin{align}\tag{Def $\vphi$} \label{eqn:defvphi}
 \vphi(\lambda) = \lim_{\beta \to \infty} \frac{1}{\beta}\Psi(\beta, \lambda). 
+\end{align}
 \]
-In the following section, we calculate these &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\Psi&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; functions sequentially.&lt;/p&gt;
+In the following section, we calculate &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;\Psi&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; functions sequentially.&lt;/p&gt;
 
 &lt;h2 id=&quot;4-the-replica-calculations&quot;&gt;4. The replica calculations&lt;/h2&gt;
 
-&lt;h3 id=&quot;41-the-n-to-infty-limit-moments-calculation&quot;&gt;4.1. The &lt;script type=&quot;math/tex&quot;&gt;n \to \infty&lt;/script&gt; limit: moments calculation&lt;/h3&gt;
+&lt;h3 id=&quot;41-the-large-n-limit-moments-calculation&quot;&gt;4.1. The large &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; limit: moments calculation&lt;/h3&gt;
 
-&lt;h4 id=&quot;411-the-result-for-s-function&quot;&gt;4.1.1. The result for &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; function&lt;/h4&gt;
+&lt;h4 id=&quot;411-a-variational-formula-for-s-function&quot;&gt;4.1.1. A variational formula for &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; function&lt;/h4&gt;
 
-&lt;p&gt;We claim the following expression for function &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;
-\[
+&lt;p&gt;Recall the definition of &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; function given in Eq. \eqref{eqn:defS}. We claim the following equality for &lt;script type=&quot;math/tex&quot;&gt;k \in \N_+&lt;/script&gt;
+\begin{align}\tag{5}\label{eqn:S_function}
 S(k, \beta, \lambda) \equiv \lim_{n \to \infty} \frac{1}{n}\log\E[Z(\beta, \lambda, n)^k]= \sup_{\bQ \in \R^{(k+1) \times (k+1)}, \diag(\bQ) = 1, \bQ \succeq \bzero} {U(\bQ) }, 
-\]
+\end{align}
 where
-\[
+\begin{align}\tag{6}\label{eqn:U_function}
 U(\bQ) = \beta \lambda \sum_{i=1}^k q_{0i}^2 + \beta^2 \sum_{ij = 1}^k q_{ij}^2 + \frac{1}{2} \log(\det(\bQ))
-\]
-and &lt;script type=&quot;math/tex&quot;&gt;\bQ \in \R^{(k + 1) \times (k + 1)}&lt;/script&gt; is symmetric, with (the index of &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt; start from &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;)
+\end{align}
+and &lt;script type=&quot;math/tex&quot;&gt;\bQ \in \R^{(k + 1) \times (k + 1)}&lt;/script&gt; is symmetric, with (the index of &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt; starts from &lt;script type=&quot;math/tex&quot;&gt;0&lt;/script&gt; and ends at &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;)
 \[
+\begin{align}\tag{Def $\bQ$} \label{eqn:def_Q}
 \bQ = \begin{bmatrix}
 1&amp;amp; q_{01} &amp;amp; \ldots &amp;amp; q_{0k}\\
 q_{01} &amp;amp; 1 &amp;amp; \ldots &amp;amp; q_{1k}\\
 \ldots &amp;amp; \ldots &amp;amp; \ldots &amp;amp; \ldots\\
 q_{0k} &amp;amp; q_{k1} &amp;amp; \ldots &amp;amp; 1\\
 \end{bmatrix}.
+\end{align}
 \]
-This result is exact and rigorous, but the computation is involved. To derive this result, we calculate the moments of &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt; directly. After a long calculations, we can get
-\[
-\E[Z(\beta, \lambda, n)^k] = \int \exp\{ n U(\bQ) + o(n)\} \de \bQ, 
-\]
-and applying Laplace method. We will discuss about how to do this calculation at the end of the talk. First let us look at what is Physicists’ philosophy after getting to this point.&lt;/p&gt;
+Equation \eqref{eqn:S_function} is exact and rigorous, but the computation is involved. By calculating the moments of &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt; directly (the calculation is given in Section &lt;a href=&quot;#sec:derivation&quot;&gt;4.1.2&lt;/a&gt;), we get
+\begin{align}\tag{7} \label{eqn:moments_result}
+\E[Z(\beta, \lambda, n)^k] = \int \exp\{ n U(\bQ) + o(n)\} \de \bQ. 
+\end{align}
+Eq. \eqref{eqn:S_function} follows from Eq. \eqref{eqn:moments_result} and Laplace method. We suggest the readers skipping the derivation of Eq. \eqref{eqn:moments_result} at the first time reading, and continue at Section &lt;a href=&quot;#sec:rsa&quot;&gt;4.2&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;42-the-k-to-0-limit-replica-symmetric-ansatz&quot;&gt;4.2. The &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt; limit: replica symmetric ansatz&lt;/h3&gt;
+&lt;h4 id=&quot;sec:derivation&quot;&gt;4.1.2. The replica calculations&lt;/h4&gt;
+
+&lt;p&gt;In this section, we derive Eq. \eqref{eqn:moments_result}. At the first time reading, we suggest the readers skipping this section and continue at Section &lt;a href=&quot;#sec:rsa&quot;&gt;4.2&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Recall the definition of &lt;script type=&quot;math/tex&quot;&gt;Z&lt;/script&gt; given in Eq. \eqref{eqn:def_Z}. The &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;‘th moments of &lt;script type=&quot;math/tex&quot;&gt;Z(\beta, \lambda, n)&lt;/script&gt; gives 
+\[
+\begin{aligned}
+\E[Z(\beta, \lambda, n)^k] = &amp;amp; \E\Big[\Big(\int_{\S^{n-1}} \exp\{ \beta n H_{n, \lambda}( \bsigma ) \} \nu_0(\de \bsigma)\Big)^k \Big].&lt;br /&gt;
+\end{aligned}
+\]
+Here, the expectation &lt;script type=&quot;math/tex&quot;&gt;\E&lt;/script&gt; is taken with respect to the randomness of matrix &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt; in &lt;script type=&quot;math/tex&quot;&gt;H_{n, \lambda}(\bsigma) = \langle \bsigma, \bA \bsigma\rangle&lt;/script&gt;. The first trick is to create &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; replicas of &lt;script type=&quot;math/tex&quot;&gt;\bsigma&lt;/script&gt;, such that we can exchange the expectation with integrals, 
+\[
+\begin{aligned}
+\E[Z(\beta, \lambda, n)^k] =&amp;amp;\E\Big[\Big(\int_{\S^{n-1}} \exp\{ \beta n H_{n, \lambda}( \bsigma ) \} \nu_0(\de \bsigma)\Big)^k \Big] = \E\Big[\int_{(\S^{n-1})^k} \exp\Big\{ \beta n \sum_{i = 1}^k H_{n, \lambda}( \bsigma_i ) \Big\} \prod_{i \in [k]} \nu_0(\de \bsigma_i) \Big]\\
+=&amp;amp;\int_{(\S^{n-1})^k} \E\Big[ \exp\Big\{ \beta n \sum_{i = 1}^k  [\lambda \langle \bu, \bsigma_i\rangle^2 + \langle \bsigma_i, \bW \bsigma_i\rangle ] \Big\}  \Big] \prod_{i \in [k]} \nu_0( \de \bsigma_i).
+\end{aligned}
+\]
+Let &lt;script type=&quot;math/tex&quot;&gt;\bG = (G_{ij})_{i, j \in [n]} \in \R^{n \times n}&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;G_{ij} \sim \cN(0, 1)&lt;/script&gt; independently. Noting that the GOE matrix &lt;script type=&quot;math/tex&quot;&gt;\bW&lt;/script&gt; shares the same distribution with matrix &lt;script type=&quot;math/tex&quot;&gt;(\bG + \bG^\sT) / \sqrt{2 n}&lt;/script&gt;, we have
+\[
+\begin{aligned}
+\E[Z(\beta, \lambda, n)^k] =&amp;amp; \int_{(\S^{n-1})^k} \E_{G_{ij} \sim \cN(0,1)}\Big[ \exp\Big\{ \beta n \lambda \sum_{i = 1}^k  \langle \bu, \bsigma_i\rangle^2 + \beta n \Big\langle  (\bG + \bG^\sT) / \sqrt{2n},  \sum_{i=1}^k \bsigma_i\bsigma_i^\sT \Big\rangle \Big\} \Big] \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
+=&amp;amp; \int_{(\S^{n-1})^k} \exp\Big\{ \beta n \lambda \sum_{i = 1}^k  \langle \bu, \bsigma_i\rangle^2 \Big\} \times \E_{G_{ij} \sim \cN(0,1)}\Big[ \exp\Big\{ \beta \sqrt{2 n} \Big\langle \bG,  \sum_{i=1}^k \bsigma_i\bsigma_i^\sT \Big\rangle \Big\} \Big] \prod_{i \in [k]} \nu_0(\de \bsigma_i). 
+\end{aligned}
+\]
+Using the formula of Gaussian moment generating function &lt;script type=&quot;math/tex&quot;&gt;\E_{G \sim \cN(0, 1)}[e^{tG}] = e^{t^2/2}&lt;/script&gt;, we get
+\[
+\begin{aligned}
+\E[Z(\beta, \lambda, n)^k] =&amp;amp; \int_{(\S^{n-1})^k} \exp\Big\{ \beta n \lambda \sum_{i = 1}^k  \langle \bu, \bsigma_i \rangle^2  + n \beta^2 \Big \Vert \sum_{i=1}^k \bsigma_i \bsigma_i^\sT \Big\Vert_F^2 \Big\}  \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
+=&amp;amp; \int_{(\S^{n-1})^k} \exp\Big\{ \beta n \lambda \sum_{i = 1}^k  \langle \bu, \bsigma_i \rangle^2 + n \beta^2 \sum_{i, j=1}^k\Big\langle  \bsigma_i\bsigma_i^\sT, \bsigma_j \bsigma_j^\sT\Big \rangle \Big\} \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
+=&amp;amp; \int_{(\S^{n-1})^k} \exp\Big\{ \beta n \lambda \sum_{i = 1}^k  \langle \bu, \bsigma_i \rangle^2 + n \beta^2 \sum_{i, j=1}^k \langle \bsigma_i, \bsigma_j \rangle^2 \Big\} \prod_{i \in [k]} \nu_0(\de \bsigma_i). 
+\end{aligned}
+\]&lt;/p&gt;
+
+&lt;p&gt;In the following, we make use a heuristic argument (using Dirac delta function). Note we have
+\[
+1 = \int \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \de \bQ
+\]
+where &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\de \bQ \equiv \prod_{i \in [k]} \de q_{0i} \prod_{1 \le i &lt; j \le k} \de q_{ij} %]]&gt;&lt;/script&gt;. Using this equality, we get
+\[
+\begin{aligned}
+\E[Z(\beta, \lambda, n)^k] =&amp;amp;  \int \de \bQ \exp\Big\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 \Big\} \cdot \int_{(\R^n)^k} \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
+=&amp;amp; \int \de \bQ  \exp\Big\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 + n H_n(\bQ) \Big\}, &lt;br /&gt;
+\end{aligned}
+\]
+where &lt;script type=&quot;math/tex&quot;&gt;\bQ \in \R^{(k + 1) \times (k + 1)}&lt;/script&gt; is given by Eq. \eqref{eqn:def_Q} and
+\[
+\begin{aligned}
+H_n(\bQ) =&amp;amp; \frac{1}{n} \log \int_{(\R^n)^k}  \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
+=&amp;amp; \frac{1}{n} \log \int_{(\R^n)^{k+1}} \prod_{0 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{0 \le i \le k} \nu_0( \bsigma_i), 
+\end{aligned}
+\]
+which serves as the rate function of the random matrix &lt;script type=&quot;math/tex&quot;&gt;\bSigma = (\langle \bsigma_i, \bsigma_j \rangle / n)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})&lt;/script&gt;. This rate function can be found on standard textbook
+\[
+\lim_{n \to \infty} H_n(\bQ) = \frac{1}{2}\log \det(\bQ). 
+\]
+Here we give a heuristic argument to calculate the entropy term &lt;script type=&quot;math/tex&quot;&gt;H_n(\bQ)&lt;/script&gt;, (here the argument is handwaving, but can be made rigorous)&lt;/p&gt;
+&lt;p&gt;
+\[
+\begin{aligned}
+H_n(\bQ) \stackrel{\cdot}{=}&amp;amp; \frac{1}{n} \P_{(\bsigma_i)_{i \in [k]} \sim \Unif(\S^{n-1})} \Big(  \big(\langle \bsigma_i, \bsigma_j \rangle / n \big)_{i, j \in [k]}\approx \bQ  \Big)\\\
+\stackrel{\cdot}{=}&amp;amp; \inf_{\lambda_{ij}} \frac{1}{n} \log  \int_{(\R^n)^{k+1}} \prod_{0 \le i \le j\le k} \exp\Big\{ - \lambda_{ij}\langle\bsigma_i, \bsigma_j\rangle / 2 + n q_{ij} \lambda_{ij} / 2 \Big\} \prod_{0 \le i \le k} \de \bsigma_i + \const\\\
+=&amp;amp; \inf_{\lambda_{ij}} \log  \int_{\R^{k+1}} \prod_{0 \le i &amp;lt; j\le k} \exp\Big\{ -  \lambda_{ij} \sigma_i\sigma_j / 2 + q_{ij} \lambda_{ij}/2 \Big\} \prod_{0 \le i \le k} \de \bsigma_i + \const\\\
+=&amp;amp; \inf_{\bLambda = (\lambda_{ij})_{0 \le i \le j \le k}} \Big[ \langle \bQ, \bLambda\rangle / 2 - \log(\det(\bLambda))/2  \Big] + \const\\\
+\stackrel{\cdot}{=}&amp;amp; \frac{1}{2} \log \det(\bQ),
+\end{aligned}
+\]
+&lt;/p&gt;
+&lt;p&gt;where we use the fact that
+\[
+\lim_{n \to \infty} \frac{1}{n} \log \P( X_n \approx x) = \inf_{\lambda} \lim_{n \to \infty} \frac{1}{n} \log \E \Big[\exp\{ \lambda (X_n - x) \} \Big]. 
+\]
+This gives Eq. \eqref{eqn:moments_result}.&lt;/p&gt;
+
+&lt;h3 id=&quot;sec:rsa&quot;&gt;4.2. The small &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; limit: replica symmetric ansatz&lt;/h3&gt;
 
 &lt;h4 id=&quot;421-replica-symmetric-ansatz&quot;&gt;4.2.1. Replica symmetric ansatz&lt;/h4&gt;
 
-&lt;p&gt;We would like to calculate &lt;script type=&quot;math/tex&quot;&gt;\Psi(\beta, \lambda) = \lim_{k \to 0} S(\beta, \lambda, k)/k&lt;/script&gt;. However, our expression for &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; is only valid for integer &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;. Hence, this limit taken here is completely non-rigorous.&lt;/p&gt;
+&lt;p&gt;Next we calculate 
+\[
+\Psi(\beta, \lambda) = \lim_{k \to 0} S(\beta, \lambda, k)/k. 
+\]
+We gave the expression of &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; is integral (c.f. Eq. \eqref{eqn:S_function}), where &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; serves as the dimension of variable &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt; in the variational formula. However, to take the limit &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt;, we need the expression for &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; taking real numbers. This is the difficulty to calculate the small &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; limit using Eq. \eqref{eqn:S_function}.&lt;/p&gt;
 
-&lt;p&gt;Note &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; serves as the dimension of variable &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt; in the expression of &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;, so we cannot take the limit. The trick here is to plug in an ansatz for matrix &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt; to simplify the expression for &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Note the maximization problem in the expression of &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; has some symmetric properties, this motivate us to take the “replica symmetric ansatz”: 
+&lt;p&gt;The physicists’ trick is to plug in an ansatz for the matrix &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt; to simplify the expression of &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt;. Note &lt;script type=&quot;math/tex&quot;&gt;U(\bQ)&lt;/script&gt; defined in Eq. \eqref{eqn:U_function} has some symmetry: if we permute the &lt;script type=&quot;math/tex&quot;&gt;1&lt;/script&gt; to &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; rows of &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt;, and perform the same permutation to its columns, the function &lt;script type=&quot;math/tex&quot;&gt;U&lt;/script&gt; stays the same. This motivates us to assume the “replica symmetric ansatz”: 
 \[
 \bQ = \begin{bmatrix}
 1&amp;amp; \mu &amp;amp; \ldots &amp;amp; \mu\\
@@ -233,7 +331,7 @@ and applying Laplace method. We will discuss about how to do this calculation at
 \mu &amp;amp; q &amp;amp; \ldots &amp;amp; 1\\
 \end{bmatrix}.
 \]
-Under this ansatz, using matrix determinant lemma, we have
+Plugging this ansats into Eq. \eqref{eqn:U_function}, and simplifying the log determinant term using the matrix determinant lemma 
 \[
 \begin{aligned}
 &amp;amp;\log(\det(\bQ)) = \log \det( (1-q) \id_k + (q - \mu^2) \ones \ones^\sT) \\
@@ -241,91 +339,101 @@ Under this ansatz, using matrix determinant lemma, we have
 =&amp;amp; \log(1 + k [(q - \mu^2)/(1-q) ]) + k \log(1-q)\\
 =&amp;amp; \log\Big( 1 - \frac{\mu^2 k}{1 + (k - 1)q} \Big) + \log \Big(1 + \frac{kq}{1-q} \Big) + k \log(1 - q),
 \end{aligned}
-\] 
-and this gives
-\[
-S(k, \beta, \lambda) \stackrel{\cdot}{=} \sup_{\mu, q} U(\mu, q, k).
 \]
-where
+we get
 \[
-U(\mu, q, k) = \beta \lambda k \mu^2 + \beta^2 k + \beta^2 k (k-1) q^2 + \frac{1}{2} \Big[ \log\Big( 1 - \frac{\mu^2 k}{1 + (k - 1)q} \Big) + \log \Big(1 + \frac{kq}{1-q} \Big) + k \log(1 - q) \Big].
+U(\bQ) = \beta \lambda k \mu^2 + \beta^2 k + \beta^2 k (k-1) q^2 + \frac{1}{2} \Big[ \log\Big( 1 - \frac{\mu^2 k}{1 + (k - 1)q} \Big) + \log \Big(1 + \frac{kq}{1-q} \Big) + k \log(1 - q) \Big] \equiv U(\mu, q, k). 
 \]&lt;/p&gt;
 
-&lt;h4 id=&quot;422-the-k-to-0-limit&quot;&gt;4.2.2. The &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt; limit&lt;/h4&gt;
-&lt;p&gt;Now we would like to take the limit &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt; using the expression above. Define 
+&lt;p&gt;Assuming that the maximum of &lt;script type=&quot;math/tex&quot;&gt;U&lt;/script&gt; is taken at a “replica symmetric” form of &lt;script type=&quot;math/tex&quot;&gt;\bQ&lt;/script&gt;, we get
 \[
-u(\mu, q) = \lim_{k \to 0} \frac{1}{k} U(\mu, q, k) = \beta \lambda \mu^2  + \beta^2 (1 - q^2) - \frac{\mu^2}{2(1 - q)} + \frac{q}{2 (1 - q)} + \frac{1}{2}\log(1 - q). 
-\]
-Here the convention is that, the &lt;script type=&quot;math/tex&quot;&gt;\lim_{k \to 0} \sup_{\mu, q}&lt;/script&gt; becomes &lt;script type=&quot;math/tex&quot;&gt;\exp_{\mu, q} \lim_{k \to 0}&lt;/script&gt;: 
-\[
-\Psi(\beta, \lambda) =  \lim_{k \to 0} S(k, \beta, \lambda) / k \stackrel{\cdot}{=} \ext_{\mu, q}u(\mu, q),
-\]
-where &lt;script type=&quot;math/tex&quot;&gt;\ext_{\mu, q}&lt;/script&gt; means setting stationery (extrema) with respect to &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;q&lt;/script&gt;.&lt;/p&gt;
+S(\beta, \lambda, k) \stackrel{\cdot}{=} \sup_{\mu, q} U(\mu, q, k).
+\]&lt;/p&gt;
 
-&lt;p&gt;We have 
+&lt;h4 id=&quot;422-the-small-k-limit&quot;&gt;4.2.2. The small &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; limit&lt;/h4&gt;
+&lt;p&gt;Using the replica symmetric ansatz, we gave an expression for &lt;script type=&quot;math/tex&quot;&gt;S&lt;/script&gt; for any &lt;script type=&quot;math/tex&quot;&gt;k &gt; 0&lt;/script&gt;. Next we would like to calculate the &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt; limit (recall the definition of &lt;script type=&quot;math/tex&quot;&gt;\Psi&lt;/script&gt; given in Eq. \eqref{eqn:defPsi})
+\[
+\Psi(\beta, \lambda) = \lim_{k \to 0} S(\beta, \lambda, k) / k = \lim_{k \to 0} \sup_{\mu, q} \frac{1}{k} U(\mu, q, k). 
+\]
+Define 
+\[
+u(\mu, q) \equiv \lim_{k \to 0} \frac{1}{k} U(\mu, q, k) = \beta \lambda \mu^2  + \beta^2 (1 - q^2) - \frac{\mu^2}{2(1 - q)} + \frac{q}{2 (1 - q)} + \frac{1}{2}\log(1 - q). 
+\]
+We need to exchange the operation &lt;script type=&quot;math/tex&quot;&gt;\lim_{k \to 0}&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\sup_{\mu, q}&lt;/script&gt; in some way. Another heuristic physicists’ convention comes here: the &lt;script type=&quot;math/tex&quot;&gt;\lim_{k \to 0} \sup_{\mu, q}&lt;/script&gt; operation becomes the &lt;script type=&quot;math/tex&quot;&gt;\ext_{\mu, q} \lim_{k \to 0}&lt;/script&gt; operation, where &lt;script type=&quot;math/tex&quot;&gt;\ext_{\bx} f(\bx)&lt;/script&gt; is a set defined as
+\[
+\ext_{\bx} f(\bx) = \Big\{ f(\bx_\star): \nabla f(\bx) = \bzero\Big\}. 
+\]
+Using this convention, we get
+\[
+\Psi(\beta, \lambda) =  \lim_{k \to 0} S(\beta, \lambda, k) / k \stackrel{\cdot}{=} \ext_{\mu, q}u(\mu, q),
+\]&lt;/p&gt;
+
+&lt;p&gt;Next, we calculate all the stationary points of &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt;, and collect the value of &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt; evaluated at these stationary points.&lt;/p&gt;
+
+&lt;p&gt;By basic calculus, we have 
 \[
 \begin{aligned}
-\partial_\mu u(\mu, q) =&amp;amp; 2 {\beta \lambda - 1/[2 (1-q)] } \mu, \\
+\partial_\mu u(\mu, q) =&amp;amp; 2 \Big( \beta \lambda - \frac{1}{2 (1-q)} \Big) \mu, \\
 \partial_q u(\mu, q) =&amp;amp; -2 \beta^2 q -  \frac{\mu^2}{2(1 - q)^2} + \frac{1}{2 (1 - q)^2}.
 \end{aligned}
 \]
-When &lt;script type=&quot;math/tex&quot;&gt;\beta &gt; 1&lt;/script&gt;, there are two branches of solutions of the extrema of &lt;script type=&quot;math/tex&quot;&gt;u&lt;/script&gt;: &lt;script type=&quot;math/tex&quot;&gt;\mu = 0&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\mu \neq 0&lt;/script&gt;.&lt;/p&gt;
+When &lt;script type=&quot;math/tex&quot;&gt;\beta &gt; 1&lt;/script&gt;, by basic algebra, we find two solutions of &lt;script type=&quot;math/tex&quot;&gt;\nabla u = \bzero&lt;/script&gt;.&lt;/p&gt;
 
-&lt;h4 id=&quot;423-the-first-branch-mu--0&quot;&gt;4.2.3. The first branch &lt;script type=&quot;math/tex&quot;&gt;\mu = 0&lt;/script&gt;&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;One branch of solution of &lt;script type=&quot;math/tex&quot;&gt;\nabla u = \bzero&lt;/script&gt; gives 
+  \[
+  \begin{aligned}
+  \mu_1 =&amp;amp; 0, \\
+  q_1 =&amp;amp; 1 - \frac{1}{2 \beta}.
+  \end{aligned}
+  \]
+  At this solution, we have 
+  \[
+  \Psi_1(\beta, \lambda) = u(\mu_1, q_1) = 2 \beta - \frac{3}{4} - \frac{1}{2} \log(2 \beta).
+  \]&lt;/li&gt;
+  &lt;li&gt;Another branch of solution of &lt;script type=&quot;math/tex&quot;&gt;\nabla u = \bzero&lt;/script&gt; gives 
+  \[
+  \begin{aligned}
+  \mu_2 =&amp;amp; \Big( \Big(1 - \frac{1}{\lambda^2}\Big) \Big(1 - \frac{1}{2 \beta \lambda}\Big)  \Big)^{1/2},\\
+  q_2 =&amp;amp; 1 - \frac{1}{2 \lambda \beta},
+  \end{aligned}
+  \]
+  At this solution, we have
+  \[
+  \Psi_2(\beta, \lambda) = u(\mu_2, q_2) = \beta\Big( \lambda + \frac{1}{\lambda}\Big) - \Big( \frac{1}{4 \lambda^2} + \frac{1}{2} \Big) - \frac{1}{2}\log(2 \lambda \beta). 
+  \]&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;When &lt;script type=&quot;math/tex&quot;&gt;\mu = 0&lt;/script&gt;, 
-\[
-\Psi_1(\beta, \lambda) = \ext_{q}\Big\{ \beta^2 (1 - q^2) + \frac{q}{2 (1 - q)} + \frac{1}{2}\log(1 - q)\Big\}. 
-\]
-the extrema is taken at &lt;script type=&quot;math/tex&quot;&gt;q = 1 - 1/(2 \beta)&lt;/script&gt;, hence we have 
-\[
-\Psi_1(\beta, \lambda) =2 \beta - 3/4 - \frac{1}{2} \log(2 \beta).
-\]&lt;/p&gt;
+&lt;h3 id=&quot;43-the-large-beta-limit&quot;&gt;4.3. The large &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; limit&lt;/h3&gt;
 
-&lt;h4 id=&quot;424-the-second-branch-mu-neq-0&quot;&gt;4.2.4. The second branch &lt;script type=&quot;math/tex&quot;&gt;\mu \neq 0&lt;/script&gt;&lt;/h4&gt;
-
-&lt;p&gt;When &lt;script type=&quot;math/tex&quot;&gt;\mu \neq 0&lt;/script&gt;, we must have 
-\[
-\begin{aligned}
-\mu =&amp;amp; \Big( (1 - 1 / \lambda^2) (1 - 1/(2 \beta \lambda))  \Big)^{1/2},\\
-q =&amp;amp; 1 - 1/(2 \lambda \beta),
-\end{aligned}
-\]
-and hence
-\[
-\Psi_2(\beta, \lambda) =  \beta( \lambda + 1/ \lambda) - [1/(4 \lambda^2)+ 1/2] - \frac{1}{2}\log(2 \lambda \beta). 
-\]&lt;/p&gt;
-
-&lt;h4 id=&quot;43-the-beta-limit&quot;&gt;4.3. The &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; limit&lt;/h4&gt;
-
-&lt;p&gt;In the first branch, we have 
+&lt;p&gt;Recall the definition of &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; in Eq. \eqref{eqn:defvphi}. Using the first branch &lt;script type=&quot;math/tex&quot;&gt;\Psi_1&lt;/script&gt;, we have 
 \[
 \vphi_1(\lambda) = \lim_{\beta \to \infty} \frac{1}{\beta} \Psi_1(\beta, \lambda) = 2. 
 \]
-In the second branch, we have 
+Using the second branch &lt;script type=&quot;math/tex&quot;&gt;\Psi_2&lt;/script&gt;, we have 
 \[
-\vphi_2(\lambda) = \lim_{\beta \to \infty} \frac{1}{\beta} \Psi_2(\beta, \lambda) = \lambda + 1/\lambda. 
+\vphi_2(\lambda) = \lim_{\beta \to \infty} \frac{1}{\beta} \Psi_2(\beta, \lambda) = \lambda + \frac{1}{\lambda}. 
 \]&lt;/p&gt;
 
-&lt;h4 id=&quot;44-select-a-branch&quot;&gt;4.4. Select a branch&lt;/h4&gt;
+&lt;h3 id=&quot;44-select-a-branch&quot;&gt;4.4. Select a branch&lt;/h3&gt;
 
-&lt;p&gt;We would like to select a branch that makes sense: &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; should be non-decreasing and &lt;script type=&quot;math/tex&quot;&gt;\lim_{\lambda \to \infty} \vphi(\lambda) = \infty&lt;/script&gt;.&lt;/p&gt;
+&lt;p&gt;There are two branches of solutions. We need to select the branch that makes sense: &lt;script type=&quot;math/tex&quot;&gt;\vphi&lt;/script&gt; stands for &lt;script type=&quot;math/tex&quot;&gt;\lim_{n\to \infty}\E[\lambda_\max(\bA)]&lt;/script&gt;, hence it should be non-decreasing in &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt;, and we must have &lt;script type=&quot;math/tex&quot;&gt;\lim_{\lambda \to \infty} \vphi(\lambda) = \infty&lt;/script&gt;.&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;When &lt;script type=&quot;math/tex&quot;&gt;\lambda\le 1&lt;/script&gt;, the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_2(\lambda) = \lambda + 1/\lambda&lt;/script&gt; is decreasing, and hence the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_1(\lambda) = 2&lt;/script&gt; makes sense.&lt;/li&gt;
-  &lt;li&gt;When &lt;script type=&quot;math/tex&quot;&gt;\lambda \ge 1&lt;/script&gt;, the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_1(\lambda) = 2&lt;/script&gt; stays constant, hence the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_2(\lambda) = \lambda + 1/\lambda&lt;/script&gt; makes sense.&lt;/li&gt;
+  &lt;li&gt;When &lt;script type=&quot;math/tex&quot;&gt;\lambda\le 1&lt;/script&gt;, the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_2(\lambda) = \lambda + 1/\lambda&lt;/script&gt; is decreasing. Hence, we should select the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_1(\lambda) = 2&lt;/script&gt;.&lt;/li&gt;
+  &lt;li&gt;When &lt;script type=&quot;math/tex&quot;&gt;\lambda \ge 1&lt;/script&gt;, the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_1(\lambda) = 2&lt;/script&gt; stays constant. Hence, we should select the branch &lt;script type=&quot;math/tex&quot;&gt;\vphi_2(\lambda) = \lambda + 1/\lambda&lt;/script&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Combining the above discussions, we predict that 
+&lt;p&gt;The discussion above gives the following prediction 
 \[
-\vphi(\lambda) = \begin{cases}
+\lim_{n \to \infty} \E[\lambda_{\max}(\bA)]= \vphi(\lambda) = \begin{cases}
 2, ~~~&amp;amp; \lambda \le 1, \\
-\lambda + 1/\lambda, ~~~&amp;amp; \lambda &amp;gt; 1.
+\lambda + \frac{1}{\lambda}, ~~~&amp;amp; \lambda &amp;gt; 1.
 \end{cases}
 \]
-This turned out to be the correct answer!&lt;/p&gt;
+This turns out to be the correct answer!&lt;/p&gt;
 
 &lt;h2 id=&quot;5-summary&quot;&gt;5. Summary&lt;/h2&gt;
 
-&lt;p&gt;In summary, to calculate the extreme eigenvalue of the spiked GOE matrix, we used free energy trick and replica trick to transform the problem into sequentially calculating three limits: the &lt;script type=&quot;math/tex&quot;&gt;n \to \infty&lt;/script&gt; limit, the &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt; limit, and the &lt;script type=&quot;math/tex&quot;&gt;\beta \to \infty&lt;/script&gt; limit. The &lt;script type=&quot;math/tex&quot;&gt;n \to \infty&lt;/script&gt; limit can be dealt with rigorously, and there are some principled way to carry out the calculations. However, the longest calculations happen here. The &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt; limit is non-rigorous and no methods till now can make it rigorous. Some mysterious things happen in this part, where after exchanged with the limit, the &lt;script type=&quot;math/tex&quot;&gt;\sup&lt;/script&gt; operation becomes an &lt;script type=&quot;math/tex&quot;&gt;\ext&lt;/script&gt; operation. The final &lt;script type=&quot;math/tex&quot;&gt;\beta \to \infty&lt;/script&gt; limit is easy to deal with. After sequentially taking these limit, one need to use some intuitions to select a solution that is physical.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">The topics of this Blog</title><link href="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html" rel="alternate" type="text/html" title="The topics of this Blog" /><published>2019-07-19T23:09:06-07:00</published><updated>2019-07-19T23:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html">&lt;p&gt;Hello everyone, I am starting my research blog today.&lt;/p&gt;
+&lt;p&gt;In summary, we calculated the largest eigenvalue of the spiked GOE matrix &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt;. After using the free energy trick and the replica trick, the problem becomes calculating three limits sequentially: the large &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; limit, the small &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; limit, and the large &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; limit. The large &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; limit calculation is rigorous, but is also complicated. The small &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt; limit calculation is non-rigorous: we pluged in the replica symmetric ansatz, and changed the &lt;script type=&quot;math/tex&quot;&gt;\lim_{k \to 0} \inf_{\mu, q}&lt;/script&gt; operation to the &lt;script type=&quot;math/tex&quot;&gt;\ext_{\mu, q} \lim_{k \to 0}&lt;/script&gt; operation. The large &lt;script type=&quot;math/tex&quot;&gt;\beta&lt;/script&gt; limit calculation is straightforward. Finally, we get two branches of solutions. We use the properties of the largest eigenvalue of &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt; to select the branch when &lt;script type=&quot;math/tex&quot;&gt;\lambda&lt;/script&gt; is in different regime.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">The topics of this Blog</title><link href="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html" rel="alternate" type="text/html" title="The topics of this Blog" /><published>2019-07-19T23:09:06-07:00</published><updated>2019-07-19T23:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html">&lt;p&gt;Hello everyone, I am starting my research blog today.&lt;/p&gt;
 
-&lt;p&gt;In the first several blogs, I will discuss about methods from statistical physics, with applications to random matrix theory.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html">Hello everyone, I am starting my research blog today.</summary></entry></feed>
+&lt;p&gt;In my first several blogs, I will discuss about methods from statistical physics, with applications to random matrix theory. Hope you will have fun!&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html">Hello everyone, I am starting my research blog today.</summary></entry></feed>
