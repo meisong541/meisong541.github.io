@@ -17,7 +17,7 @@ title: Entropic Flow
 author: Song Mei
 email: songmei@stanford.edu
 description: > # this means to ignore newlines until "show_excerpts:"
-    A research blog on machine learning and statistics. 
+    A research blog about machine learning and statistics. 
 
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
