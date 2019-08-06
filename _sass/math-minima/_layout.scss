@@ -12,12 +12,26 @@
 }
 
 .site-title {
-  @include relative-font-size(1.625);
+  @include relative-font-size(2);
   font-weight: 300;
   letter-spacing: -1px;
   margin-bottom: 0;
   float: left;
+  
+// font-family: 'Shadows Into Light', cursive;
+font-family: 'Sacramento', cursive;
+// font-family: 'Tangerine', cursive;
+// font-family: 'Marck Script', cursive;
+// font-family: 'Gochi Hand', cursive;
+// font-family: 'Bad Script', cursive;
+// font-family: 'Chewy', cursive;
+// font-family: 'Cutive Mono', monospace;
+// font-family: 'Cabin Sketch', cursive;
+// font-family: 'Fredericka the Great', cursive;
+// font-family: 'Coming Soon', cursive;
+// font-family: 'Nanum Brush Script', cursive;
 
+	  
   @include media-query($on-palm) {
     padding-right: 45px;
   }
@@ -36,7 +50,10 @@
   border: 1px solid $grey-color-light;
   border-radius: 5px;
   text-align: right;
-
+  font-family: 'Sacramento', cursive;
+  
+  @include relative-font-size(2);
+  
   .nav-trigger {
       display: none;
   }
@@ -48,7 +65,7 @@
     line-height: 0;
     padding-top: 10px;
     text-align: center;
-
+	
     > svg path {
       fill: $grey-color-dark;
     }
@@ -122,17 +139,19 @@
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid $grey-color-light;
+  border-top: 4px solid $grey-color-light;
   padding: $spacing-unit 0;
 }
 
 .footer-heading {
   @include relative-font-size(1.125);
   margin-bottom: $spacing-unit / 2;
+  font-family: 'Sacramento', cursive;
 }
 
 .contact-list,
 .social-media-list {
+
   list-style: none;
   margin-left: 0;
 }
@@ -215,11 +234,13 @@
 .post-meta {
   font-size: $small-font-size;
   color: $grey-color;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .post-link {
   display: block;
   @include relative-font-size(1.5);
+  font-family: 'Cabin Sketch', cursive;
 }
 
 
@@ -229,6 +250,7 @@
  */
 .post-header {
   margin-bottom: $spacing-unit;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .post-title,
@@ -236,6 +258,7 @@
   @include relative-font-size(2.625);
   letter-spacing: -1px;
   line-height: 1;
+  font-family: 'Cabin Sketch', cursive;
 
   @media screen and (min-width: $on-large) {
     @include relative-font-size(2.625);

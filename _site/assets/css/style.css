@@ -236,11 +236,12 @@ table {
   position: relative; }
 
 .site-title {
-  font-size: 26px;
+  font-size: 32px;
   font-weight: 300;
   letter-spacing: -1px;
   margin-bottom: 0;
-  float: left; }
+  float: left;
+  font-family: 'Sacramento', cursive; }
   @media screen and (max-width: 600px) {
     .site-title {
       padding-right: 45px; } }
@@ -254,7 +255,9 @@ table {
   background-color: #fdfdfd;
   border: 1px solid #e8e8e8;
   border-radius: 5px;
-  text-align: right; }
+  text-align: right;
+  font-family: 'Sacramento', cursive;
+  font-size: 32px; }
   .site-nav .nav-trigger {
     display: none; }
   .site-nav .menu-icon {
@@ -310,12 +313,13 @@ table {
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid #e8e8e8;
+  border-top: 4px solid #e8e8e8;
   padding: 30px 0; }
 
 .footer-heading {
   font-size: 18px;
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  font-family: 'Sacramento', cursive; }
 
 .contact-list,
 .social-media-list {
@@ -378,23 +382,27 @@ table {
 
 .post-meta {
   font-size: 14px;
-  color: #828282; }
+  color: #828282;
+  font-family: 'Cabin Sketch', cursive; }
 
 .post-link {
   display: block;
-  font-size: 24px; }
+  font-size: 24px;
+  font-family: 'Cabin Sketch', cursive; }
 
 /**
  * Posts
  */
 .post-header {
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  font-family: 'Cabin Sketch', cursive; }
 
 .post-title,
 .post-content h1 {
   font-size: 42px;
   letter-spacing: -1px;
-  line-height: 1; }
+  line-height: 1;
+  font-family: 'Cabin Sketch', cursive; }
   @media screen and (min-width: 800px) {
     .post-title,
     .post-content h1 {

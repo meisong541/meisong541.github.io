@@ -3,28 +3,31 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Statistical physics and random matrix theory: Replica method (I) | Entropic Flow</title>
+<title>Replica method and random matrices (I) | Entropic Flow</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Statistical physics and random matrix theory: Replica method (I)" />
+<meta property="og:title" content="Replica method and random matrices (I)" />
 <meta name="author" content="Song Mei" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="A research blog on machine learning and statistics." />
 <meta property="og:description" content="A research blog on machine learning and statistics." />
-<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1.html" />
-<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1.html" />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" />
 <meta property="og:site_name" content="Entropic Flow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-08-02T00:09:06-07:00" />
+<meta property="article:published_time" content="2019-08-04T00:09:06-07:00" />
 <script type="application/ld+json">
-{"description":"A research blog on machine learning and statistics.","author":{"@type":"Person","name":"Song Mei"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1.html","headline":"Statistical physics and random matrix theory: Replica method (I)","dateModified":"2019-08-02T00:09:06-07:00","datePublished":"2019-08-02T00:09:06-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1.html"},"@context":"https://schema.org"}</script>
+{"description":"A research blog on machine learning and statistics.","author":{"@type":"Person","name":"Song Mei"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html","headline":"Replica method and random matrices (I)","dateModified":"2019-08-04T00:09:06-07:00","datePublished":"2019-08-04T00:09:06-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Entropic Flow" /><link rel="canonical" href="http://localhost:4000/jekyll/update/2019/08/02/Replica_method_1.html">
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Entropic Flow" /><link rel="canonical" href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">
   <link rel="alternate" type="application/rss+xml" title="Entropic Flow" href="/feed.xml">
   <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?">
 
   
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Bad+Script|Cabin+Sketch|Chewy|Coming+Soon|Cutive+Mono|Fredericka+the+Great|Gochi+Hand|Marck+Script|Nanum+Brush+Script|Open+Sans|Sacramento|Shadows+Into+Light|Tangerine&display=swap" rel="stylesheet">
+
 
 
   <script type="text/javascript" async
@@ -54,11 +57,11 @@
 <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Statistical physics and random matrix theory: Replica method (I)</h1>
+    <h1 class="post-title" itemprop="name headline">Replica method and random matrices (I)</h1>
     <p class="post-meta">
-      <time datetime="2019-08-02T00:09:06-07:00" itemprop="datePublished">
+      <time datetime="2019-08-04T00:09:06-07:00" itemprop="datePublished">
         
-        Aug 2, 2019
+        Aug 4, 2019
       </time>
        |
       
@@ -101,16 +104,11 @@
 
 <h2 id="1-introduction">1. Introduction</h2>
 
-<p>In my first several blogs, I will discuss about replica method. Replica method is a non-rigorous but powerful method that originated from statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used several times this method in my research. It helped me quickly guessing the answers.</p>
+<p>In my first several blogs, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used several times this method in my research. It helped me quickly figuring out the answer of a problem.</p>
+
+<p>Most physicists know replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audiences, but I will occasionally use the terminologies in physics. For a more sophisticated introduction of the replica method, I recommend Chapter 8 of this <a rel="nofollow" target="_blank" href="https://web.stanford.edu/~montanar/RESEARCH/book.html">fantastic book</a> <a href="#ref1">[1]</a>.</p>
 
 <p>In this blog, I will discuss about how to use replica method to calculate the spectral norm of certain random matrices. In the next few blogs, I will discuss about how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices.</p>
-
-<!-- In my research, I encountered many interesting problems that is related to random matrices. There are many rigorous and powerful tools dealing with random matrices, like concentration inequalities, Stieltjes transform, leave-one-out method, etc. Besides these methods, there is one tool that I find it to be extremely powerful. It is called the replica method, which is a non-rigorous method originated from statistical physics. I used several times this tool in my research, and it helped me a lot to "guess" the answer quickly. I gave two talks about this method, respectively in Andrea's and Tengyu's group meetings. Now I think it is the time to summarize my talks and present it to the large audiences. -->
-<!-- 
-Replica method was used to calculate the free energy associated to some random Hamiltonians in statistical physics. Its first well-known application is calculating the free energy of Sherrington-Kirkpatrick model. Beyond the physicists' community, replica method is a very powerful tool studying random matrices. Its applications includes coding theory, compressed sensing, and high dimensional statistical inference problems. In this blog, I will discuss about how to use replica method to predict the spectral norm of spiked GOE matrix.
-
-For the references for replica method, I suggest people reading: .....
- -->
 
 <h2 id="2-a-motivating-example-spiked-goe-matrix">2. A motivating example: spiked GOE matrix</h2>
 
@@ -121,7 +119,7 @@ For the references for replica method, I suggest people reading: .....
 where <script type="math/tex">\lambda \ge 0</script> is the signal to noise ratio, <script type="math/tex">\bu \in \S^{n-1} \equiv \{ \bx \in \R^n: \| \bx \|_2 = 1 \}</script> is a spike vector, and <script type="math/tex">\bW \sim \GOE(n)</script>: that means, <script type="math/tex">\bW \in \R^{n \times n}</script> is a symmetric matrix, <script type="math/tex">W_{ij} \sim \cN(0, 1/n)</script> for <script type="math/tex">% <![CDATA[
 1 \le i < j \le n %]]></script>, and <script type="math/tex">W_{ii} \sim \cN(0, 2/n)</script> for <script type="math/tex">1 \le i \le n</script>.</p>
 
-<p>We are interested in the largest eigenvalue and the corresponding eigenvector of <script type="math/tex">\bA</script>, which are respectively denoted as <script type="math/tex">\lambda_{\max}(\bA)</script> and <script type="math/tex">\bv_{\max}(\bA)</script>. The result below is called BBP phase transition phenomenon (see <a rel="nofollow" target="_blank" href="https://projecteuclid.org/euclid.aop/1127395869">this paper</a> for spiked Wishart matrix and <a rel="nofollow" target="_blank" href="https://link.springer.com/article/10.1007/s00440-005-0466-z">this paper</a> for spiked Wigner matrix).</p>
+<p>We are interested in the largest eigenvalue and the corresponding eigenvector of <script type="math/tex">\bA</script>, which are respectively denoted by <script type="math/tex">\lambda_{\max}(\bA)</script> and <script type="math/tex">\bv_{\max}(\bA)</script>. The result below is called the BBP phase transition phenomenon (see <a href="#ref2">[2]</a> for spiked Wishart matrix and <a href="#ref3">[3]</a> for spiked Wigner matrix).</p>
 
 <ul>
   <li>
@@ -215,7 +213,7 @@ Here <script type="math/tex">\nu_0</script> is the uniform probability measure o
 \vphi(\lambda) =&amp; \lim_{n\to \infty} \vphi_n(\lambda) = \lim_{n \to \infty} \lim_{\beta \to \infty} \frac{1}{\beta n}\E[\log Z(\beta, \lambda, n)]. 
 \end{align}
 \]
-Due to the lemma below, in order to get the asymptotics of <script type="math/tex">\E[\lambda_{\max}(\bA)]</script> and <script type="math/tex">\E[\langle \bv_{\max}(\bA), \bu\rangle^2]</script>, we just need to calculate <script type="math/tex">\vphi(\lambda)</script>.</p>
+The function <script type="math/tex">\vphi(\lambda)</script> describes the asymptotics of <script type="math/tex">\E[\lambda_{\max}(\bA)]</script> and <script type="math/tex">\E[\langle \bv_{\max}(\bA), \bu\rangle^2]</script>, as shown in the lemma below.</p>
 
 <div class="lemma">
 For <script type="math/tex">\bA = \lambda \bu \bu^\sT + \bW \in \R^{n \times n}</script>, we have
@@ -232,11 +230,11 @@ For <script type="math/tex">\bA = \lambda \bu \bu^\sT + \bW \in \R^{n \times n}<
 
 <p>The difficulty of calculating <script type="math/tex">\vphi(\lambda)</script> originated from the expectation of <script type="math/tex">\log Z</script> as in Eq. \eqref{eq:3}. The replica trick can convert the problem of calculating the expectation of <script type="math/tex">\log Z</script> into calculating the moments of <script type="math/tex">Z</script>. Calculating the moments of <script type="math/tex">Z</script> is an easier problem.</p>
 
-<p>In mathematics, the replica trick gives the following formula
+<p>In the language of mathematics, the replica trick gives the following formula
 \[\tag{4} \label{eq:4}
 \E[\log Z] = \lim_{k \to 0} \frac{1}{k}\log \E[Z^k ]. 
 \]
-Here is a simple proof of this equality. 
+Here is a simple proof of this equality:
 \[
 \begin{aligned}
 \E[\log Z] =&amp; \E[(\log Z^k) / k] = \lim_{k \to 0} \E [ \log(1 + Z^k - 1) / k] = \lim_{k \to 0} \E [ ( Z^k - 1 ) / k ] \\
@@ -288,16 +286,17 @@ S(k, \beta, \lambda) \equiv \lim_{n \to \infty} \frac{1}{n}\log\E[Z(\beta, \lamb
 \end{align}
 where
 \begin{align}\tag{6}\label{eqn:U_function}
-U(\bQ) = \beta \lambda \sum_{i=1}^k q_{0i}^2 + \beta^2 \sum_{ij = 1}^k q_{ij}^2 + \frac{1}{2} \log(\det(\bQ))
+U(\bQ) = \beta \lambda \sum_{i=1}^k q_{0i}^2 + \beta^2 \sum_{ij = 1}^k q_{ij}^2 + \frac{1}{2} \log(\det(\bQ)), 
 \end{align}
 and <script type="math/tex">\bQ \in \R^{(k + 1) \times (k + 1)}</script> is symmetric, with (the index of <script type="math/tex">\bQ</script> starts from <script type="math/tex">0</script> and ends at <script type="math/tex">k</script>)
 \[
 \begin{align}\tag{Def $\bQ$} \label{eqn:def_Q}
 \bQ = \begin{bmatrix}
-1&amp; q_{01} &amp; \ldots &amp; q_{0k}\\
-q_{01} &amp; 1 &amp; \ldots &amp; q_{1k}\\
-\ldots &amp; \ldots &amp; \ldots &amp; \ldots\\
-q_{0k} &amp; q_{k1} &amp; \ldots &amp; 1\\
+1&amp; q_{01} &amp; q_{02} &amp; \ldots &amp; q_{0k}\\
+q_{01} &amp; 1 &amp; q_{12} &amp; \ldots &amp; q_{1k}\\
+q_{02} &amp; q_{12} &amp; 1 &amp; \ldots &amp; q_{2k} \\
+\ldots &amp; \ldots &amp; \ldots &amp; \ldots &amp; \ldots\\
+q_{0k} &amp; q_{1k} &amp; q_{2k}&amp; \ldots &amp; 1\\
 \end{bmatrix}.
 \end{align}
 \]
@@ -305,26 +304,26 @@ Equation \eqref{eqn:S_function} is exact and rigorous, but the computation is in
 \begin{align}\tag{7} \label{eqn:moments_result}
 \E[Z(\beta, \lambda, n)^k] = \int \exp\{ n U(\bQ) + o(n)\} \de \bQ. 
 \end{align}
-Eq. \eqref{eqn:S_function} follows from Eq. \eqref{eqn:moments_result} and Laplace method. We suggest the readers skipping the derivation of Eq. \eqref{eqn:moments_result} at the first time reading, and continue at Section <a href="#sec:rsa">4.2</a>.</p>
+Eq. \eqref{eqn:S_function} follows from Eq. \eqref{eqn:moments_result} and Laplace method. We suggest the readers skipping the derivation of Eq. \eqref{eqn:moments_result} at the first time reading, and continue to read Section <a href="#sec:rsa">4.2</a>.</p>
 
 <h4 id="sec:derivation">4.1.2. The replica calculations</h4>
 
-<p>In this section, we derive Eq. \eqref{eqn:moments_result}. At the first time reading, we suggest the readers skipping this section and continue at Section <a href="#sec:rsa">4.2</a>.</p>
+<p>In this section, we derive Eq. \eqref{eqn:moments_result}. At the first time reading, we suggest the readers skipping this section and continue to read Section <a href="#sec:rsa">4.2</a>.</p>
 
-<p>Recall the definition of <script type="math/tex">Z</script> given in Eq. \eqref{eqn:def_Z}. The <script type="math/tex">k</script>‘th moments of <script type="math/tex">Z(\beta, \lambda, n)</script> gives 
+<p>Recall the definition of <script type="math/tex">Z</script> given in Eq. \eqref{eqn:def_Z}. The <script type="math/tex">k</script>‘th moment of <script type="math/tex">Z(\beta, \lambda, n)</script> gives 
 \[
 \begin{aligned}
 \E[Z(\beta, \lambda, n)^k] = &amp; \E\Big[\Big(\int_{\S^{n-1}} \exp\{ \beta n H_{n, \lambda}( \bsigma ) \} \nu_0(\de \bsigma)\Big)^k \Big].<br />
 \end{aligned}
 \]
-Here, the expectation <script type="math/tex">\E</script> is taken with respect to the randomness of matrix <script type="math/tex">\bA</script> in <script type="math/tex">H_{n, \lambda}(\bsigma) = \langle \bsigma, \bA \bsigma\rangle</script>. The first trick is to create <script type="math/tex">k</script> replicas of <script type="math/tex">\bsigma</script>, such that we can exchange the expectation with integrals, 
+Here, the expectation <script type="math/tex">\E</script> is taken with respect to the randomness of matrix <script type="math/tex">\bA</script> in <script type="math/tex">H_{n, \lambda}(\bsigma) = \langle \bsigma, \bA \bsigma\rangle</script>. The first trick is to rewrite the <script type="math/tex">k</script>‘th power of integration into integration with respect to <script type="math/tex">k</script> replicas of <script type="math/tex">\bsigma</script>. In this way, we can exchange the expectation with integrals. 
 \[
 \begin{aligned}
 \E[Z(\beta, \lambda, n)^k] =&amp;\E\Big[\Big(\int_{\S^{n-1}} \exp\{ \beta n H_{n, \lambda}( \bsigma ) \} \nu_0(\de \bsigma)\Big)^k \Big] = \E\Big[\int_{(\S^{n-1})^k} \exp\Big\{ \beta n \sum_{i = 1}^k H_{n, \lambda}( \bsigma_i ) \Big\} \prod_{i \in [k]} \nu_0(\de \bsigma_i) \Big]\\
 =&amp;\int_{(\S^{n-1})^k} \E\Big[ \exp\Big\{ \beta n \sum_{i = 1}^k  [\lambda \langle \bu, \bsigma_i\rangle^2 + \langle \bsigma_i, \bW \bsigma_i\rangle ] \Big\}  \Big] \prod_{i \in [k]} \nu_0( \de \bsigma_i).
 \end{aligned}
 \]
-Let <script type="math/tex">\bG = (G_{ij})_{i, j \in [n]} \in \R^{n \times n}</script> with <script type="math/tex">G_{ij} \sim \cN(0, 1)</script> independently. Noting that the GOE matrix <script type="math/tex">\bW</script> shares the same distribution with matrix <script type="math/tex">(\bG + \bG^\sT) / \sqrt{2 n}</script>, we have
+Let <script type="math/tex">\bG = (G_{ij})_{i, j \in [n]} \in \R^{n \times n}</script> with <script type="math/tex">G_{ij} \sim_{iid} \cN(0, 1)</script>. Noting that the GOE matrix <script type="math/tex">\bW</script> shares the same distribution with matrix <script type="math/tex">(\bG + \bG^\sT) / \sqrt{2 n}</script>, we have
 \[
 \begin{aligned}
 \E[Z(\beta, \lambda, n)^k] =&amp; \int_{(\S^{n-1})^k} \E_{G_{ij} \sim \cN(0,1)}\Big[ \exp\Big\{ \beta n \lambda \sum_{i = 1}^k  \langle \bu, \bsigma_i\rangle^2 + \beta n \Big\langle  (\bG + \bG^\sT) / \sqrt{2n},  \sum_{i=1}^k \bsigma_i\bsigma_i^\sT \Big\rangle \Big\} \Big] \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
@@ -359,7 +358,7 @@ H_n(\bQ) =&amp; \frac{1}{n} \log \int_{(\R^n)^k}  \prod_{i=1}^k \delta \Big( \la
 =&amp; \frac{1}{n} \log \int_{(\R^n)^{k+1}} \prod_{0 \le i &lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{0 \le i \le k} \nu_0( \bsigma_i), 
 \end{aligned}
 \]
-which serves as the rate function of the random matrix <script type="math/tex">\bSigma = (\langle \bsigma_i, \bsigma_j \rangle / n)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}</script> when <script type="math/tex">(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})</script>. This rate function can be found on standard textbook
+which serves as the rate function of the random matrix <script type="math/tex">\bSigma = (\langle \bsigma_i, \bsigma_j \rangle / n)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}</script> when <script type="math/tex">(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})</script>. This rate function can be found in standard textbooks
 \[
 \lim_{n \to \infty} H_n(\bQ) = \frac{1}{2}\log \det(\bQ). 
 \]
@@ -385,20 +384,25 @@ This gives Eq. \eqref{eqn:moments_result}.</p>
 
 <h4 id="421-replica-symmetric-ansatz">4.2.1. Replica symmetric ansatz</h4>
 
-<p>Next we calculate 
+<p>Next we calculate (recall Eq. \eqref{eqn:defPsi})
 \[
 \Psi(\beta, \lambda) = \lim_{k \to 0} S(\beta, \lambda, k)/k. 
 \]
-We gave the expression of <script type="math/tex">S</script> when <script type="math/tex">k</script> is integral (c.f. Eq. \eqref{eqn:S_function}), where <script type="math/tex">k</script> serves as the dimension of variable <script type="math/tex">\bQ</script> in the variational formula. However, to take the limit <script type="math/tex">k \to 0</script>, we need the expression for <script type="math/tex">S</script> when <script type="math/tex">k</script> taking real numbers. This is the difficulty to calculate the small <script type="math/tex">k</script> limit using Eq. \eqref{eqn:S_function}.</p>
+We gave the expression of <script type="math/tex">S</script> when <script type="math/tex">k</script> is integral (c.f. Eq. \eqref{eqn:S_function}), where <script type="math/tex">k</script> serves as the dimension of variable <script type="math/tex">\bQ</script> in the variational formula. However, to take the limit <script type="math/tex">k \to 0</script>, we need the expression for <script type="math/tex">S</script> when <script type="math/tex">k</script> takes real numbers. This is the difficulty to calculate the small <script type="math/tex">k</script> limit using Eq. \eqref{eqn:S_function}.</p>
 
-<p>The physicists’ trick is to plug in an ansatz for the matrix <script type="math/tex">\bQ</script> to simplify the expression of <script type="math/tex">S</script>. Note <script type="math/tex">U(\bQ)</script> defined in Eq. \eqref{eqn:U_function} has some symmetry: if we permute the <script type="math/tex">1</script> to <script type="math/tex">k</script> rows of <script type="math/tex">\bQ</script>, and perform the same permutation to its columns, the function <script type="math/tex">U</script> stays the same. This motivates us to assume the “replica symmetric ansatz”: 
+<p>The physicists’ trick is to plug in an ansatz for the matrix <script type="math/tex">\bQ</script> to simplify the expression of <script type="math/tex">S</script>. Note that <script type="math/tex">U(\bQ)</script> defined in Eq. \eqref{eqn:U_function} has some symmetry: if we permute the <script type="math/tex">1</script>‘st to <script type="math/tex">k</script>‘th rows of <script type="math/tex">\bQ</script>, and perform the same permutation to its columns, the function <script type="math/tex">U</script> stays the same. This motivates us to consider the “replica symmetric ansatz”: 
 \[
 \bQ = \begin{bmatrix}
-1&amp; \mu &amp; \ldots &amp; \mu\\
-\mu &amp; 1 &amp; \ldots &amp; q\\
-\ldots &amp; \ldots &amp; \ldots &amp; \ldots\\
-\mu &amp; q &amp; \ldots &amp; 1\\
-\end{bmatrix}.
+1&amp; \mu &amp; \mu &amp; \ldots &amp; \mu\\
+\mu &amp; 1 &amp; q&amp; \ldots &amp; q\\
+\mu &amp; q &amp; 1 &amp; \ldots &amp; q \\
+\ldots &amp; \ldots &amp;\ldots &amp; \ldots &amp; \ldots\\
+\mu &amp; q &amp; q &amp; \ldots &amp; 1\\
+\end{bmatrix},
+\]
+or equivalently 
+\[
+q_{0i} = \mu,  ~~ \forall i \in [k], ~~~~~~~~~~~~~~ q_{ij} = q, ~~ \forall 1 \le i &lt; j \le k.
 \]
 Plugging this ansats into Eq. \eqref{eqn:U_function}, and simplifying the log determinant term using the matrix determinant lemma 
 \[
@@ -428,13 +432,13 @@ Define
 \[
 u(\mu, q) \equiv \lim_{k \to 0} \frac{1}{k} U(\mu, q, k) = \beta \lambda \mu^2  + \beta^2 (1 - q^2) - \frac{\mu^2}{2(1 - q)} + \frac{q}{2 (1 - q)} + \frac{1}{2}\log(1 - q). 
 \]
-We need to exchange the operation <script type="math/tex">\lim_{k \to 0}</script> and <script type="math/tex">\sup_{\mu, q}</script> in some way. Another heuristic physicists’ convention comes here: the <script type="math/tex">\lim_{k \to 0} \sup_{\mu, q}</script> operation becomes the <script type="math/tex">\ext_{\mu, q} \lim_{k \to 0}</script> operation, where <script type="math/tex">\ext_{\bx} f(\bx)</script> is a set defined as
+We need to exchange the operations <script type="math/tex">\lim_{k \to 0}</script> and <script type="math/tex">\sup_{\mu, q}</script> in some way. Another heuristic physicists’ convention comes here: the <script type="math/tex">\lim_{k \to 0} \sup_{\mu, q}</script> operation becomes the <script type="math/tex">\ext_{\mu, q} \lim_{k \to 0}</script> operation, where <script type="math/tex">\ext_{\bx} f(\bx)</script> is a set defined as
 \[
-\ext_{\bx} f(\bx) = \Big\{ f(\bx_\star): \nabla f(\bx) = \bzero\Big\}. 
+\ext_{\bx} f(\bx) = \Big\{ f(\bx_\star): \nabla f(\bx_\star) = \bzero\Big\}. 
 \]
 Using this convention, we get
 \[
-\Psi(\beta, \lambda) =  \lim_{k \to 0} S(\beta, \lambda, k) / k \stackrel{\cdot}{=} \ext_{\mu, q}u(\mu, q),
+\Psi(\beta, \lambda) =  \lim_{k \to 0} S(\beta, \lambda, k) / k \in \ext_{\mu, q}u(\mu, q),
 \]</p>
 
 <p>Next, we calculate all the stationary points of <script type="math/tex">u</script>, and collect the value of <script type="math/tex">u</script> evaluated at these stationary points.</p>
@@ -473,20 +477,25 @@ When <script type="math/tex">\beta > 1</script>, by basic algebra, we find two s
   \]</li>
 </ul>
 
+<p>Hence we get
+\[
+\Psi \in \ext_{\mu, q}u(\mu, q) = \{\Psi_1, \Psi_2 \}.
+\]</p>
+
 <h3 id="43-the-large-beta-limit">4.3. The large <script type="math/tex">\beta</script> limit</h3>
 
-<p>Recall the definition of <script type="math/tex">\vphi</script> in Eq. \eqref{eqn:defvphi}. Using the first branch <script type="math/tex">\Psi_1</script>, we have 
+<p>Recall the definition of <script type="math/tex">\vphi</script> in Eq. \eqref{eqn:defvphi}. For the first branch <script type="math/tex">\Psi_1</script>, the corresponding <script type="math/tex">\vphi</script> function gives
 \[
 \vphi_1(\lambda) = \lim_{\beta \to \infty} \frac{1}{\beta} \Psi_1(\beta, \lambda) = 2. 
 \]
-Using the second branch <script type="math/tex">\Psi_2</script>, we have 
+For the second branch <script type="math/tex">\Psi_2</script>, the corresponding <script type="math/tex">\vphi</script> function gives 
 \[
 \vphi_2(\lambda) = \lim_{\beta \to \infty} \frac{1}{\beta} \Psi_2(\beta, \lambda) = \lambda + \frac{1}{\lambda}. 
 \]</p>
 
 <h3 id="44-select-a-branch">4.4. Select a branch</h3>
 
-<p>There are two branches of solutions. We need to select the branch that makes sense: <script type="math/tex">\vphi</script> stands for <script type="math/tex">\lim_{n\to \infty}\E[\lambda_\max(\bA)]</script>, hence it should be non-decreasing in <script type="math/tex">\lambda</script>, and we must have <script type="math/tex">\lim_{\lambda \to \infty} \vphi(\lambda) = \infty</script>.</p>
+<p>There are two branches of solutions. We need to select the branch that makes sense: we hope that <script type="math/tex">\vphi(\lambda)</script> gives an expression for <script type="math/tex">\lim_{n\to \infty}\E[\lambda_\max(\bA)] = \lim_{n\to \infty}\E[\lambda_\max(\lambda \bu \bu^\sT + \bW)]</script>, hence it should be non-decreasing in <script type="math/tex">\lambda</script>, and it should satisfy <script type="math/tex">\lim_{\lambda \to \infty} \vphi(\lambda) = \infty</script>.</p>
 <ul>
   <li>When <script type="math/tex">\lambda\le 1</script>, the branch <script type="math/tex">\vphi_2(\lambda) = \lambda + 1/\lambda</script> is decreasing. Hence, we should select the branch <script type="math/tex">\vphi_1(\lambda) = 2</script>.</li>
   <li>When <script type="math/tex">\lambda \ge 1</script>, the branch <script type="math/tex">\vphi_1(\lambda) = 2</script> stays constant. Hence, we should select the branch <script type="math/tex">\vphi_2(\lambda) = \lambda + 1/\lambda</script>.</li>
@@ -503,8 +512,15 @@ This turns out to be the correct answer!</p>
 
 <h2 id="5-summary">5. Summary</h2>
 
-<p>In summary, we calculated the largest eigenvalue of the spiked GOE matrix <script type="math/tex">\bA</script>. After using the free energy trick and the replica trick, the problem becomes calculating three limits sequentially: the large <script type="math/tex">n</script> limit, the small <script type="math/tex">k</script> limit, and the large <script type="math/tex">\beta</script> limit. The large <script type="math/tex">n</script> limit calculation is rigorous, but is also complicated. The small <script type="math/tex">k</script> limit calculation is non-rigorous: we pluged in the replica symmetric ansatz, and changed the <script type="math/tex">\lim_{k \to 0} \inf_{\mu, q}</script> operation to the <script type="math/tex">\ext_{\mu, q} \lim_{k \to 0}</script> operation. The large <script type="math/tex">\beta</script> limit calculation is straightforward. Finally, we get two branches of solutions. We use the properties of the largest eigenvalue of <script type="math/tex">\bA</script> to select the branch when <script type="math/tex">\lambda</script> is in different regime.</p>
+<p>In summary, we calculated the largest eigenvalue of the spiked GOE matrix <script type="math/tex">\bA = \lambda \bu \bu^\sT + \bW</script>. Using the free energy trick and the replica trick, the problem becomes calculating three limits sequentially: the large <script type="math/tex">n</script> limit, the small <script type="math/tex">k</script> limit, and the large <script type="math/tex">\beta</script> limit. The large <script type="math/tex">n</script> limit calculation is rigorous, but is also complicated. The small <script type="math/tex">k</script> limit calculation is non-rigorous: we pluged in the replica symmetric ansatz, and changed the <script type="math/tex">\lim_{k \to 0} \inf_{\mu, q}</script> operation to the <script type="math/tex">\ext_{\mu, q} \lim_{k \to 0}</script> operation. The large <script type="math/tex">\beta</script> limit calculation is straightforward. Finally, we get two branches of solutions. We used some simple properties of the largest eigenvalue of <script type="math/tex">\bA</script> to select the branch when <script type="math/tex">\lambda</script> is in different regime. The prediction formula turns out to be the correct answer.</p>
 
+<h2 id="references">References</h2>
+
+<p id="ref1">[1] Mezard, Marc, and Andrea Montanari. Information, physics, and computation. Oxford University Press, 2009.</p>
+
+<p id="ref2">[2] Baik, Jinho, Gérard Ben Arous, and Sandrine Péché. “Phase transition of the largest eigenvalue for nonnull complex sample covariance matrices.” The Annals of Probability 33.5 (2005): 1643-1697.</p>
+
+<p id="ref3">[3] Péché, Sandrine. “The largest eigenvalue of small rank perturbations of Hermitian random matrices.” Probability Theory and Related Fields 134.1 (2006): 127-173.</p>
 
  </div>
 

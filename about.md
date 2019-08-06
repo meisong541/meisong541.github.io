@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am a Ph. D. student major in applied mathematics and statistics at Stanford. My research interests lie in the intersection of statistics, machine learning, information theory, and computer science. I often build on insights that originated within the statistical physics literature. Here is my <a href = "https://web.stanford.edu/~songmei" > Homepage</a>.
+I am a Ph. D. student major in applied mathematics and statistics at Stanford. My research is motivated by <b>data science</b>, and lies at the intersection of <b>statistics</b>, <b>machine learning</b>, <b>information theory</b>, and <b>computer science</b>. I often build on insights that originated within the <b>statistical physics</b> literature. Here is my <a href = "https://web.stanford.edu/~songmei" > Homepage</a>.
 
 In my first several blogs, I will discuss about methods from statistical physics and random matrix theory. Hope you will have fun here! 
 
