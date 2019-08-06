@@ -45,7 +45,7 @@ $$\def\bSigma{\boldsymbol \Sigma}$$
 In my first several blogs, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used several times this method in my research. It helped me quickly figuring out the answer of a problem. 
 
 
-Most physicists know replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audiences, but I will occasionally use the terminologies in physics. For a more sophisticated introduction of the replica method, I recommend Chapter 8 of this <a href = "https://web.stanford.edu/~montanar/RESEARCH/book.html">fantastic book</a> [[1]](#ref1). 
+Most physicists know replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audiences, but I will occasionally use the terminologies in physics. For a more sophisticated introduction to the replica method, I recommend Chapter 8 of this <a href = "https://web.stanford.edu/~montanar/RESEARCH/book.html">fantastic book</a> [[1]](#ref1). 
 
  
 In this blog, I will discuss about how to use replica method to calculate the spectral norm of certain random matrices. In the next few blogs, I will discuss about how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices. 
