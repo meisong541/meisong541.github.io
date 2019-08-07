@@ -5,7 +5,8 @@ date:   2019-08-04 00:09:06 -0700
 categories: jekyll update
 ---
 
-
+$$\def\blambda{\boldsymbol \lambda}$$
+$$\def\bX{\boldsymbol X}$$
 $$\def\N{\mathbb N}$$
 $$\def\P{\mathbb P}$$
 $$\def\bi{\boldsymbol i}$$
@@ -323,9 +324,9 @@ H_n(\bQ) \stackrel{\cdot}{=}& \frac{1}{n} \P_{(\bsigma_i)_{i \in [k]} \sim \Unif
 \end{aligned}
 \]
 </p>
-where we use the fact that
+where we use the fact that, for $$\bX_i \sim_{iid} \bX$$, we have
 \\[
-\lim_{n \to \infty} \frac{1}{n} \log \P( X_n \approx x) = \inf_{\lambda} \lim_{n \to \infty} \frac{1}{n} \log \E \Big[\exp\\{ \lambda (X_n - x) \\} \Big]. 
+\lim_{n \to \infty} \frac{1}{n} \log \P_{\bX_i}\Big( \frac{1}{n} \sum_{i=1}^n \bX_i \approx \bx \Big) = \inf_{\blambda} \log \E_\bX \Big[\exp\\{ \langle\blambda, \bX - \bx\rangle \\} \Big]. 
 \\]
 This gives Eq. \eqref{eqn:moments_result}. 
 

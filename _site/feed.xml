@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-05T22:27:25-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog on machine learning and statistics. 
-</subtitle><author><name>Song Mei</name></author><entry><title type="html">Replica method and random matrices (I)</title><link href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" rel="alternate" type="text/html" title="Replica method and random matrices (I)" /><published>2019-08-04T00:09:06-07:00</published><updated>2019-08-04T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-06T19:55:32-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog about machine learning and statistics. 
+</subtitle><author><name>Song Mei</name></author><entry><title type="html">Replica method and random matrices (I)</title><link href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" rel="alternate" type="text/html" title="Replica method and random matrices (I)" /><published>2019-08-04T00:09:06-07:00</published><updated>2019-08-04T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\blambda{\boldsymbol \lambda}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bX{\boldsymbol X}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\P{\mathbb P}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bi{\boldsymbol i}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bG{\boldsymbol G}&lt;/script&gt;
@@ -34,7 +36,7 @@
 
 &lt;p&gt;In my first several blogs, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used several times this method in my research. It helped me quickly figuring out the answer of a problem.&lt;/p&gt;
 
-&lt;p&gt;Most physicists know replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audiences, but I will occasionally use the terminologies in physics. For a more sophisticated introduction of the replica method, I recommend Chapter 8 of this &lt;a href=&quot;https://web.stanford.edu/~montanar/RESEARCH/book.html&quot;&gt;fantastic book&lt;/a&gt; &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Most physicists know replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audiences, but I will occasionally use the terminologies in physics. For a more sophisticated introduction to the replica method, I recommend Chapter 8 of this &lt;a href=&quot;https://web.stanford.edu/~montanar/RESEARCH/book.html&quot;&gt;fantastic book&lt;/a&gt; &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;In this blog, I will discuss about how to use replica method to calculate the spectral norm of certain random matrices. In the next few blogs, I will discuss about how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices.&lt;/p&gt;
 
@@ -302,9 +304,9 @@ H_n(\bQ) \stackrel{\cdot}{=}&amp;amp; \frac{1}{n} \P_{(\bsigma_i)_{i \in [k]} \s
 \end{aligned}
 \]
 &lt;/p&gt;
-&lt;p&gt;where we use the fact that
+&lt;p&gt;where we use the fact that, for &lt;script type=&quot;math/tex&quot;&gt;\bX_i \sim_{iid} \bX&lt;/script&gt;, we have
 \[
-\lim_{n \to \infty} \frac{1}{n} \log \P( X_n \approx x) = \inf_{\lambda} \lim_{n \to \infty} \frac{1}{n} \log \E \Big[\exp\{ \lambda (X_n - x) \} \Big]. 
+\lim_{n \to \infty} \frac{1}{n} \log \P_{\bX_i}\Big( \frac{1}{n} \sum_{i=1}^n \bX_i \approx \bx \Big) = \inf_{\blambda} \log \E_\bX \Big[\exp\{ \langle\blambda, \bX - \bx\rangle \} \Big]. 
 \]
 This gives Eq. \eqref{eqn:moments_result}.&lt;/p&gt;
 
