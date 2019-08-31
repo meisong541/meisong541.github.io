@@ -203,7 +203,9 @@ table {
 
 .lemma {
   display: block;
-  font-style: italic; }
+  font-style: italic;
+  counter-increment: lemma;
+  margin-bottom: 15px; }
 
 .lemma:before {
   content: "Lemma. ";
@@ -215,7 +217,8 @@ table {
 
 .theorem {
   display: block;
-  font-style: italic; }
+  font-style: italic;
+  margin-bottom: 15px; }
 
 .theorem:before {
   content: "Theorem. ";
@@ -224,6 +227,9 @@ table {
 
 .theorem[text]:before {
   content: "Theorem (" attr(text) ") "; }
+
+ri {
+  font-style: normal; }
 
 /**
  * Site header

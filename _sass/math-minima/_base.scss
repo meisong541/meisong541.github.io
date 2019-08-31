@@ -257,6 +257,8 @@ table {
 .lemma {
 display: block;
 font-style: italic;
+counter-increment: lemma;
+margin-bottom: $spacing-unit / 2;
 }
 .lemma:before {
 content: "Lemma. ";
@@ -268,9 +270,11 @@ content: "Lemma (" attr(text) ") ";
 }
 
 
+
 .theorem {
 display: block;
 font-style: italic;
+margin-bottom: $spacing-unit / 2;
 }
 .theorem:before {
 content: "Theorem. ";
@@ -279,4 +283,10 @@ font-style: normal;
 }
 .theorem[text]:before {
 content: "Theorem (" attr(text) ") ";
+}
+
+
+
+ri{
+  font-style: normal;   
 }
