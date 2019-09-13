@@ -43,13 +43,13 @@ $$\def\bSigma{\boldsymbol \Sigma}$$
 ## 1. Introduction
 
 
-In my first several blogs, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within the statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used this method several times in my research. It helped me quickly figure out the answer of numerous problems. 
+In my first several posts, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within the statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used this method several times in my research. It helped me quickly figure out the answer of numerous problems. 
 
 
 Most physicists know the replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audience, but I will occasionally use terminology from physics. For a more sophisticated introduction to the replica method, I recommend Chapter 8 of this <a href = "https://web.stanford.edu/~montanar/RESEARCH/book.html">fantastic book</a> [[1]](#ref1). 
 
  
-In this blog, I will discuss how to use the replica method to calculate the spectral norm of certain random matrices. In the next few blogs, I will discuss how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices. 
+In this post, I will discuss how to use the replica method to calculate the spectral norm of certain random matrices. In the next few posts, I will discuss how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices. 
 
 
 
@@ -83,7 +83,7 @@ We are interested in the largest eigenvalue and the corresponding eigenvector of
     \lim_{n \to \infty} \mathbb{E}[\langle {\boldsymbol v}_{\max}({\boldsymbol A}), {\boldsymbol u}\rangle^2] = 1 - 1/\lambda^2.
     \\]
 
-In the rest of this blog, we will derive this result using the replica method. 
+In the rest of this blog post, we will derive this result using the replica method. 
     
 
 ## 3. Tricks in statistical physics

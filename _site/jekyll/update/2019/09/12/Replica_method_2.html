@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Replica method and random matrices (II) | Entropic Flow</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Replica method and random matrices (II)" />
+<meta name="author" content="Song Mei" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A research blog about machine learning and statistics." />
+<meta property="og:description" content="A research blog about machine learning and statistics." />
+<link rel="canonical" href="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html" />
+<meta property="og:url" content="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html" />
+<meta property="og:site_name" content="Entropic Flow" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-12T09:09:06+02:00" />
+<script type="application/ld+json">
+{"description":"A research blog about machine learning and statistics.","author":{"@type":"Person","name":"Song Mei"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html","headline":"Replica method and random matrices (II)","dateModified":"2019-09-12T09:09:06+02:00","datePublished":"2019-09-12T09:09:06+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Entropic Flow" /><link rel="canonical" href="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html">
+  <link rel="alternate" type="application/rss+xml" title="Entropic Flow" href="/feed.xml">
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?">
+
+  
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Bad+Script|Cabin+Sketch|Chewy|Coming+Soon|Cutive+Mono|Fredericka+the+Great|Gochi+Hand|Marck+Script|Nanum+Brush+Script|Open+Sans|Sacramento|Shadows+Into+Light|Tangerine&display=swap" rel="stylesheet">
+
+
+
+  <script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async>
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Entropic Flow</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a href="https://web.stanford.edu/~songmei">Homepage</a>
+        </div>
+      </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        
+
+
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">Replica method and random matrices (II)</h1>
+    <p class="post-meta">
+      <time datetime="2019-09-12T09:09:06+02:00" itemprop="datePublished">
+        
+        Sep 12, 2019
+      </time>
+       |
+      
+      
+      </p>
+  </header>
+
+ <div class="post-content" itemprop="articleBody">
+    
+   <p><script type="math/tex">\def\cP{\mathcal P}</script>
+<script type="math/tex">\def\de{\text{d}}</script>
+<script type="math/tex">\def\N{\mathbb N}</script>
+<script type="math/tex">\def\P{\mathbb P}</script>
+<script type="math/tex">\def\bi{\boldsymbol i}</script>
+<script type="math/tex">\def\bG{\boldsymbol G}</script>
+<script type="math/tex">\def\bsigma{\boldsymbol \sigma}</script>
+<script type="math/tex">\def\bv{\boldsymbol v}</script>
+<script type="math/tex">\def\bu{\boldsymbol u}</script>
+<script type="math/tex">\def\bt{\boldsymbol t}</script>
+<script type="math/tex">\def\bw{\boldsymbol w}</script>
+<script type="math/tex">\def\sT{\mathsf T}</script>
+<script type="math/tex">\def\bW{\boldsymbol W}</script>
+<script type="math/tex">\def\bA{\boldsymbol A}</script>
+<script type="math/tex">\def\R{\mathbb R}</script>
+<script type="math/tex">\def\S{\mathbb S}</script>
+<script type="math/tex">\def\GOE{\text{GOE}}</script>
+<script type="math/tex">\def\|{\Vert}</script>
+<script type="math/tex">\def\bx{\boldsymbol x}</script>
+<script type="math/tex">\def\cN{\mathcal N}</script>
+<script type="math/tex">\def\E{\mathbb E}</script>
+<script type="math/tex">\def\de{\text{d}}</script>
+<script type="math/tex">\def\vphi{\varphi}</script>
+<script type="math/tex">\def\bQ{\boldsymbol Q}</script>
+<script type="math/tex">\def\diag{\text{diag}}</script>
+<script type="math/tex">\def\bzero{\boldsymbol 0}</script>
+<script type="math/tex">\def\id{\mathbf I}</script>
+<script type="math/tex">\def\ones{\mathbf 1}</script>
+<script type="math/tex">\def\ext{\text{ext}}</script>
+<script type="math/tex">\def\|{\Vert}</script>
+<script type="math/tex">\def\bLambda{\boldsymbol \Lambda}</script>
+<script type="math/tex">\def\const{\text{const}}</script>
+<script type="math/tex">\def\Unif{\text{Unif}}</script>
+<script type="math/tex">\def\bSigma{\boldsymbol \Sigma}</script>
+<script type="math/tex">\def\C{\mathbb C}</script>
+<script type="math/tex">\def\tr{\text{tr}}</script></p>
+
+<h2 id="1-introduction">1. Introduction</h2>
+
+<p>In the previous post, we saw how to use the replica method to calculate the spectral norm of the spiked GOE matrix. Besides the spectral norm, another interesting quantity of random matrices is the spectral density: the limiting empirical distribution of eigenvalues. In this post, we show how to calculate the spectral density of random matrices using the replica method. Let us take the GOE matrix as an example.</p>
+
+<p>The prerequisite knowledge for this post is Stieltjes transforms. For a basic introduction to Stieltjes transforms and its applications to the GOE matrix, I recommend reading <a rel="nofollow" target="_blank" href="https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/#more-3426">Terrence Tao’s blog</a>. The shape of the spectral density of the GOE matrix is a semicircle, and hence this famous result is called the <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution">semicircle law</a>.</p>
+
+<h2 id="2-spectral-density-and-stieltjes-transforms">2. Spectral density and Stieltjes transforms</h2>
+
+<p>Let <script type="math/tex">\bA_n \in \R^{n \times n}</script> be a symmetric matrix. Let <script type="math/tex">z \in \C_+ = \{ \xi \in \C: \Im \xi > 0 \}</script> (<script type="math/tex">\Im \xi</script> is the imaginary part of <script type="math/tex">\xi</script>). We denote the resolvent of <script type="math/tex">\bA_n</script> by</p>
+<p>
+\[
+R_{\bA_n}(z) = (\bA_n - z \id_n)^{-1}.
+\]
+</p>
+<p>Denoting the <script type="math/tex">i</script>‘th largest eigenvalue of <script type="math/tex">\bA_n</script> by <script type="math/tex">\lambda_i(\bA_n)</script>, and the empirical eigenvalue distribution (spectral density) of <script type="math/tex">\bA_n</script> by 
+\[
+\mu_{\bA_n} = \frac{1}{n} \sum_{i=1}^n \delta_{\lambda_i(\bA_n)}. 
+\]</p>
+
+<p>For a probability measure <script type="math/tex">\mu \in \cP(\R)</script> on the real line, we denote its Stieltjes transform by
+\[
+s_{\mu}(z) = \int \frac{1}{\lambda - z} \mu(\de \lambda). 
+\]
+The next two lemmas characterize the properties of Stieltjes transforms.</p>
+
+<div class="lemma"><ri>[Inverse Stieltjes transforms]</ri>
+The scaled imaginary part of the Stieltjes transform <script type="math/tex">(1/ \pi) \Im s_{\mu}(\cdot + \bi b)</script> for <script type="math/tex">b>0</script> is a probability measure on the real line <script type="math/tex">\R</script>. The sequence of probability measures <script type="math/tex">(1/ \pi) \Im s_{\mu}(\cdot + \bi b)</script> indexed by <script type="math/tex">b</script> converges weakly to <script type="math/tex">\mu</script> as <script type="math/tex">b \to 0+</script>. 
+</div>
+
+<div class="lemma"><ri>[Stieltjes continuity]</ri>
+Let <script type="math/tex">\mu_n</script> be a sequence of random probability measures on the real line, and let <script type="math/tex">\mu</script> be a deterministic probability measure. Then <script type="math/tex">\mu_n</script> converges in expectation to <script type="math/tex">\mu</script> in the vague topology if and only if <script type="math/tex">\E s_{\mu_n}(z)</script> converges to <script type="math/tex">s_\mu(z)</script> for every <script type="math/tex">z</script> in the upper half-plane.
+</div>
+
+<p>The next theorem gives the limiting Stieltjes transform of the GOE matrix. Combining with the two lemmas above, we recover the semicircle law of the GOE matrix.</p>
+
+<div class="theorem"><ri>[Stieltjes transform of the GOE matrix]</ri>
+Let <script type="math/tex">\bW_n \sim \GOE(n)</script>. That is, <script type="math/tex">\bW_n \in \R^{n \times n}</script> is a symmetric matrix with <script type="math/tex">(W_{n, ii})_{1 \le i \le n} \sim_{i.i.d.} \cN(0, 2/n)</script> and <script type="math/tex">(W_{n, ij})_{1 \le i < j \le n} \sim_{i.i.d.} \cN(0, 1/n)</script>. Denote by <script type="math/tex">s_{\bW_n} = s_{\mu_{\bW_n}}</script> the Stieltjes transform of empirical eigenvalue distribution of <script type="math/tex">\bW_n</script>. Then for <script type="math/tex">z \in \C_+</script>, we have 
+\[
+\lim_{n \to \infty}\E[s_{\bW_n}(z)] = \frac{-z + \sqrt{z^2 - 4}}{2}. 
+\]
+</div>
+
+<p>Combining the above theorem with the Stieltjes continuity lemma, for <script type="math/tex">% <![CDATA[
+a < b %]]></script>, we have
+\[
+\lim_{n \to \infty} \E[\# \{ \lambda_i(\bW_n): \lambda_i(\bW_n) \in [a, b] \} / n] =  \sigma_{\rm sc}([a, b]),
+\]
+where
+\[
+\sigma_{\rm sc}(\de x) = \frac{1}{2\pi} \sqrt{4 - x^2} \cdot \ones\{ x \in [-2, 2] \} \de x. 
+\]</p>
+
+<p>In the following sections, I will formally calculate <script type="math/tex">\lim_{n \to \infty}\E[s_{\bW_n}(z)]</script> using the replica method.</p>
+
+<h2 id="3-the-determinant-trick">3. The determinant trick</h2>
+
+<h3 id="31-the-connection-of-determinant-and-stieltjes-transform">3.1. The connection of determinant and Stieltjes transform</h3>
+
+<p>Let <script type="math/tex">\log</script> be the complex log function defined on <script type="math/tex">\C</script>, with branch cut along the negative real axis. Define function <script type="math/tex">D_{\bW_n}</script> as 
+\[
+D_{\bW_n}(\xi) = \frac{1}{n} \sum_{i=1}^n \log(\lambda_i(\bW_n) - \xi).
+\]
+Then the derivative of <script type="math/tex">D_{\bW_n}</script> gives the negative Stieltjes transform
+\[
+\frac{\de}{\de \xi} D_{\bW_n}(\xi) = - \frac{1}{n} \sum_{i=1}^n \frac{1}{\lambda_i(\bW_n) - \xi} = - s_{\bW_n}(\xi).
+\]
+The function <script type="math/tex">D_{\bW_n}</script> is almost the normalized log-determinant of <script type="math/tex">\bW_n</script>, up to a phase shift
+\[
+D_{\bW_n}(\xi) = \frac{1}{n}\log \det(\bW_n - \xi \id_n) + \frac{2 \pi \bi k(\bW_n, \xi)}{n},
+\]
+where <script type="math/tex">k(\bW_n, \xi)</script> is an integer. Moreover, <script type="math/tex">k(\bW_n, \xi)</script> will remain the same under an infinitesimal change of <script type="math/tex">\xi</script>. Hence we have 
+\begin{align}
+&amp;~\lim_{n \to \infty} \E[s_{\bW_n}(\xi)] = - \lim_{n \to \infty} \frac{\de}{\de \xi} \E[D_{\bW_n}(\xi)] =  - \lim_{n \to \infty} \frac{\de}{\de \xi} \frac{1}{n} \E[\log \det(\bW_n - \xi \id_n)]\nonumber \\
+ \stackrel{\cdot}{=}&amp;~ - \frac{\de}{\de \xi} \lim_{n \to \infty}  \frac{1}{n} \E[\log \det(\bW_n - \xi \id_n)]\tag{1}\label{eq:1}
+\end{align}
+In the last step, we heuristically exchanged the limit operator and the differential operator.</p>
+
+<p>Determinants are easier to work with than Stieltjes transforms. The following identity expresses the power of determinant in terms of integration of exponentials
+\[
+\det(\bA)^{-k/2} = \int_{\R^n} \frac{1}{(2 \pi)^{nk/2}} \exp\Big\{ - \frac{1}{2} \sum_{j = 1}^k \langle \bx_j, \bA \bx_j \rangle  \Big\} \prod_{j \in [k]} \de \bx_j. 
+\]
+This identity holds whenever <script type="math/tex">\bA \in \R^{n \times n}</script> is positive semi-definite. Though, we will formally use this identity for a complex matrix <script type="math/tex">\bA</script>.</p>
+
+<h3 id="32-the-replica-approach">3.2. The replica approach</h3>
+
+<p>In order to calculate <script type="math/tex">\E[s_{\bW_n}(\xi)]</script>, by Eq. \eqref{eq:1}, we need to calculate <script type="math/tex">\lim_{n\to \infty}(1/n)\E[\log \det(\bW_n - \xi \id_n)]</script>, and then differentiate with respect to <script type="math/tex">\xi</script>. However, there is no straightforward way to calculate the expectation of <script type="math/tex">\log</script>. One possible way is to use the replica formula introduced in my last post
+\[
+\E[\log Z] = \lim_{k \to 0} \frac{1}{k} \log \E[Z^k].
+\]
+The replica formula reduces the problem to calculating the moments <script type="math/tex">\E[\det(\bW_n - \xi \id_n)^k]</script>.</p>
+
+<h3 id="33-an-easier-approach">3.3. An easier approach</h3>
+
+<p>Instead of calculating <script type="math/tex">\E[\det(\bW_n - \xi \id_n)^k]</script> for a sequence of <script type="math/tex">k</script>, we just calculate <script type="math/tex">\E[\det(\bW_n - \xi \id_n)^{-1/2}]</script>. Note
+\[
+\frac{1}{n} \log \det(\bW_n  - \xi \id_n ) = -\frac{2}{n} \log [\det(\bW_n  - \xi \id_n)^{-1/2}].
+\]
+We expect that <script type="math/tex">n^{-1} \log \det(\bW_n  - \xi \id_n )</script> concentrates tightly around its mean, so that 
+\begin{align}
+&amp;~\lim_{n \to \infty} \frac{1}{n} \E[ \log \det(\bW_n - \xi \id_n)] \stackrel{\cdot}{=} \lim_{n \to \infty} \frac{1}{n}\log \det(\bW_n - \xi \id_n)] \nonumber\\
+ \stackrel{\cdot}{=}&amp;~ \lim_{n \to \infty} - \frac{2}{n}\log \det(\bW_n - \xi \id_n)^{-1/2}] \stackrel{\cdot}{=} \lim_{n \to \infty} -\frac{2}{n} \log \E[\det(\bW_n  - \xi \id_n)^{-1/2}]. \tag{2}\label{eq:2}
+\end{align}
+This is completely heuristic, but it finally gives the correct answer.</p>
+
+<h2 id="4-the-replica-calculations">4. The replica calculations</h2>
+
+<p>In this section, we use the replica method to calculate the last expression of Eq. \eqref{eq:2}, and then derive the expression of the limiting Stieltjes transform. We will mostly use formal calculations that are not rigorous.</p>
+
+<h3 id="41-step-1-get-rid-of-the-expectation-operator">4.1. Step 1: Get rid of the expectation operator</h3>
+
+<p>The first step of the calculation is to get rid of the expectation operator. Suppose we need to calculate <script type="math/tex">\E[f(\bw)]</script>, where <script type="math/tex">\bw \sim \cN(0, \id_d)</script>. First we need to find a way to express <script type="math/tex">f</script> as the following integral form
+\[
+f(\bw) = \int_{\R^n} \exp\{ \langle \bw, \bt(\bx)\rangle \} h(\bx) \de \bx,
+\]
+such that using the formula of the moment generating function of Gaussian random variables <script type="math/tex">\E_{G \sim \cN(0, 1)}[e^{tG}] = e^{t^2/2}</script>, we get
+\[
+\E[f(\bw)] = \int_{\R^n} \exp\{ \Vert \bt(\bx) \Vert_2^2/2 \} h(\bx) \de \bx. 
+\]</p>
+
+<p>For the current example, note a formal identity gives (it is formal because <script type="math/tex">\bW_n - \xi \id_n</script> is a complex matrix)</p>
+<p>
+\[
+\det(\bW_n - \xi \id_n)^{-1/2} = \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{ - \bx^\sT (\bW_n - \xi \id_n) \bx / 2 \Big\} \de \bx.
+\]
+</p>
+<p>Let <script type="math/tex">\bG = (G_{ij})_{ij \in [n]} \in \R^{n \times n}</script> with <script type="math/tex">G_{ij} \sim_{iid} \cN(0, 1)</script>. Then the distributions of <script type="math/tex">\bW_n</script> and <script type="math/tex">(\bG + \bG^\sT)/\sqrt{2n}</script> are identital. As a consequence, we get
+\[
+\begin{aligned}
+\E[\det(\bW_n - \xi \id_n)^{-1/2}] =&amp;~ \E\Big[ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{ - \Big\langle (\bG + \bG^\sT) / \sqrt {2n} - \xi \id_n, \bx \bx^\sT \Big\rangle / 2 \Big\} \de \bx \Big]\\
+=&amp;~ \E\Big[ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{ - \Big\langle \bG , \bx \bx^\sT \Big\rangle / \sqrt {2n} + \xi \Vert \bx \Vert_2^2 /2 \Big\} \de \bx \Big]\\
+=&amp;~ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 \Big\} \E\Big[\exp\Big\{ - \Big\langle \bG , \bx \bx^\sT \Big\rangle / \sqrt {2n} \Big\}\Big]  \de \bx. 
+\end{aligned}
+\]
+Using the formula of the moment generating function of Gaussian random variables, we get
+\begin{align}
+\E[\det(\bW_n - \xi \id_n)^{-1/2}] =&amp;~ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 + \Vert \bx \bx^\sT \Vert_F^2 / (4n) \Big\}  \de \bx \nonumber \\
+=&amp;~ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 + \Vert \bx \Vert_2^4 / (4n) \Big\}  \de \bx.  \tag{3}\label{eq:3} \\
+\end{align}
+Now, we have got rid of the expectation operator, and expressed the quantity of interest in terms of an integral.</p>
+
+<h3 id="42-step-2-calculate-the-integral">4.2. Step 2: Calculate the integral</h3>
+
+<p>Eq. \eqref{eq:3} is an intractable high dimensional integration. In statistical physics, there is a systematic approach to heuristically deal with such an integration.</p>
+
+<h4 id="421-a-systematic-approach-to-deal-with-the-integration">4.2.1. A systematic approach to deal with the integration</h4>
+
+<p>Suppose <script type="math/tex">I_n</script> is an integration of form 
+\[
+I_n = \int_{\R^n} \exp\{ n \cdot f(h_1(\bx), \ldots, h_k(\bx)) \} \de \bx, 
+\]
+where <script type="math/tex">h_j</script>’s are in the form (with a slight abuse of notation)
+\[
+h_j(x_1, \ldots, x_n) = \frac{1}{n}\sum_{i = 1}^n h_j(x_i). 
+\]
+First by the identity that 
+\begin{align}
+\int_\R \delta(n h_j(\bx) - n s_j) \de s_j = 1,
+\end{align}
+we have 
+\[
+I_n =  \int_{\R^k} \prod_{j \in [k]} \de s_j \cdot \exp\{ n \cdot f(s_1, \ldots, s_k) \} \int_{\R^n} \prod_{j \in [k]} \delta( n h_j(\bx) - n s_j) \de \bx. 
+\]
+Then, by the delta identity formula 
+\[
+\delta(x) = \int_{\bi \R} \exp\{ \lambda x \} \de [\lambda/ (2 \pi)], 
+\]
+we get 
+\[
+\begin{aligned}
+I_n =&amp;~ \int_{\R^k} \prod_{j \in [k]} \de s_j \cdot \exp\{ n \cdot f(s_1, \ldots, s_k) \}  \int_{(\bi \R)^k} \prod_{j \in [k]}  \de [\lambda_j / (2\pi)]  \int_{\R^n} \exp\Big\{  \sum_{j = 1}^k \sum_{i = 1}^n \Big[ \lambda_j h_j(x_i) - \lambda_j s_j \Big] \Big\} \de \bx  \\
+=&amp;~ \int_{\R^k} \prod_{j \in [k]} \de s_j \int_{(\bi \R)^k} \prod_{j = 1}^k \de [\lambda_j/(2\pi)]  \exp \Big\{ n \cdot \Big[ f(s_1, \ldots, s_k) - \sum_{j=1}^k \lambda_j s_j \Big] \Big\} \cdot \Big( \int \exp\Big\{ \sum_{j = 1}^n \lambda_j h_j(x) \Big\} \de x \Big)^n \\
+=&amp;~ \int_{\R^k} \prod_{j \in [k]} \de s_j \int_{(\bi \R)^k} \prod_{j = 1}^k \de [\lambda_j/(2\pi)]  \exp \Big\{ n \cdot \Big[ f(s_1, \ldots, s_k) - \sum_{j=1}^k \lambda_j s_j  + \log J(\lambda_1, \ldots, \lambda_k) \Big] \Big\},\\
+\end{aligned}
+\]
+where
+\[
+J(\lambda_1, \ldots, \lambda_k) = \int \exp\Big\{ \sum_{j = 1}^n \lambda_j h_j(x) \Big\} \de x. 
+\]
+Using the method of steepest descent (my understanding is that, it is like the Laplace method but it deals with integration of complex functions), we have
+\[
+\lim_{n \to \infty} n^{-1} \log I_n \stackrel{\cdot}{=} \ext_{s_j, \lambda_j} \Big[ f(s_1, \ldots, s_k) - \sum_{j=1}^k \lambda_j s_j  + \log J(\lambda_1, \ldots, \lambda_k) \Big],
+\]
+where <script type="math/tex">\ext</script> denotes the extremum operator.</p>
+
+<h4 id="422-application-to-this-example">4.2.2. Application to this example</h4>
+
+<!-- 
+Note we have 
+\begin{align}\tag{4}\label{eq:4}
+\int_\R \delta(\Vert \bx \Vert_2^2 - n s) \de s = 1. 
+\end{align}
+ -->
+<p>In this example, we need to deal with an integration of form Eq. \eqref{eq:3}. We take <script type="math/tex">f(s) = \xi s + s^2/4</script> and <script type="math/tex">h(\bx) = \sum_{i = 1}^n x_i^2 / n</script>. Using the method introduced above, we have
+\[
+\begin{aligned}
+\E[\det(\bW_n - \xi \id_n)^{-1/2}] =&amp;~ \int_{\R} \de s  \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 + \Vert \bx \Vert_2^4 / (4n) \Big\} \cdot \delta(\Vert \bx \Vert_2^2 - n s)  \de \bx \\
+=&amp;~ \int_{\R} \de s  \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp \{  n \xi s /2 + n s^2 / 4 \} \cdot \delta(\Vert \bx \Vert_2^2 - n s)  \de \bx \\
+=&amp;~ \int_{\R} \de s \int_{\bi R} [\de \lambda / (2 \pi)] \exp \Big\{  n \Big[\xi s /2 +  s^2 / 4 - \lambda s \Big] \Big\} \cdot \Big( \int_R \frac{1}{(2 \pi)^{1/2}} \exp\{ \lambda x^2 \}  \de x \Big)^n \\
+=&amp;~ \int_{\R} \de s \int_{\bi R} [\de \lambda / (2 \pi)] \exp \Big\{  n \Big[\xi s /2 +  s^2 / 4 - \lambda s + J(\lambda) \Big] \Big\} \\
+\end{aligned}
+\]
+where 
+\[
+J(\lambda) = \log \int_R \frac{1}{(2 \pi)^{1/2}} \exp\{ \lambda x^2\}  \de x = - \frac{1}{2} \log ( - 2 \lambda). 
+\]
+Therefore, we have
+\[
+\lim_{n \to \infty} \frac{1}{n} \log \E[\det(\bW_n - \xi \id_n)^{-1/2}] = \ext_{s, \lambda} \Big[  \frac{ \xi s}{2} + \frac{s^2}{4} - \lambda s - \frac{1}{2} \log( - 2\lambda) \Big]. 
+\]
+Define 
+\[
+P(s, \lambda) = \frac{ \xi s}{2} + \frac{s^2}{4} - \lambda s - \frac{1}{2} \log( - 2 \lambda). 
+\]
+Letting <script type="math/tex">\partial_\lambda P(s, \lambda) = 0</script>, we have <script type="math/tex">\lambda = - 1 / (2s)</script>, which gives
+\[
+P(s) \equiv \ext_{\lambda} P(s, \lambda) = \frac{ \xi s}{2} + \frac{s^2}{4} + \frac{1}{2} \log(s) + \frac{1}{2}. 
+\]
+Then we differentiate <script type="math/tex">P(s)</script>, its extremum <script type="math/tex">s_\star</script> satisfies
+\begin{align}\tag{5}\label{eq:5}
+\xi + s_\star + \frac{1}{s_\star} = 0. 
+\end{align}
+As a result, we get
+\[
+\lim_{n \to \infty} \frac{1}{n} \log \E[\det(\bW_n - \xi \id_n)^{-1/2}] \stackrel{\cdot}{=} \frac{ \xi s_\star}{2} + \frac{s_\star^2}{4} + \frac{1}{2} \log(s_\star) + \frac{1}{2},
+\]
+and by Eq. \eqref{eq:2} we get
+\[
+\lim_{n \to \infty} \frac{1}{n}\E[\log \det(\bW_n - \xi \id_n)] \stackrel{\cdot}{=} - \xi s_\star - \frac{s_\star^2}{2} - \log(s_\star) - 1.
+\]
+where <script type="math/tex">s_\star</script> gives the solution of Eq. \eqref{eq:5}. Finally, by Eq. \eqref{eq:1}, we have 
+\[
+\begin{aligned}
+\lim_{n \to \infty} \E[s_{\bW_n}(\xi)] \stackrel{\cdot}{=}&amp;~ - \frac{\de}{\de \xi} \lim_{n \to \infty} \frac{1}{n} \E[ \log \det(\bW_n - \xi \id_n)] \\
+=&amp;~ - \frac{\de }{\de \xi} \Big[- \xi s_\star(\xi) - \frac{s_\star^2(\xi)}{2} - \log s_\star(\xi) - 1\Big] = - \frac{\partial }{\partial \xi} \Big[- \xi s - \frac{s^2}{2} - \log s - 1\Big] \Big\vert_{s = s_\star(\xi)} \\
+=&amp;~ s_\star(\xi). 
+\end{aligned}
+\]
+Let <script type="math/tex">\xi \in \C_+</script>, and finding the solution <script type="math/tex">s_\star</script> of Eq. \eqref{eq:5} with positive imaginary part, we get 
+\[
+s_\star(\xi) = \frac{- z + \sqrt{z^2 - 4}}{2}. 
+\]
+This is exactly the limiting Stieltjes transform of the GOE matrix. Of course, to prove rigorously this formula, we need to adopt other techniques.</p>
+
+<h2 id="5-summary">5. Summary</h2>
+
+<p>We showed a systematic approach for formally calculating the spectral density of random matrices. Here is one exercise for the readers: calculating the limiting Stieltjes transform of the empirical covariance matrix <script type="math/tex">\hat \Sigma_n</script> of isotropic Gaussian data, where <script type="math/tex">\hat \Sigma_n = n^{-1} \sum_{i = 1}^n \bx_i \bx_i^\sT</script> with <script type="math/tex">\bx_i \sim_{iid} \cN(0, \id_d)</script>, in the asymptotic regime <script type="math/tex">n / d \to \gamma</script> as <script type="math/tex">d \to \infty</script>. The spectral density of the empirical covariance matrix, which can be derived from the exercise above, gives the famous <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution">Marchenko-Pastur law</a>.</p>
+
+<p>In my next post, I will introduce some applications of the replica method to machine learning.</p>
+
+
+ </div>
+
+
+<!--   <div class="prev-next">
+  
+    <a class="half prev" href="/jekyll/update/2019/08/04/Replica_method_1.html">&laquo; Replica method and random matrices (I)</a>
+  
+  
+</div>
+ -->
+<!-- 
+
+  
+ -->
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col one-half">
+      <h2 class="footer-heading">Entropic Flow</h2>
+        <ul class="contact-list">
+          <li class="p-name">Song Mei</li><li><a class="u-email" href="mailto:songmei@stanford.edu">songmei@stanford.edu</a></li></ul>
+      </div>
+
+      <div class="footer-col one-half">
+        <p>A research blog about machine learning and statistics. 
+</p>
+      </div>
+
+      <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

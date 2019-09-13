@@ -14,9 +14,9 @@
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" />
 <meta property="og:site_name" content="Entropic Flow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-08-04T00:09:06-07:00" />
+<meta property="article:published_time" content="2019-08-04T09:09:06+02:00" />
 <script type="application/ld+json">
-{"description":"A research blog about machine learning and statistics.","author":{"@type":"Person","name":"Song Mei"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html","headline":"Replica method and random matrices (I)","dateModified":"2019-08-04T00:09:06-07:00","datePublished":"2019-08-04T00:09:06-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html"},"@context":"https://schema.org"}</script>
+{"description":"A research blog about machine learning and statistics.","author":{"@type":"Person","name":"Song Mei"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html","headline":"Replica method and random matrices (I)","dateModified":"2019-08-04T09:09:06+02:00","datePublished":"2019-08-04T09:09:06+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Entropic Flow" /><link rel="canonical" href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">
   <link rel="alternate" type="application/rss+xml" title="Entropic Flow" href="/feed.xml">
@@ -59,7 +59,7 @@
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">Replica method and random matrices (I)</h1>
     <p class="post-meta">
-      <time datetime="2019-08-04T00:09:06-07:00" itemprop="datePublished">
+      <time datetime="2019-08-04T09:09:06+02:00" itemprop="datePublished">
         
         Aug 4, 2019
       </time>
@@ -106,11 +106,11 @@
 
 <h2 id="1-introduction">1. Introduction</h2>
 
-<p>In my first several blogs, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used several times this method in my research. It helped me quickly figuring out the answer of a problem.</p>
+<p>In my first several posts, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within the statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used this method several times in my research. It helped me quickly figure out the answer of numerous problems.</p>
 
-<p>Most physicists know replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audiences, but I will occasionally use the terminologies in physics. For a more sophisticated introduction to the replica method, I recommend Chapter 8 of this <a rel="nofollow" target="_blank" href="https://web.stanford.edu/~montanar/RESEARCH/book.html">fantastic book</a> <a href="#ref1">[1]</a>.</p>
+<p>Most physicists know the replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audience, but I will occasionally use terminology from physics. For a more sophisticated introduction to the replica method, I recommend Chapter 8 of this <a rel="nofollow" target="_blank" href="https://web.stanford.edu/~montanar/RESEARCH/book.html">fantastic book</a> <a href="#ref1">[1]</a>.</p>
 
-<p>In this blog, I will discuss about how to use replica method to calculate the spectral norm of certain random matrices. In the next few blogs, I will discuss about how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices.</p>
+<p>In this post, I will discuss how to use the replica method to calculate the spectral norm of certain random matrices. In the next few posts, I will discuss how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices.</p>
 
 <h2 id="2-a-motivating-example-spiked-goe-matrix">2. A motivating example: spiked GOE matrix</h2>
 
@@ -118,7 +118,7 @@
 \[
 \bA= \lambda \bu \bu^\sT + \bW,
 \]
-where <script type="math/tex">\lambda \ge 0</script> is the signal to noise ratio, <script type="math/tex">\bu \in \S^{n-1} \equiv \{ \bx \in \R^n: \| \bx \|_2 = 1 \}</script> is a spike vector, and <script type="math/tex">\bW \sim \GOE(n)</script>: that means, <script type="math/tex">\bW \in \R^{n \times n}</script> is a symmetric matrix, <script type="math/tex">W_{ij} \sim \cN(0, 1/n)</script> for <script type="math/tex">% <![CDATA[
+where <script type="math/tex">\lambda \ge 0</script> is the signal to noise ratio, <script type="math/tex">\bu \in \S^{n-1} \equiv \{ \bx \in \R^n: \| \bx \|_2 = 1 \}</script> is a spike vector, and <script type="math/tex">\bW \sim \GOE(n)</script>: meaning that <script type="math/tex">\bW \in \R^{n \times n}</script> is a symmetric matrix, <script type="math/tex">W_{ij} \sim \cN(0, 1/n)</script> for <script type="math/tex">% <![CDATA[
 1 \le i < j \le n %]]></script>, and <script type="math/tex">W_{ii} \sim \cN(0, 2/n)</script> for <script type="math/tex">1 \le i \le n</script>.</p>
 
 <p>We are interested in the largest eigenvalue and the corresponding eigenvector of <script type="math/tex">\bA</script>, which are respectively denoted by <script type="math/tex">\lambda_{\max}(\bA)</script> and <script type="math/tex">\bv_{\max}(\bA)</script>. The result below is called the BBP phase transition phenomenon (see <a href="#ref2">[2]</a> for spiked Wishart matrix and <a href="#ref3">[3]</a> for spiked Wigner matrix).</p>
@@ -148,7 +148,7 @@ For <script type="math/tex">\lambda > 1</script>, we have
   </li>
 </ul>
 
-<p>In the rest of this blog, we will derive this result using replica method.</p>
+<p>In the rest of this blog post, we will derive this result using the replica method.</p>
 
 <h2 id="3-tricks-in-statistical-physics">3. Tricks in statistical physics</h2>
 
@@ -529,10 +529,10 @@ This turns out to be the correct answer!</p>
 
 <!--   <div class="prev-next">
   
-    <a class="half prev" href="/jekyll/update/2019/07/19/welcome-to-jekyll.html">&laquo; The topics of this Blog</a>
+    <a class="half prev" href="/jekyll/update/2019/07/20/welcome-to-jekyll.html">&laquo; The topics of this Blog</a>
   
   
-    <a class="half next" href="/jekyll/update/2019/08/14/Replica_method_2.html">Replica method and random matrices (II) &raquo;</a>
+    <a class="half next" href="/jekyll/update/2019/09/12/Replica_method_2.html">Replica method and random matrices (II) &raquo;</a>
   
 </div>
  -->

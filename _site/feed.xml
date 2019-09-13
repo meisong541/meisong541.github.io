@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-16T13:58:29-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog about machine learning and statistics. 
-</subtitle><author><name>Song Mei</name></author><entry><title type="html">Replica method and random matrices (II)</title><link href="http://localhost:4000/jekyll/update/2019/08/14/Replica_method_2.html" rel="alternate" type="text/html" title="Replica method and random matrices (II)" /><published>2019-08-14T00:09:06-07:00</published><updated>2019-08-14T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/14/Replica_method_2</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/14/Replica_method_2.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\cP{\mathcal P}&lt;/script&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-09-13T15:53:48+02:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog about machine learning and statistics. 
+</subtitle><author><name>Song Mei</name></author><entry><title type="html">Replica method and random matrices (II)</title><link href="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html" rel="alternate" type="text/html" title="Replica method and random matrices (II)" /><published>2019-09-12T09:09:06+02:00</published><updated>2019-09-12T09:09:06+02:00</updated><id>http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\cP{\mathcal P}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\de{\text{d}}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\P{\mathbb P}&lt;/script&gt;
@@ -8,6 +8,8 @@
 &lt;script type=&quot;math/tex&quot;&gt;\def\bsigma{\boldsymbol \sigma}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bv{\boldsymbol v}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bu{\boldsymbol u}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bt{\boldsymbol t}&lt;/script&gt;
+&lt;script type=&quot;math/tex&quot;&gt;\def\bw{\boldsymbol w}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\sT{\mathsf T}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bW{\boldsymbol W}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bA{\boldsymbol A}&lt;/script&gt;
@@ -36,19 +38,19 @@
 
 &lt;h2 id=&quot;1-introduction&quot;&gt;1. Introduction&lt;/h2&gt;
 
-&lt;p&gt;In my last blog, the replica method is used to calculate the spectral norm of the spiked GOE matrix. In this blog, I will show how to use the replica method to calculate the spectral density of a random matrix. I will use the GOE matrix as an example.&lt;/p&gt;
+&lt;p&gt;In the previous post, we saw how to use the replica method to calculate the spectral norm of the spiked GOE matrix. Besides the spectral norm, another interesting quantity of random matrices is the spectral density: the limiting empirical distribution of eigenvalues. In this post, we show how to calculate the spectral density of random matrices using the replica method. Let us take the GOE matrix as an example.&lt;/p&gt;
 
-&lt;p&gt;Knowledge of Stieltjes transforms is a preliminary requirement for readers. For a basic introduction to Stieltjes transforms and its applications to the GOE matrix, I recommend &lt;a href=&quot;https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/#more-3426&quot;&gt;Terrence Tao’s blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The prerequisite knowledge for this post is Stieltjes transforms. For a basic introduction to Stieltjes transforms and its applications to the GOE matrix, I recommend reading &lt;a href=&quot;https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/#more-3426&quot;&gt;Terrence Tao’s blog&lt;/a&gt;. The shape of the spectral density of the GOE matrix is a semicircle, and hence this famous result is called the &lt;a href=&quot;https://en.wikipedia.org/wiki/Wigner_semicircle_distribution&quot;&gt;semicircle law&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2 id=&quot;2-spectral-density-and-stieltjes-transforms&quot;&gt;2. Spectral density and Stieltjes transforms&lt;/h2&gt;
 
 &lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;\bA_n \in \R^{n \times n}&lt;/script&gt; be a symmetric matrix. Let &lt;script type=&quot;math/tex&quot;&gt;z \in \C_+ = \{ \xi \in \C: \Im \xi &gt; 0 \}&lt;/script&gt; (&lt;script type=&quot;math/tex&quot;&gt;\Im \xi&lt;/script&gt; is the imaginary part of &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt;). We denote the resolvent of &lt;script type=&quot;math/tex&quot;&gt;\bA_n&lt;/script&gt; by&lt;/p&gt;
 &lt;p&gt;
 \[
-R_{\bA_n}(z) = (\bA_n - z \id_n)^{-1},
+R_{\bA_n}(z) = (\bA_n - z \id_n)^{-1}.
 \]
 &lt;/p&gt;
-&lt;p&gt;and denote the empirical eigenvalue distribution (spectral density) of &lt;script type=&quot;math/tex&quot;&gt;\bA_n&lt;/script&gt; by 
+&lt;p&gt;Denoting the &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt;‘th largest eigenvalue of &lt;script type=&quot;math/tex&quot;&gt;\bA_n&lt;/script&gt; by &lt;script type=&quot;math/tex&quot;&gt;\lambda_i(\bA_n)&lt;/script&gt;, and the empirical eigenvalue distribution (spectral density) of &lt;script type=&quot;math/tex&quot;&gt;\bA_n&lt;/script&gt; by 
 \[
 \mu_{\bA_n} = \frac{1}{n} \sum_{i=1}^n \delta_{\lambda_i(\bA_n)}. 
 \]&lt;/p&gt;
@@ -57,88 +59,109 @@ R_{\bA_n}(z) = (\bA_n - z \id_n)^{-1},
 \[
 s_{\mu}(z) = \int \frac{1}{\lambda - z} \mu(\de \lambda). 
 \]
-The next two lemmas characterize some properties of Stieltjes transforms.&lt;/p&gt;
+The next two lemmas characterize the properties of Stieltjes transforms.&lt;/p&gt;
 
 &lt;div class=&quot;lemma&quot;&gt;&lt;ri&gt;[Inverse Stieltjes transforms]&lt;/ri&gt;
-The scaled imaginary part of Stieltjes transform &lt;script type=&quot;math/tex&quot;&gt;(1/ \pi) \Im s_{\mu}(\cdot + \bi b)&lt;/script&gt; is a probability measure on the real line &lt;script type=&quot;math/tex&quot;&gt;\R&lt;/script&gt;. The sequence of probability measure &lt;script type=&quot;math/tex&quot;&gt;(1/ \pi) \Im s_{\mu}(\cdot + \bi b)&lt;/script&gt; indexed by &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; converges weakly to &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;b \to 0+&lt;/script&gt;. 
+The scaled imaginary part of the Stieltjes transform &lt;script type=&quot;math/tex&quot;&gt;(1/ \pi) \Im s_{\mu}(\cdot + \bi b)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;b&gt;0&lt;/script&gt; is a probability measure on the real line &lt;script type=&quot;math/tex&quot;&gt;\R&lt;/script&gt;. The sequence of probability measures &lt;script type=&quot;math/tex&quot;&gt;(1/ \pi) \Im s_{\mu}(\cdot + \bi b)&lt;/script&gt; indexed by &lt;script type=&quot;math/tex&quot;&gt;b&lt;/script&gt; converges weakly to &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;b \to 0+&lt;/script&gt;. 
 &lt;/div&gt;
 
 &lt;div class=&quot;lemma&quot;&gt;&lt;ri&gt;[Stieltjes continuity]&lt;/ri&gt;
 Let &lt;script type=&quot;math/tex&quot;&gt;\mu_n&lt;/script&gt; be a sequence of random probability measures on the real line, and let &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; be a deterministic probability measure. Then &lt;script type=&quot;math/tex&quot;&gt;\mu_n&lt;/script&gt; converges in expectation to &lt;script type=&quot;math/tex&quot;&gt;\mu&lt;/script&gt; in the vague topology if and only if &lt;script type=&quot;math/tex&quot;&gt;\E s_{\mu_n}(z)&lt;/script&gt; converges to &lt;script type=&quot;math/tex&quot;&gt;s_\mu(z)&lt;/script&gt; for every &lt;script type=&quot;math/tex&quot;&gt;z&lt;/script&gt; in the upper half-plane.
 &lt;/div&gt;
 
-&lt;p&gt;The next theorem is our focus in this blog. It gives the limiting Stieltjes transform of the GOE matrix. Combining with the two lemmas above, we can recover the semi-circle law of the GOE matrix.&lt;/p&gt;
+&lt;p&gt;The next theorem gives the limiting Stieltjes transform of the GOE matrix. Combining with the two lemmas above, we recover the semicircle law of the GOE matrix.&lt;/p&gt;
 
 &lt;div class=&quot;theorem&quot;&gt;&lt;ri&gt;[Stieltjes transform of the GOE matrix]&lt;/ri&gt;
-Let &lt;script type=&quot;math/tex&quot;&gt;\bW_n \sim \GOE(n)&lt;/script&gt;. That is, &lt;script type=&quot;math/tex&quot;&gt;\bW_n \in \R^{n \times n}&lt;/script&gt; is a symmetric matrix with &lt;script type=&quot;math/tex&quot;&gt;(W_{n, ii})_{1 \le i \le n} \sim_{i.i.d.} \cN(0, 2/n)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(W_{n, ij})_{1 \le i \neq j \le n} \sim_{i.i.d.} \cN(0, 1/n)&lt;/script&gt;. Denote by &lt;script type=&quot;math/tex&quot;&gt;s_{\bW_n} = s_{\mu_{\bW_n}}&lt;/script&gt; the Stieltjes transform of empirical eigenvalue distribution of &lt;script type=&quot;math/tex&quot;&gt;\bW_n&lt;/script&gt;. Then we have 
+Let &lt;script type=&quot;math/tex&quot;&gt;\bW_n \sim \GOE(n)&lt;/script&gt;. That is, &lt;script type=&quot;math/tex&quot;&gt;\bW_n \in \R^{n \times n}&lt;/script&gt; is a symmetric matrix with &lt;script type=&quot;math/tex&quot;&gt;(W_{n, ii})_{1 \le i \le n} \sim_{i.i.d.} \cN(0, 2/n)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(W_{n, ij})_{1 \le i &lt; j \le n} \sim_{i.i.d.} \cN(0, 1/n)&lt;/script&gt;. Denote by &lt;script type=&quot;math/tex&quot;&gt;s_{\bW_n} = s_{\mu_{\bW_n}}&lt;/script&gt; the Stieltjes transform of empirical eigenvalue distribution of &lt;script type=&quot;math/tex&quot;&gt;\bW_n&lt;/script&gt;. Then for &lt;script type=&quot;math/tex&quot;&gt;z \in \C_+&lt;/script&gt;, we have 
 \[
 \lim_{n \to \infty}\E[s_{\bW_n}(z)] = \frac{-z + \sqrt{z^2 - 4}}{2}. 
 \]
 &lt;/div&gt;
 
-&lt;p&gt;In the following sections, I will derive this result using the replica method.&lt;/p&gt;
+&lt;p&gt;Combining the above theorem with the Stieltjes continuity lemma, for &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+a &lt; b %]]&gt;&lt;/script&gt;, we have
+\[
+\lim_{n \to \infty} \E[\# \{ \lambda_i(\bW_n): \lambda_i(\bW_n) \in [a, b] \} / n] =  \sigma_{\rm sc}([a, b]),
+\]
+where
+\[
+\sigma_{\rm sc}(\de x) = \frac{1}{2\pi} \sqrt{4 - x^2} \cdot \ones\{ x \in [-2, 2] \} \de x. 
+\]&lt;/p&gt;
+
+&lt;p&gt;In the following sections, I will formally calculate &lt;script type=&quot;math/tex&quot;&gt;\lim_{n \to \infty}\E[s_{\bW_n}(z)]&lt;/script&gt; using the replica method.&lt;/p&gt;
 
 &lt;h2 id=&quot;3-the-determinant-trick&quot;&gt;3. The determinant trick&lt;/h2&gt;
 
 &lt;h3 id=&quot;31-the-connection-of-determinant-and-stieltjes-transform&quot;&gt;3.1. The connection of determinant and Stieltjes transform&lt;/h3&gt;
 
-&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;\log&lt;/script&gt; be the log function defined on &lt;script type=&quot;math/tex&quot;&gt;\C&lt;/script&gt; with cut on the negative real line. Define 
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;\log&lt;/script&gt; be the complex log function defined on &lt;script type=&quot;math/tex&quot;&gt;\C&lt;/script&gt;, with branch cut along the negative real axis. Define function &lt;script type=&quot;math/tex&quot;&gt;D_{\bW_n}&lt;/script&gt; as 
 \[
-D_{\bW_n}(\xi) = \frac{1}{n} \sum_{i=1}^n \log(\lambda_i(\bW_n) - \xi),
+D_{\bW_n}(\xi) = \frac{1}{n} \sum_{i=1}^n \log(\lambda_i(\bW_n) - \xi).
 \]
-By simple calculus we have 
+Then the derivative of &lt;script type=&quot;math/tex&quot;&gt;D_{\bW_n}&lt;/script&gt; gives the negative Stieltjes transform
 \[
-\frac{\de}{\de \xi} D_{\bW_n}(\xi) = - \frac{1}{n} \sum_{i=1}^n \frac{1}{\lambda_i(\bW_n) - \xi} = - s_{\bW_n}(\xi), 
+\frac{\de}{\de \xi} D_{\bW_n}(\xi) = - \frac{1}{n} \sum_{i=1}^n \frac{1}{\lambda_i(\bW_n) - \xi} = - s_{\bW_n}(\xi).
 \]
-Note 
+The function &lt;script type=&quot;math/tex&quot;&gt;D_{\bW_n}&lt;/script&gt; is almost the normalized log-determinant of &lt;script type=&quot;math/tex&quot;&gt;\bW_n&lt;/script&gt;, up to a phase shift
 \[
-D_{\bW_n}(\xi) = \frac{1}{n}\log \det(\bW_n - \xi \id_n) + \frac{2 \pi k(\bW_n, \xi)}{n},
+D_{\bW_n}(\xi) = \frac{1}{n}\log \det(\bW_n - \xi \id_n) + \frac{2 \pi \bi k(\bW_n, \xi)}{n},
 \]
-where &lt;script type=&quot;math/tex&quot;&gt;k(\bW_n, \xi)&lt;/script&gt; is an integer. Moreover, &lt;script type=&quot;math/tex&quot;&gt;k(\bW_n, \xi)&lt;/script&gt; will remain unchanged for an infinitesimal change of &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt;. Hence we have 
+where &lt;script type=&quot;math/tex&quot;&gt;k(\bW_n, \xi)&lt;/script&gt; is an integer. Moreover, &lt;script type=&quot;math/tex&quot;&gt;k(\bW_n, \xi)&lt;/script&gt; will remain the same under an infinitesimal change of &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt;. Hence we have 
 \begin{align}
 &amp;amp;~\lim_{n \to \infty} \E[s_{\bW_n}(\xi)] = - \lim_{n \to \infty} \frac{\de}{\de \xi} \E[D_{\bW_n}(\xi)] =  - \lim_{n \to \infty} \frac{\de}{\de \xi} \frac{1}{n} \E[\log \det(\bW_n - \xi \id_n)]\nonumber \\
  \stackrel{\cdot}{=}&amp;amp;~ - \frac{\de}{\de \xi} \lim_{n \to \infty}  \frac{1}{n} \E[\log \det(\bW_n - \xi \id_n)]\tag{1}\label{eq:1}
 \end{align}
-In the last step, we heuristically exchanged the limit and the derivative operator.&lt;/p&gt;
+In the last step, we heuristically exchanged the limit operator and the differential operator.&lt;/p&gt;
 
-&lt;p&gt;Why the determinant is easier to deal with than the Stieltjes transform? Because we can make use of the identity calculating the determinant
+&lt;p&gt;Determinants are easier to work with than Stieltjes transforms. The following identity expresses the power of determinant in terms of integration of exponentials
 \[
-\det(\bA_n)^{-1/2} = \int_{\R^n} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{ - \frac{1}{2} \langle \bx, \bA_n \bx \rangle  \Big\} \de \bx. 
+\det(\bA)^{-k/2} = \int_{\R^n} \frac{1}{(2 \pi)^{nk/2}} \exp\Big\{ - \frac{1}{2} \sum_{j = 1}^k \langle \bx_j, \bA \bx_j \rangle  \Big\} \prod_{j \in [k]} \de \bx_j. 
 \]
-This identity is correct when &lt;script type=&quot;math/tex&quot;&gt;\bA_n&lt;/script&gt; is positive semi-definite. However, we will use this identity formally when &lt;script type=&quot;math/tex&quot;&gt;\bA_n&lt;/script&gt; is a complex matrix.&lt;/p&gt;
+This identity holds whenever &lt;script type=&quot;math/tex&quot;&gt;\bA \in \R^{n \times n}&lt;/script&gt; is positive semi-definite. Though, we will formally use this identity for a complex matrix &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;32-the-replica-approach&quot;&gt;3.2. The replica approach&lt;/h3&gt;
 
-&lt;p&gt;To calculate &lt;script type=&quot;math/tex&quot;&gt;\E[s_{\bW_n}(\xi)]&lt;/script&gt;, we just need to calculate &lt;script type=&quot;math/tex&quot;&gt;\lim_{n\to \infty}(1/n)\E[\log \det(\bW_n - \xi \id_n)]&lt;/script&gt; and then take the derivative with respect to &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt;. However, there is not a direct way to calculate the expectation of &lt;script type=&quot;math/tex&quot;&gt;\log&lt;/script&gt;. One way to handle this difficulty is to use the replica formula introduced in my last blog
+&lt;p&gt;In order to calculate &lt;script type=&quot;math/tex&quot;&gt;\E[s_{\bW_n}(\xi)]&lt;/script&gt;, by Eq. \eqref{eq:1}, we need to calculate &lt;script type=&quot;math/tex&quot;&gt;\lim_{n\to \infty}(1/n)\E[\log \det(\bW_n - \xi \id_n)]&lt;/script&gt;, and then differentiate with respect to &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt;. However, there is no straightforward way to calculate the expectation of &lt;script type=&quot;math/tex&quot;&gt;\log&lt;/script&gt;. One possible way is to use the replica formula introduced in my last post
 \[
 \E[\log Z] = \lim_{k \to 0} \frac{1}{k} \log \E[Z^k].
 \]
-The replica formula reduce the problem to calculating the moments &lt;script type=&quot;math/tex&quot;&gt;\E[\det(\bW_n - \xi \id_n)^k]&lt;/script&gt;, and then calculate the &lt;script type=&quot;math/tex&quot;&gt;k \to 0&lt;/script&gt; limit.&lt;/p&gt;
+The replica formula reduces the problem to calculating the moments &lt;script type=&quot;math/tex&quot;&gt;\E[\det(\bW_n - \xi \id_n)^k]&lt;/script&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;33-an-even-easier-approach&quot;&gt;3.3. An even easier approach&lt;/h3&gt;
+&lt;h3 id=&quot;33-an-easier-approach&quot;&gt;3.3. An easier approach&lt;/h3&gt;
 
-&lt;p&gt;Instead of calculating &lt;script type=&quot;math/tex&quot;&gt;\log \E[\det(\bW_n - \xi \id_n)^k]&lt;/script&gt; for a sequence of &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;, we will just calculate &lt;script type=&quot;math/tex&quot;&gt;\log \E[\det(\bW_n - \xi \id_n)^{-1/2}]&lt;/script&gt;. Note
+&lt;p&gt;Instead of calculating &lt;script type=&quot;math/tex&quot;&gt;\E[\det(\bW_n - \xi \id_n)^k]&lt;/script&gt; for a sequence of &lt;script type=&quot;math/tex&quot;&gt;k&lt;/script&gt;, we just calculate &lt;script type=&quot;math/tex&quot;&gt;\E[\det(\bW_n - \xi \id_n)^{-1/2}]&lt;/script&gt;. Note
 \[
-\frac{1}{n} \log \det(\bW_n  - \xi \id_n ) = -\frac{2}{n} \log [\det(\bW_n  - \xi \id_n)^{-1/2}], 
+\frac{1}{n} \log \det(\bW_n  - \xi \id_n ) = -\frac{2}{n} \log [\det(\bW_n  - \xi \id_n)^{-1/2}].
 \]
-and we expect that &lt;script type=&quot;math/tex&quot;&gt;\log \det(\bW_n  - \xi \id_n )&lt;/script&gt; tightly concentrate around its mean so that 
+We expect that &lt;script type=&quot;math/tex&quot;&gt;n^{-1} \log \det(\bW_n  - \xi \id_n )&lt;/script&gt; concentrates tightly around its mean, so that 
 \begin{align}
 &amp;amp;~\lim_{n \to \infty} \frac{1}{n} \E[ \log \det(\bW_n - \xi \id_n)] \stackrel{\cdot}{=} \lim_{n \to \infty} \frac{1}{n}\log \det(\bW_n - \xi \id_n)] \nonumber\\
  \stackrel{\cdot}{=}&amp;amp;~ \lim_{n \to \infty} - \frac{2}{n}\log \det(\bW_n - \xi \id_n)^{-1/2}] \stackrel{\cdot}{=} \lim_{n \to \infty} -\frac{2}{n} \log \E[\det(\bW_n  - \xi \id_n)^{-1/2}]. \tag{2}\label{eq:2}
 \end{align}
-This is completely heuristic.&lt;/p&gt;
+This is completely heuristic, but it finally gives the correct answer.&lt;/p&gt;
 
 &lt;h2 id=&quot;4-the-replica-calculations&quot;&gt;4. The replica calculations&lt;/h2&gt;
 
-&lt;p&gt;From now on, all the calculations are non-rigorous. We will perform formal computations following specific rules. When you want to use replica method yourself, follow the same rules and you can get some useful answers.&lt;/p&gt;
+&lt;p&gt;In this section, we use the replica method to calculate the last expression of Eq. \eqref{eq:2}, and then derive the expression of the limiting Stieltjes transform. We will mostly use formal calculations that are not rigorous.&lt;/p&gt;
 
-&lt;p&gt;We have formal identity (It is formal because &lt;script type=&quot;math/tex&quot;&gt;\bW_n - \xi \id_n&lt;/script&gt; is a complex matrix. Let us for now pretend that &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt; is a negative real number that is very large in absolute value, then the equality holds rigorous. )&lt;/p&gt;
+&lt;h3 id=&quot;41-step-1-get-rid-of-the-expectation-operator&quot;&gt;4.1. Step 1: Get rid of the expectation operator&lt;/h3&gt;
+
+&lt;p&gt;The first step of the calculation is to get rid of the expectation operator. Suppose we need to calculate &lt;script type=&quot;math/tex&quot;&gt;\E[f(\bw)]&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;\bw \sim \cN(0, \id_d)&lt;/script&gt;. First we need to find a way to express &lt;script type=&quot;math/tex&quot;&gt;f&lt;/script&gt; as the following integral form
+\[
+f(\bw) = \int_{\R^n} \exp\{ \langle \bw, \bt(\bx)\rangle \} h(\bx) \de \bx,
+\]
+such that using the formula of the moment generating function of Gaussian random variables &lt;script type=&quot;math/tex&quot;&gt;\E_{G \sim \cN(0, 1)}[e^{tG}] = e^{t^2/2}&lt;/script&gt;, we get
+\[
+\E[f(\bw)] = \int_{\R^n} \exp\{ \Vert \bt(\bx) \Vert_2^2/2 \} h(\bx) \de \bx. 
+\]&lt;/p&gt;
+
+&lt;p&gt;For the current example, note a formal identity gives (it is formal because &lt;script type=&quot;math/tex&quot;&gt;\bW_n - \xi \id_n&lt;/script&gt; is a complex matrix)&lt;/p&gt;
 &lt;p&gt;
 \[
-\E[\det(\bW_n - \xi \id_n)^{-1/2}] = \E\Big[ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{ - \bx^\sT (\bW_n - \xi \id_n) \bx / 2 \Big\} \de \bx \Big].
+\det(\bW_n - \xi \id_n)^{-1/2} = \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{ - \bx^\sT (\bW_n - \xi \id_n) \bx / 2 \Big\} \de \bx.
 \]
 &lt;/p&gt;
-&lt;p&gt;Define &lt;script type=&quot;math/tex&quot;&gt;\bG = (G_{ij})_{ij \in [n]} \in \R^{n \times n}&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;G_{ij} \sim_{iid} \cN(0, 1)&lt;/script&gt;. Then &lt;script type=&quot;math/tex&quot;&gt;\bW_n&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(\bG + \bG^\sT)/\sqrt{2n}&lt;/script&gt; shares the same distribution. Hence, we get
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;\bG = (G_{ij})_{ij \in [n]} \in \R^{n \times n}&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;G_{ij} \sim_{iid} \cN(0, 1)&lt;/script&gt;. Then the distributions of &lt;script type=&quot;math/tex&quot;&gt;\bW_n&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;(\bG + \bG^\sT)/\sqrt{2n}&lt;/script&gt; are identital. As a consequence, we get
 \[
 \begin{aligned}
 \E[\det(\bW_n - \xi \id_n)^{-1/2}] =&amp;amp;~ \E\Big[ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{ - \Big\langle (\bG + \bG^\sT) / \sqrt {2n} - \xi \id_n, \bx \bx^\sT \Big\rangle / 2 \Big\} \de \bx \Big]\\
@@ -146,60 +169,107 @@ This is completely heuristic.&lt;/p&gt;
 =&amp;amp;~ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 \Big\} \E\Big[\exp\Big\{ - \Big\langle \bG , \bx \bx^\sT \Big\rangle / \sqrt {2n} \Big\}\Big]  \de \bx. 
 \end{aligned}
 \]
-Using the formula of moment generating function of Gaussian variable &lt;script type=&quot;math/tex&quot;&gt;\E_{G \sim \cN(0, 1)}[e^{tG}] = e^{t^2/2}&lt;/script&gt;, we get
+Using the formula of the moment generating function of Gaussian random variables, we get
 \begin{align}
 \E[\det(\bW_n - \xi \id_n)^{-1/2}] =&amp;amp;~ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 + \Vert \bx \bx^\sT \Vert_F^2 / (4n) \Big\}  \de \bx \nonumber \\
 =&amp;amp;~ \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 + \Vert \bx \Vert_2^4 / (4n) \Big\}  \de \bx.  \tag{3}\label{eq:3} \\
 \end{align}
-By now, the readers can completely forget about the rigor of our calculation, because the last integral in the equation above diverges for any real &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt;, and is an oscillatory integral for any complex &lt;script type=&quot;math/tex&quot;&gt;\xi&lt;/script&gt;. But we still continue our formal computations, hoping to extract something useful from this formal computations.&lt;/p&gt;
+Now, we have got rid of the expectation operator, and expressed the quantity of interest in terms of an integral.&lt;/p&gt;
 
-&lt;p&gt;Note we have 
+&lt;h3 id=&quot;42-step-2-calculate-the-integral&quot;&gt;4.2. Step 2: Calculate the integral&lt;/h3&gt;
+
+&lt;p&gt;Eq. \eqref{eq:3} is an intractable high dimensional integration. In statistical physics, there is a systematic approach to heuristically deal with such an integration.&lt;/p&gt;
+
+&lt;h4 id=&quot;421-a-systematic-approach-to-deal-with-the-integration&quot;&gt;4.2.1. A systematic approach to deal with the integration&lt;/h4&gt;
+
+&lt;p&gt;Suppose &lt;script type=&quot;math/tex&quot;&gt;I_n&lt;/script&gt; is an integration of form 
+\[
+I_n = \int_{\R^n} \exp\{ n \cdot f(h_1(\bx), \ldots, h_k(\bx)) \} \de \bx, 
+\]
+where &lt;script type=&quot;math/tex&quot;&gt;h_j&lt;/script&gt;’s are in the form (with a slight abuse of notation)
+\[
+h_j(x_1, \ldots, x_n) = \frac{1}{n}\sum_{i = 1}^n h_j(x_i). 
+\]
+First by the identity that 
+\begin{align}
+\int_\R \delta(n h_j(\bx) - n s_j) \de s_j = 1,
+\end{align}
+we have 
+\[
+I_n =  \int_{\R^k} \prod_{j \in [k]} \de s_j \cdot \exp\{ n \cdot f(s_1, \ldots, s_k) \} \int_{\R^n} \prod_{j \in [k]} \delta( n h_j(\bx) - n s_j) \de \bx. 
+\]
+Then, by the delta identity formula 
+\[
+\delta(x) = \int_{\bi \R} \exp\{ \lambda x \} \de [\lambda/ (2 \pi)], 
+\]
+we get 
+\[
+\begin{aligned}
+I_n =&amp;amp;~ \int_{\R^k} \prod_{j \in [k]} \de s_j \cdot \exp\{ n \cdot f(s_1, \ldots, s_k) \}  \int_{(\bi \R)^k} \prod_{j \in [k]}  \de [\lambda_j / (2\pi)]  \int_{\R^n} \exp\Big\{  \sum_{j = 1}^k \sum_{i = 1}^n \Big[ \lambda_j h_j(x_i) - \lambda_j s_j \Big] \Big\} \de \bx  \\
+=&amp;amp;~ \int_{\R^k} \prod_{j \in [k]} \de s_j \int_{(\bi \R)^k} \prod_{j = 1}^k \de [\lambda_j/(2\pi)]  \exp \Big\{ n \cdot \Big[ f(s_1, \ldots, s_k) - \sum_{j=1}^k \lambda_j s_j \Big] \Big\} \cdot \Big( \int \exp\Big\{ \sum_{j = 1}^n \lambda_j h_j(x) \Big\} \de x \Big)^n \\
+=&amp;amp;~ \int_{\R^k} \prod_{j \in [k]} \de s_j \int_{(\bi \R)^k} \prod_{j = 1}^k \de [\lambda_j/(2\pi)]  \exp \Big\{ n \cdot \Big[ f(s_1, \ldots, s_k) - \sum_{j=1}^k \lambda_j s_j  + \log J(\lambda_1, \ldots, \lambda_k) \Big] \Big\},\\
+\end{aligned}
+\]
+where
+\[
+J(\lambda_1, \ldots, \lambda_k) = \int \exp\Big\{ \sum_{j = 1}^n \lambda_j h_j(x) \Big\} \de x. 
+\]
+Using the method of steepest descent (my understanding is that, it is like the Laplace method but it deals with integration of complex functions), we have
+\[
+\lim_{n \to \infty} n^{-1} \log I_n \stackrel{\cdot}{=} \ext_{s_j, \lambda_j} \Big[ f(s_1, \ldots, s_k) - \sum_{j=1}^k \lambda_j s_j  + \log J(\lambda_1, \ldots, \lambda_k) \Big],
+\]
+where &lt;script type=&quot;math/tex&quot;&gt;\ext&lt;/script&gt; denotes the extremum operator.&lt;/p&gt;
+
+&lt;h4 id=&quot;422-application-to-this-example&quot;&gt;4.2.2. Application to this example&lt;/h4&gt;
+
+&lt;!-- 
+Note we have 
 \begin{align}\tag{4}\label{eq:4}
 \int_\R \delta(\Vert \bx \Vert_2^2 - n s) \de s = 1. 
 \end{align}
-Plugging Eq. \eqref{eq:4} into Eq. \eqref{eq:3}, we get
+ --&gt;
+&lt;p&gt;In this example, we need to deal with an integration of form Eq. \eqref{eq:3}. We take &lt;script type=&quot;math/tex&quot;&gt;f(s) = \xi s + s^2/4&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;h(\bx) = \sum_{i = 1}^n x_i^2 / n&lt;/script&gt;. Using the method introduced above, we have
 \[
 \begin{aligned}
-\E[\det(\bW_n - \xi \id_n)^{-1/2}] =&amp;amp;~ \int_{\R} \de s \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 + \Vert \bx \Vert_2^4 / (4n) \Big\} \cdot \delta(\Vert \bx \Vert_2^2 - n s)  \de \bx \\
+\E[\det(\bW_n - \xi \id_n)^{-1/2}] =&amp;amp;~ \int_{\R} \de s  \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\Big\{  \xi \Vert \bx \Vert_2^2 /2 + \Vert \bx \Vert_2^4 / (4n) \Big\} \cdot \delta(\Vert \bx \Vert_2^2 - n s)  \de \bx \\
 =&amp;amp;~ \int_{\R} \de s  \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp \{  n \xi s /2 + n s^2 / 4 \} \cdot \delta(\Vert \bx \Vert_2^2 - n s)  \de \bx \\
-=&amp;amp;~ \int_{\R}  \exp \{ n \xi s /2 + n s^2 / 4 + n H_n(s) \}  \de s,\\
-\stackrel{\cdot}{=}&amp;amp; \exp\Big\{ n \cdot \ext_{s} \Big[  \frac{ \xi s}{2} + \frac{s^2}{4} + \lim_{n \to \infty} H_n(s) \Big] \Big\},
+=&amp;amp;~ \int_{\R} \de s \int_{\bi R} [\de \lambda / (2 \pi)] \exp \Big\{  n \Big[\xi s /2 +  s^2 / 4 - \lambda s \Big] \Big\} \cdot \Big( \int_R \frac{1}{(2 \pi)^{1/2}} \exp\{ \lambda x^2 \}  \de x \Big)^n \\
+=&amp;amp;~ \int_{\R} \de s \int_{\bi R} [\de \lambda / (2 \pi)] \exp \Big\{  n \Big[\xi s /2 +  s^2 / 4 - \lambda s + J(\lambda) \Big] \Big\} \\
 \end{aligned}
 \]
 where 
 \[
-H_n(s) = \frac{1}{n} \log \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \cdot \delta(\Vert \bx \Vert_2^2 - n s)  \de \bx. 
-\]
-We use the delta identity formula to carry on the calculations (let’s pretend &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; is a positive real number in this calculations; eventually we will take &lt;script type=&quot;math/tex&quot;&gt;s&lt;/script&gt; to be a complex number)
-\[
-\begin{aligned}
-H_n(s) =&amp;amp;~ \frac{1}{n}\log \int_{\R^n} \frac{1}{(2 \pi)^{n/2}} \cdot \delta(\Vert \bx \Vert_2^2 - n s)  \de \bx \\
-=&amp;amp;~ \inf_{\lambda} \frac{1}{n} \log \int_{\R^{n}} \frac{1}{(2 \pi)^{n/2}} \exp\{ - \lambda \Vert \bx \Vert_2^2 / 2 + n s \lambda /2 \} \de \bx\\
-=&amp;amp;~ \inf_{\lambda} \Big[ \frac{\lambda s}{2} - \frac{1}{2}\log \lambda \Big] \\
-=&amp;amp;~ \frac{1}{2} + \frac{1}{2} \log s. 
-\end{aligned}
+J(\lambda) = \log \int_R \frac{1}{(2 \pi)^{1/2}} \exp\{ \lambda x^2\}  \de x = - \frac{1}{2} \log ( - 2 \lambda). 
 \]
 Therefore, we have
 \[
-\E[\det(\bW_n - \xi \id_n)^{-1/2}] = \exp\Big\{ n \cdot \ext_{s} \Big[  \frac{ \xi s}{2} + \frac{s^2}{4} + \frac{1}{2} \log s + \frac{1}{2} \Big] \Big\}
+\lim_{n \to \infty} \frac{1}{n} \log \E[\det(\bW_n - \xi \id_n)^{-1/2}] = \ext_{s, \lambda} \Big[  \frac{ \xi s}{2} + \frac{s^2}{4} - \lambda s - \frac{1}{2} \log( - 2\lambda) \Big]. 
 \]
-and by Eq. \eqref{eq:2}, we have
-\begin{align}
-&amp;amp;~\lim_{n \to \infty} \frac{1}{n} \E[ \log \det(\bW_n - \xi \id_n)] \\
-=&amp;amp;~ - \lim_{n \to \infty} \frac{2}{n} \log \E[ \det(\bW_n - \xi \id_n)^{- 1/2}] \\
-=&amp;amp;~ -2 \cdot \ext_{s} \Big[  \frac{\xi s}{2} + \frac{s^2}{4} + \frac{1}{2} \log s + \frac{1}{2} \Big] \\
-=&amp;amp;~ \ext_{s} \Big[ - \xi s - \frac{s^2}{2} - \log s - 1 \Big] \\
-=&amp;amp;~ - \xi s_\star(\xi) - \frac{s_\star^2(\xi)}{2} - \log s_\star(\xi) - 1. 
-\end{align}
-where &lt;script type=&quot;math/tex&quot;&gt;s_\star = s_\star(\xi)&lt;/script&gt; satisfies 
+Define 
+\[
+P(s, \lambda) = \frac{ \xi s}{2} + \frac{s^2}{4} - \lambda s - \frac{1}{2} \log( - 2 \lambda). 
+\]
+Letting &lt;script type=&quot;math/tex&quot;&gt;\partial_\lambda P(s, \lambda) = 0&lt;/script&gt;, we have &lt;script type=&quot;math/tex&quot;&gt;\lambda = - 1 / (2s)&lt;/script&gt;, which gives
+\[
+P(s) \equiv \ext_{\lambda} P(s, \lambda) = \frac{ \xi s}{2} + \frac{s^2}{4} + \frac{1}{2} \log(s) + \frac{1}{2}. 
+\]
+Then we differentiate &lt;script type=&quot;math/tex&quot;&gt;P(s)&lt;/script&gt;, its extremum &lt;script type=&quot;math/tex&quot;&gt;s_\star&lt;/script&gt; satisfies
 \begin{align}\tag{5}\label{eq:5}
 \xi + s_\star + \frac{1}{s_\star} = 0. 
 \end{align}
-By Eq. \eqref{eq:1}, we get 
+As a result, we get
+\[
+\lim_{n \to \infty} \frac{1}{n} \log \E[\det(\bW_n - \xi \id_n)^{-1/2}] \stackrel{\cdot}{=} \frac{ \xi s_\star}{2} + \frac{s_\star^2}{4} + \frac{1}{2} \log(s_\star) + \frac{1}{2},
+\]
+and by Eq. \eqref{eq:2} we get
+\[
+\lim_{n \to \infty} \frac{1}{n}\E[\log \det(\bW_n - \xi \id_n)] \stackrel{\cdot}{=} - \xi s_\star - \frac{s_\star^2}{2} - \log(s_\star) - 1.
+\]
+where &lt;script type=&quot;math/tex&quot;&gt;s_\star&lt;/script&gt; gives the solution of Eq. \eqref{eq:5}. Finally, by Eq. \eqref{eq:1}, we have 
 \[
 \begin{aligned}
-\E[s_{\bW_n}(\xi)] =&amp;amp;~ - \frac{\de}{\de \xi} \lim_{n \to \infty} \frac{1}{n} \E[ \log \det(\bW_n - \xi \id_n)] \\
-=&amp;amp;~ - \frac{\de }{\de \xi} \Big[\xi s_\star(\xi) - \frac{s_\star^2(\xi)}{2} - \log s_\star(\xi) - 1\Big] = - \frac{\partial }{\partial \xi} \Big[\xi s - \frac{s^2}{2} - \log s - 1\Big] \Big\vert_{s = s_\star(\xi)} \\
+\lim_{n \to \infty} \E[s_{\bW_n}(\xi)] \stackrel{\cdot}{=}&amp;amp;~ - \frac{\de}{\de \xi} \lim_{n \to \infty} \frac{1}{n} \E[ \log \det(\bW_n - \xi \id_n)] \\
+=&amp;amp;~ - \frac{\de }{\de \xi} \Big[- \xi s_\star(\xi) - \frac{s_\star^2(\xi)}{2} - \log s_\star(\xi) - 1\Big] = - \frac{\partial }{\partial \xi} \Big[- \xi s - \frac{s^2}{2} - \log s - 1\Big] \Big\vert_{s = s_\star(\xi)} \\
 =&amp;amp;~ s_\star(\xi). 
 \end{aligned}
 \]
@@ -207,11 +277,13 @@ Let &lt;script type=&quot;math/tex&quot;&gt;\xi \in \C_+&lt;/script&gt;, and fin
 \[
 s_\star(\xi) = \frac{- z + \sqrt{z^2 - 4}}{2}. 
 \]
-This is exactly the limiting Stieltjes transform of GOE matrices. Of course, after we get this answer, we will find another way to derive it rigorously and sweep this heuristic calculations under our carpet.&lt;/p&gt;
+This is exactly the limiting Stieltjes transform of the GOE matrix. Of course, to prove rigorously this formula, we need to adopt other techniques.&lt;/p&gt;
 
 &lt;h2 id=&quot;5-summary&quot;&gt;5. Summary&lt;/h2&gt;
 
-&lt;p&gt;In this blog, I used a lot of formal computations. I know there are some rules I can use in the computations, but I don’t even know how these equations makes sense. But I know if I follow the formal computations, I will eventually get something useful. This is the mystery of replica method. I will summarize the rules to follow during the replica calculations in the next few blogs. Perhaps by then I will understand better why we can do these formal computations.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">Replica method and random matrices (I)</title><link href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" rel="alternate" type="text/html" title="Replica method and random matrices (I)" /><published>2019-08-04T00:09:06-07:00</published><updated>2019-08-04T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\blambda{\boldsymbol \lambda}&lt;/script&gt;
+&lt;p&gt;We showed a systematic approach for formally calculating the spectral density of random matrices. Here is one exercise for the readers: calculating the limiting Stieltjes transform of the empirical covariance matrix &lt;script type=&quot;math/tex&quot;&gt;\hat \Sigma_n&lt;/script&gt; of isotropic Gaussian data, where &lt;script type=&quot;math/tex&quot;&gt;\hat \Sigma_n = n^{-1} \sum_{i = 1}^n \bx_i \bx_i^\sT&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;\bx_i \sim_{iid} \cN(0, \id_d)&lt;/script&gt;, in the asymptotic regime &lt;script type=&quot;math/tex&quot;&gt;n / d \to \gamma&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;d \to \infty&lt;/script&gt;. The spectral density of the empirical covariance matrix, which can be derived from the exercise above, gives the famous &lt;a href=&quot;https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution&quot;&gt;Marchenko-Pastur law&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In my next post, I will introduce some applications of the replica method to machine learning.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">Replica method and random matrices (I)</title><link href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" rel="alternate" type="text/html" title="Replica method and random matrices (I)" /><published>2019-08-04T09:09:06+02:00</published><updated>2019-08-04T09:09:06+02:00</updated><id>http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\blambda{\boldsymbol \lambda}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bX{\boldsymbol X}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\P{\mathbb P}&lt;/script&gt;
@@ -246,11 +318,11 @@ This is exactly the limiting Stieltjes transform of GOE matrices. Of course, aft
 
 &lt;h2 id=&quot;1-introduction&quot;&gt;1. Introduction&lt;/h2&gt;
 
-&lt;p&gt;In my first several blogs, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used several times this method in my research. It helped me quickly figuring out the answer of a problem.&lt;/p&gt;
+&lt;p&gt;In my first several posts, I will discuss about the replica method. The replica method is a non-rigorous but powerful approach that originated within the statistical physics literature. It has been widely applied in other fields, including coding theory and high dimensional statistics. I used this method several times in my research. It helped me quickly figure out the answer of numerous problems.&lt;/p&gt;
 
-&lt;p&gt;Most physicists know replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audiences, but I will occasionally use the terminologies in physics. For a more sophisticated introduction to the replica method, I recommend Chapter 8 of this &lt;a href=&quot;https://web.stanford.edu/~montanar/RESEARCH/book.html&quot;&gt;fantastic book&lt;/a&gt; &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Most physicists know the replica method better than me. Here I would like to introduce the replica method to theorists outside the physics community. I will not assume knowledges of statistical physics from the audience, but I will occasionally use terminology from physics. For a more sophisticated introduction to the replica method, I recommend Chapter 8 of this &lt;a href=&quot;https://web.stanford.edu/~montanar/RESEARCH/book.html&quot;&gt;fantastic book&lt;/a&gt; &lt;a href=&quot;#ref1&quot;&gt;[1]&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;In this blog, I will discuss about how to use replica method to calculate the spectral norm of certain random matrices. In the next few blogs, I will discuss about how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices.&lt;/p&gt;
+&lt;p&gt;In this post, I will discuss how to use the replica method to calculate the spectral norm of certain random matrices. In the next few posts, I will discuss how to use it to calculate the spectral density (Stieltjes transforms) of certain random matrices.&lt;/p&gt;
 
 &lt;h2 id=&quot;2-a-motivating-example-spiked-goe-matrix&quot;&gt;2. A motivating example: spiked GOE matrix&lt;/h2&gt;
 
@@ -258,7 +330,7 @@ This is exactly the limiting Stieltjes transform of GOE matrices. Of course, aft
 \[
 \bA= \lambda \bu \bu^\sT + \bW,
 \]
-where &lt;script type=&quot;math/tex&quot;&gt;\lambda \ge 0&lt;/script&gt; is the signal to noise ratio, &lt;script type=&quot;math/tex&quot;&gt;\bu \in \S^{n-1} \equiv \{ \bx \in \R^n: \| \bx \|_2 = 1 \}&lt;/script&gt; is a spike vector, and &lt;script type=&quot;math/tex&quot;&gt;\bW \sim \GOE(n)&lt;/script&gt;: that means, &lt;script type=&quot;math/tex&quot;&gt;\bW \in \R^{n \times n}&lt;/script&gt; is a symmetric matrix, &lt;script type=&quot;math/tex&quot;&gt;W_{ij} \sim \cN(0, 1/n)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+where &lt;script type=&quot;math/tex&quot;&gt;\lambda \ge 0&lt;/script&gt; is the signal to noise ratio, &lt;script type=&quot;math/tex&quot;&gt;\bu \in \S^{n-1} \equiv \{ \bx \in \R^n: \| \bx \|_2 = 1 \}&lt;/script&gt; is a spike vector, and &lt;script type=&quot;math/tex&quot;&gt;\bW \sim \GOE(n)&lt;/script&gt;: meaning that &lt;script type=&quot;math/tex&quot;&gt;\bW \in \R^{n \times n}&lt;/script&gt; is a symmetric matrix, &lt;script type=&quot;math/tex&quot;&gt;W_{ij} \sim \cN(0, 1/n)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
 1 \le i &lt; j \le n %]]&gt;&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;W_{ii} \sim \cN(0, 2/n)&lt;/script&gt; for &lt;script type=&quot;math/tex&quot;&gt;1 \le i \le n&lt;/script&gt;.&lt;/p&gt;
 
 &lt;p&gt;We are interested in the largest eigenvalue and the corresponding eigenvector of &lt;script type=&quot;math/tex&quot;&gt;\bA&lt;/script&gt;, which are respectively denoted by &lt;script type=&quot;math/tex&quot;&gt;\lambda_{\max}(\bA)&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\bv_{\max}(\bA)&lt;/script&gt;. The result below is called the BBP phase transition phenomenon (see &lt;a href=&quot;#ref2&quot;&gt;[2]&lt;/a&gt; for spiked Wishart matrix and &lt;a href=&quot;#ref3&quot;&gt;[3]&lt;/a&gt; for spiked Wigner matrix).&lt;/p&gt;
@@ -288,7 +360,7 @@ For &lt;script type=&quot;math/tex&quot;&gt;\lambda &gt; 1&lt;/script&gt;, we ha
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;In the rest of this blog, we will derive this result using replica method.&lt;/p&gt;
+&lt;p&gt;In the rest of this blog post, we will derive this result using the replica method.&lt;/p&gt;
 
 &lt;h2 id=&quot;3-tricks-in-statistical-physics&quot;&gt;3. Tricks in statistical physics&lt;/h2&gt;
 
@@ -662,6 +734,6 @@ This turns out to be the correct answer!&lt;/p&gt;
 
 &lt;p id=&quot;ref2&quot;&gt;[2] Baik, Jinho, Gérard Ben Arous, and Sandrine Péché. “Phase transition of the largest eigenvalue for nonnull complex sample covariance matrices.” The Annals of Probability 33.5 (2005): 1643-1697.&lt;/p&gt;
 
-&lt;p id=&quot;ref3&quot;&gt;[3] Péché, Sandrine. “The largest eigenvalue of small rank perturbations of Hermitian random matrices.” Probability Theory and Related Fields 134.1 (2006): 127-173.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">The topics of this Blog</title><link href="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html" rel="alternate" type="text/html" title="The topics of this Blog" /><published>2019-07-19T23:09:06-07:00</published><updated>2019-07-19T23:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html">&lt;p&gt;Hello everyone, I am starting my research blog today.&lt;/p&gt;
+&lt;p id=&quot;ref3&quot;&gt;[3] Péché, Sandrine. “The largest eigenvalue of small rank perturbations of Hermitian random matrices.” Probability Theory and Related Fields 134.1 (2006): 127-173.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">The topics of this Blog</title><link href="http://localhost:4000/jekyll/update/2019/07/20/welcome-to-jekyll.html" rel="alternate" type="text/html" title="The topics of this Blog" /><published>2019-07-20T08:09:06+02:00</published><updated>2019-07-20T08:09:06+02:00</updated><id>http://localhost:4000/jekyll/update/2019/07/20/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/20/welcome-to-jekyll.html">&lt;p&gt;Hello everyone, I am starting my research blog today.&lt;/p&gt;
 
-&lt;p&gt;In my first several blogs, I will discuss about methods from statistical physics, with applications to random matrix theory. Hope you will have fun!&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html">Hello everyone, I am starting my research blog today.</summary></entry></feed>
+&lt;p&gt;In my first several posts, I will discuss about methods from statistical physics, with applications to random matrix theory. Hope you will have fun!&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html">Hello everyone, I am starting my research blog today.</summary></entry></feed>

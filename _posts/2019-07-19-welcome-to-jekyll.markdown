@@ -7,4 +7,4 @@ categories: jekyll update
 
 Hello everyone, I am starting my research blog today. 
 
-In my first several blogs, I will discuss about methods from statistical physics, with applications to random matrix theory. Hope you will have fun! 
+In my first several posts, I will discuss about methods from statistical physics, with applications to random matrix theory. Hope you will have fun! 
