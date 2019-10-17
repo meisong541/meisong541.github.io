@@ -49,10 +49,9 @@ $$\def\tr{\text{tr}}$$
 
 ## 1. Introduction
 
-In the previous post, we saw how to use the replica method to calculate the spectral norm of the spiked GOE matrix. Besides the spectral norm, another interesting quantity of random matrices is the spectral density: the limiting empirical distribution of eigenvalues. In this post, we show how to calculate the spectral density of random matrices using the replica method. Let us take the GOE matrix as an example. 
+In my previous post, we saw how to use the replica method to calculate the spectral norm of the spiked GOE matrix. Besides the spectral norm, another interesting quantity of random matrices is the spectral density: the limiting empirical distribution of eigenvalues. Similarly using the replica method, we show in this post how to calculate the spectral density of random matrices. In particular, we will illustrate the method through the example of GOE matrix. 
 
-
-The prerequisite knowledge for this post is Stieltjes transforms. For a basic introduction to Stieltjes transforms and its applications to the GOE matrix, I recommend reading <a href = "https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/#more-3426">Terrence Tao's blog</a>. The shape of the spectral density of the GOE matrix is a semicircle, and hence this famous result is called the <a href="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution">semicircle law</a>. 
+The mathematics of this post builds upon Stieltjes transforms, which we will not dive into for the sake of brevity. For a detailed introduction to Stieltjes transforms and its applications to the GOE matrix, I recommend reading <a href = "https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/#more-3426">Terrence Tao's blog</a>. It is worth noting that the shape of the spectral density of the GOE matrix is a semicircle, and hence this famous result is called the <a href="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution">semicircle law</a>. 
 
 
 
@@ -86,7 +85,7 @@ Let <script type="math/tex">\mu_n</script> be a sequence of random probability m
 
 
 
-The next theorem gives the limiting Stieltjes transform of the GOE matrix. Combining with the two lemmas above, we recover the semicircle law of the GOE matrix. 
+Building upon the previous two lemmas, the next theorem gives the limiting Stieltjes transform of the GOE matrix, and hence recover the semicircle law. 
 
 
 <div class="theorem"><ri>[Stieltjes transform of the GOE matrix]</ri>
@@ -107,7 +106,7 @@ where
 \sigma_{\rm sc}(\de x) = \frac{1}{2\pi} \sqrt{4 - x^2} \cdot \ones\\{ x \in [-2, 2] \\} \de x. 
 \\]
 
-In the following sections, I will formally calculate $$\lim_{n \to \infty}\E[s_{\bW_n}(z)]$$ using the replica method. 
+We have so far established the background of this example. It remains to calculate formally the limiting Stieltjes transform $$\lim_{n \to \infty}\E[s_{\bW_n}(z)]$$ using the replica method, which will be the focus of the following sections. 
 
 
 ## 3. The determinant trick 
@@ -133,11 +132,11 @@ where $$k(\bW_n, \xi)$$ is an integer. Moreover, $$k(\bW_n, \xi)$$ will remain t
 \end{align}
 In the last step, we heuristically exchanged the limit operator and the differential operator. 
 
-Determinants are easier to work with than Stieltjes transforms. The following identity expresses the power of determinant in terms of integration of exponentials
+The point of this trick is that, determinants are easier to work with than Stieltjes transforms, since the power of determinant can be expressed in terms of integration of exponentials
 \\[
 \det(\bA)^{-k/2} = \int_{\R^n} \frac{1}{(2 \pi)^{nk/2}} \exp\Big\\{ - \frac{1}{2} \sum_{j = 1}^k \langle \bx_j, \bA \bx_j \rangle  \Big\\} \prod_{j \in [k]} \de \bx_j. 
 \\]
-This identity holds whenever $$\bA \in \R^{n \times n}$$ is positive semi-definite. Though, we will formally use this identity for a complex matrix $$\bA$$. 
+This identity holds whenever $$\bA \in \R^{n \times n}$$ is positive semi-definite. Though, we will formally use this identity for a complex matrix $$\bA$$ which may not always hold rigorously. 
 
 
 ### 3.2. The replica approach
@@ -300,11 +299,11 @@ Let $$\xi \in \C_+$$, and finding the solution $$s_\star$$ of Eq. \eqref{eq:5} w
 \\[
 s_\star(\xi) = \frac{- z + \sqrt{z^2 - 4}}{2}. 
 \\]
-This is exactly the limiting Stieltjes transform of the GOE matrix. Of course, to prove rigorously this formula, we need to adopt other techniques. 
+This is exactly the limiting Stieltjes transform of the GOE matrix. Of course, to rigorously prove this formula, we need to adopt other techniques. 
 
 ## 5. Summary 
 
-We showed a systematic approach for formally calculating the spectral density of random matrices. Here is one exercise for the readers: calculating the limiting Stieltjes transform of the empirical covariance matrix $$\hat \Sigma_n$$ of isotropic Gaussian data, where $$\hat \Sigma_n = n^{-1} \sum_{i = 1}^n \bx_i \bx_i^\sT$$ with $$\bx_i \sim_{iid} \cN(0, \id_d)$$, in the asymptotic regime $$n / d \to \gamma$$ as $$d \to \infty$$. The spectral density of the empirical covariance matrix, which can be derived from the exercise above, gives the famous <a href="https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution">Marchenko-Pastur law</a>. 
+We showed a systematic approach for formally calculating the spectral density of random matrices. Here is an exercise for the readers: calculate the limiting Stieltjes transform of the empirical covariance matrix $$\hat \Sigma_n$$ of isotropic Gaussian data, where $$\hat \Sigma_n = n^{-1} \sum_{i = 1}^n \bx_i \bx_i^\sT$$ with $$\bx_i \sim_{iid} \cN(0, \id_d)$$, in the asymptotic regime $$n / d \to \gamma$$ as $$d \to \infty$$. The spectral density of the empirical covariance matrix, which can be derived from the exercise above, gives the famous <a href="https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution">Marchenko-Pastur law</a>. 
 
-In my next post, I will introduce some applications of the replica method to machine learning. 
+In my next post, I will introduce some applications of the replica method in machine learning. 
 

@@ -14,9 +14,9 @@
 <meta property="og:url" content="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html" />
 <meta property="og:site_name" content="Entropic Flow" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-09-12T09:09:06+02:00" />
+<meta property="article:published_time" content="2019-09-12T00:09:06-07:00" />
 <script type="application/ld+json">
-{"description":"A research blog about machine learning and statistics.","author":{"@type":"Person","name":"Song Mei"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html","headline":"Replica method and random matrices (II)","dateModified":"2019-09-12T09:09:06+02:00","datePublished":"2019-09-12T09:09:06+02:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html"},"@context":"https://schema.org"}</script>
+{"description":"A research blog about machine learning and statistics.","author":{"@type":"Person","name":"Song Mei"},"@type":"BlogPosting","url":"http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html","headline":"Replica method and random matrices (II)","dateModified":"2019-09-12T00:09:06-07:00","datePublished":"2019-09-12T00:09:06-07:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Entropic Flow" /><link rel="canonical" href="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html">
   <link rel="alternate" type="application/rss+xml" title="Entropic Flow" href="/feed.xml">
@@ -59,7 +59,7 @@
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">Replica method and random matrices (II)</h1>
     <p class="post-meta">
-      <time datetime="2019-09-12T09:09:06+02:00" itemprop="datePublished">
+      <time datetime="2019-09-12T00:09:06-07:00" itemprop="datePublished">
         
         Sep 12, 2019
       </time>
@@ -110,9 +110,9 @@
 
 <h2 id="1-introduction">1. Introduction</h2>
 
-<p>In the previous post, we saw how to use the replica method to calculate the spectral norm of the spiked GOE matrix. Besides the spectral norm, another interesting quantity of random matrices is the spectral density: the limiting empirical distribution of eigenvalues. In this post, we show how to calculate the spectral density of random matrices using the replica method. Let us take the GOE matrix as an example.</p>
+<p>In my previous post, we saw how to use the replica method to calculate the spectral norm of the spiked GOE matrix. Besides the spectral norm, another interesting quantity of random matrices is the spectral density: the limiting empirical distribution of eigenvalues. Similarly using the replica method, we show in this post how to calculate the spectral density of random matrices. In particular, we will illustrate the method through the example of GOE matrix.</p>
 
-<p>The prerequisite knowledge for this post is Stieltjes transforms. For a basic introduction to Stieltjes transforms and its applications to the GOE matrix, I recommend reading <a rel="nofollow" target="_blank" href="https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/#more-3426">Terrence Tao’s blog</a>. The shape of the spectral density of the GOE matrix is a semicircle, and hence this famous result is called the <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution">semicircle law</a>.</p>
+<p>The mathematics of this post builds upon Stieltjes transforms, which we will not dive into for the sake of brevity. For a detailed introduction to Stieltjes transforms and its applications to the GOE matrix, I recommend reading <a rel="nofollow" target="_blank" href="https://terrytao.wordpress.com/2010/02/02/254a-notes-4-the-semi-circular-law/#more-3426">Terrence Tao’s blog</a>. It is worth noting that the shape of the spectral density of the GOE matrix is a semicircle, and hence this famous result is called the <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Wigner_semicircle_distribution">semicircle law</a>.</p>
 
 <h2 id="2-spectral-density-and-stieltjes-transforms">2. Spectral density and Stieltjes transforms</h2>
 
@@ -141,7 +141,7 @@ The scaled imaginary part of the Stieltjes transform <script type="math/tex">(1/
 Let <script type="math/tex">\mu_n</script> be a sequence of random probability measures on the real line, and let <script type="math/tex">\mu</script> be a deterministic probability measure. Then <script type="math/tex">\mu_n</script> converges in expectation to <script type="math/tex">\mu</script> in the vague topology if and only if <script type="math/tex">\E s_{\mu_n}(z)</script> converges to <script type="math/tex">s_\mu(z)</script> for every <script type="math/tex">z</script> in the upper half-plane.
 </div>
 
-<p>The next theorem gives the limiting Stieltjes transform of the GOE matrix. Combining with the two lemmas above, we recover the semicircle law of the GOE matrix.</p>
+<p>Building upon the previous two lemmas, the next theorem gives the limiting Stieltjes transform of the GOE matrix, and hence recover the semicircle law.</p>
 
 <div class="theorem"><ri>[Stieltjes transform of the GOE matrix]</ri>
 Let <script type="math/tex">\bW_n \sim \GOE(n)</script>. That is, <script type="math/tex">\bW_n \in \R^{n \times n}</script> is a symmetric matrix with <script type="math/tex">(W_{n, ii})_{1 \le i \le n} \sim_{i.i.d.} \cN(0, 2/n)</script> and <script type="math/tex">(W_{n, ij})_{1 \le i < j \le n} \sim_{i.i.d.} \cN(0, 1/n)</script>. Denote by <script type="math/tex">s_{\bW_n} = s_{\mu_{\bW_n}}</script> the Stieltjes transform of empirical eigenvalue distribution of <script type="math/tex">\bW_n</script>. Then for <script type="math/tex">z \in \C_+</script>, we have 
@@ -160,7 +160,7 @@ where
 \sigma_{\rm sc}(\de x) = \frac{1}{2\pi} \sqrt{4 - x^2} \cdot \ones\{ x \in [-2, 2] \} \de x. 
 \]</p>
 
-<p>In the following sections, I will formally calculate <script type="math/tex">\lim_{n \to \infty}\E[s_{\bW_n}(z)]</script> using the replica method.</p>
+<p>We have so far established the background of this example. It remains to calculate formally the limiting Stieltjes transform <script type="math/tex">\lim_{n \to \infty}\E[s_{\bW_n}(z)]</script> using the replica method, which will be the focus of the following sections.</p>
 
 <h2 id="3-the-determinant-trick">3. The determinant trick</h2>
 
@@ -185,11 +185,11 @@ where <script type="math/tex">k(\bW_n, \xi)</script> is an integer. Moreover, <s
 \end{align}
 In the last step, we heuristically exchanged the limit operator and the differential operator.</p>
 
-<p>Determinants are easier to work with than Stieltjes transforms. The following identity expresses the power of determinant in terms of integration of exponentials
+<p>The point of this trick is that, determinants are easier to work with than Stieltjes transforms, since the power of determinant can be expressed in terms of integration of exponentials
 \[
 \det(\bA)^{-k/2} = \int_{\R^n} \frac{1}{(2 \pi)^{nk/2}} \exp\Big\{ - \frac{1}{2} \sum_{j = 1}^k \langle \bx_j, \bA \bx_j \rangle  \Big\} \prod_{j \in [k]} \de \bx_j. 
 \]
-This identity holds whenever <script type="math/tex">\bA \in \R^{n \times n}</script> is positive semi-definite. Though, we will formally use this identity for a complex matrix <script type="math/tex">\bA</script>.</p>
+This identity holds whenever <script type="math/tex">\bA \in \R^{n \times n}</script> is positive semi-definite. Though, we will formally use this identity for a complex matrix <script type="math/tex">\bA</script> which may not always hold rigorously.</p>
 
 <h3 id="32-the-replica-approach">3.2. The replica approach</h3>
 
@@ -349,13 +349,13 @@ Let <script type="math/tex">\xi \in \C_+</script>, and finding the solution <scr
 \[
 s_\star(\xi) = \frac{- z + \sqrt{z^2 - 4}}{2}. 
 \]
-This is exactly the limiting Stieltjes transform of the GOE matrix. Of course, to prove rigorously this formula, we need to adopt other techniques.</p>
+This is exactly the limiting Stieltjes transform of the GOE matrix. Of course, to rigorously prove this formula, we need to adopt other techniques.</p>
 
 <h2 id="5-summary">5. Summary</h2>
 
-<p>We showed a systematic approach for formally calculating the spectral density of random matrices. Here is one exercise for the readers: calculating the limiting Stieltjes transform of the empirical covariance matrix <script type="math/tex">\hat \Sigma_n</script> of isotropic Gaussian data, where <script type="math/tex">\hat \Sigma_n = n^{-1} \sum_{i = 1}^n \bx_i \bx_i^\sT</script> with <script type="math/tex">\bx_i \sim_{iid} \cN(0, \id_d)</script>, in the asymptotic regime <script type="math/tex">n / d \to \gamma</script> as <script type="math/tex">d \to \infty</script>. The spectral density of the empirical covariance matrix, which can be derived from the exercise above, gives the famous <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution">Marchenko-Pastur law</a>.</p>
+<p>We showed a systematic approach for formally calculating the spectral density of random matrices. Here is an exercise for the readers: calculate the limiting Stieltjes transform of the empirical covariance matrix <script type="math/tex">\hat \Sigma_n</script> of isotropic Gaussian data, where <script type="math/tex">\hat \Sigma_n = n^{-1} \sum_{i = 1}^n \bx_i \bx_i^\sT</script> with <script type="math/tex">\bx_i \sim_{iid} \cN(0, \id_d)</script>, in the asymptotic regime <script type="math/tex">n / d \to \gamma</script> as <script type="math/tex">d \to \infty</script>. The spectral density of the empirical covariance matrix, which can be derived from the exercise above, gives the famous <a rel="nofollow" target="_blank" href="https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution">Marchenko-Pastur law</a>.</p>
 
-<p>In my next post, I will introduce some applications of the replica method to machine learning.</p>
+<p>In my next post, I will introduce some applications of the replica method in machine learning.</p>
 
 
  </div>
