@@ -318,7 +318,7 @@ Here we give a heuristic argument to calculate the entropy term $$H_n(\bQ)$$, (h
 \begin{aligned}
 H_n(\bQ) \stackrel{\cdot}{=}& \frac{1}{n} \P_{(\bsigma_i)_{i \in [k]} \sim \Unif(\S^{n-1})} \Big(  \big(\langle \bsigma_i, \bsigma_j \rangle / n \big)_{i, j \in [k]}\approx \bQ  \Big)\\\
 \stackrel{\cdot}{=}& \inf_{\lambda_{ij}} \frac{1}{n} \log  \int_{(\R^n)^{k+1}} \prod_{0 \le i \le j\le k} \exp\Big\{ - \lambda_{ij}\langle\bsigma_i, \bsigma_j\rangle / 2 + n q_{ij} \lambda_{ij} / 2 \Big\} \prod_{0 \le i \le k} \de \bsigma_i + \const\\\
-=& \inf_{\lambda_{ij}} \log  \int_{\R^{k+1}} \prod_{0 \le i < j\le k} \exp\Big\{ -  \lambda_{ij} \sigma_i\sigma_j / 2 + q_{ij} \lambda_{ij}/2 \Big\} \prod_{0 \le i \le k} \de \bsigma_i + \const\\\
+=& \inf_{\lambda_{ij}} \log  \int_{\R^{k+1}} \prod_{0 \le i \le j\le k} \exp\Big\{ -  \lambda_{ij} \sigma_i\sigma_j / 2 + q_{ij} \lambda_{ij}/2 \Big\} \prod_{0 \le i \le k} \de \sigma_i + \const\\\
 =& \inf_{\bLambda = (\lambda_{ij})_{0 \le i \le j \le k}} \Big[ \langle \bQ, \bLambda\rangle / 2 - \log(\det(\bLambda))/2  \Big] + \const\\\
 \stackrel{\cdot}{=}& \frac{1}{2} \log \det(\bQ),
 \end{aligned}
