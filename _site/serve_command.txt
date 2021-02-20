@@ -1,1 +1,3 @@
 bundle exec jekyll serve
+
+scp -r /Users/songmei/Dropbox/A\ Academics/Homepage/* songmei@beren.berkeley.edu:/accounts/web/public/songmei/ 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.6">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-10-17T14:33:23-07:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog about machine learning and statistics. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-20T02:13:31-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog about machine learning and statistics. 
 </subtitle><author><name>Song Mei</name></author><entry><title type="html">Replica method and random matrices (II)</title><link href="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html" rel="alternate" type="text/html" title="Replica method and random matrices (II)" /><published>2019-09-12T00:09:06-07:00</published><updated>2019-09-12T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\cP{\mathcal P}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\de{\text{d}}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
@@ -283,7 +283,7 @@ This is exactly the limiting Stieltjes transform of the GOE matrix. Of course, t
 
 &lt;p&gt;We showed a systematic approach for formally calculating the spectral density of random matrices. Here is an exercise for the readers: calculate the limiting Stieltjes transform of the empirical covariance matrix &lt;script type=&quot;math/tex&quot;&gt;\hat \Sigma_n&lt;/script&gt; of isotropic Gaussian data, where &lt;script type=&quot;math/tex&quot;&gt;\hat \Sigma_n = n^{-1} \sum_{i = 1}^n \bx_i \bx_i^\sT&lt;/script&gt; with &lt;script type=&quot;math/tex&quot;&gt;\bx_i \sim_{iid} \cN(0, \id_d)&lt;/script&gt;, in the asymptotic regime &lt;script type=&quot;math/tex&quot;&gt;n / d \to \gamma&lt;/script&gt; as &lt;script type=&quot;math/tex&quot;&gt;d \to \infty&lt;/script&gt;. The spectral density of the empirical covariance matrix, which can be derived from the exercise above, gives the famous &lt;a href=&quot;https://en.wikipedia.org/wiki/Marchenko%E2%80%93Pastur_distribution&quot;&gt;Marchenko-Pastur law&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;In my next post, I will introduce some applications of the replica method in machine learning.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">Replica method and random matrices (I)</title><link href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" rel="alternate" type="text/html" title="Replica method and random matrices (I)" /><published>2019-08-04T00:09:06-07:00</published><updated>2019-08-04T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\blambda{\boldsymbol \lambda}&lt;/script&gt;
+&lt;p&gt;In my next post, I will introduce some applications of the replica method in machine learning.&lt;/p&gt;</content><author><name>Song Mei</name></author><category term="jekyll" /><category term="update" /><summary type="html"></summary></entry><entry><title type="html">Replica method and random matrices (I)</title><link href="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html" rel="alternate" type="text/html" title="Replica method and random matrices (I)" /><published>2019-08-04T00:09:06-07:00</published><updated>2019-08-04T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/04/Replica_method_1.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\blambda{\boldsymbol \lambda}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\bX{\boldsymbol X}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\P{\mathbb P}&lt;/script&gt;
@@ -555,21 +555,21 @@ Using the formula of Gaussian moment generating function &lt;script type=&quot;m
 
 &lt;p&gt;In the following, we make use a heuristic argument (using Dirac delta function). Note we have
 \[
-1 = \int \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \de \bQ
+1 = \int \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \de \bQ
 \]
 where &lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
 \de \bQ \equiv \prod_{i \in [k]} \de q_{0i} \prod_{1 \le i &lt; j \le k} \de q_{ij} %]]&gt;&lt;/script&gt;. Using this equality, we get
 \[
 \begin{aligned}
-\E[Z(\beta, \lambda, n)^k] =&amp;amp;  \int \de \bQ \exp\Big\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 \Big\} \cdot \int_{(\R^n)^k} \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
+\E[Z(\beta, \lambda, n)^k] =&amp;amp;  \int \de \bQ \exp\Big\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 \Big\} \cdot \int_{(\R^n)^k} \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
 =&amp;amp; \int \de \bQ  \exp\Big\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 + n H_n(\bQ) \Big\}, &lt;br /&gt;
 \end{aligned}
 \]
 where &lt;script type=&quot;math/tex&quot;&gt;\bQ \in \R^{(k + 1) \times (k + 1)}&lt;/script&gt; is given by Eq. \eqref{eqn:def_Q} and
 \[
 \begin{aligned}
-H_n(\bQ) =&amp;amp; \frac{1}{n} \log \int_{(\R^n)^k}  \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
-=&amp;amp; \frac{1}{n} \log \int_{(\R^n)^{k+1}} \prod_{0 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{0 \le i \le k} \nu_0( \bsigma_i), 
+H_n(\bQ) =&amp;amp; \frac{1}{n} \log \int_{(\R^n)^k}  \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - q_{0i} \Big) \prod_{1 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\
+=&amp;amp; \frac{1}{n} \log \int_{(\R^n)^{k+1}} \prod_{0 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \prod_{0 \le i \le k} \nu_0( \bsigma_i), 
 \end{aligned}
 \]
 which serves as the rate function of the random matrix &lt;script type=&quot;math/tex&quot;&gt;\bSigma = (\langle \bsigma_i, \bsigma_j \rangle / n)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})&lt;/script&gt;. This rate function can be found in standard textbooks
@@ -580,9 +580,9 @@ Here we give a heuristic argument to calculate the entropy term &lt;script type=
 &lt;p&gt;
 \[
 \begin{aligned}
-H_n(\bQ) \stackrel{\cdot}{=}&amp;amp; \frac{1}{n} \P_{(\bsigma_i)_{i \in [k]} \sim \Unif(\S^{n-1})} \Big(  \big(\langle \bsigma_i, \bsigma_j \rangle / n \big)_{i, j \in [k]}\approx \bQ  \Big)\\\
+H_n(\bQ) \stackrel{\cdot}{=}&amp;amp; \frac{1}{n} \log \P_{(\bsigma_i)_{i \in [k]} \sim \Unif(\S^{n-1}(\sqrt{n}))} \Big(  \big(\langle \bsigma_i, \bsigma_j \rangle / n \big)_{i, j \in [k]}\approx \bQ  \Big)\\\
 \stackrel{\cdot}{=}&amp;amp; \inf_{\lambda_{ij}} \frac{1}{n} \log  \int_{(\R^n)^{k+1}} \prod_{0 \le i \le j\le k} \exp\Big\{ - \lambda_{ij}\langle\bsigma_i, \bsigma_j\rangle / 2 + n q_{ij} \lambda_{ij} / 2 \Big\} \prod_{0 \le i \le k} \de \bsigma_i + \const\\\
-=&amp;amp; \inf_{\lambda_{ij}} \log  \int_{\R^{k+1}} \prod_{0 \le i &amp;lt; j\le k} \exp\Big\{ -  \lambda_{ij} \sigma_i\sigma_j / 2 + q_{ij} \lambda_{ij}/2 \Big\} \prod_{0 \le i \le k} \de \bsigma_i + \const\\\
+=&amp;amp; \inf_{\lambda_{ij}} \log  \int_{\R^{k+1}} \prod_{0 \le i \le j\le k} \exp\Big\{ -  \lambda_{ij} \sigma_i\sigma_j / 2 + q_{ij} \lambda_{ij}/2 \Big\} \prod_{0 \le i \le k} \de \sigma_i + \const\\\
 =&amp;amp; \inf_{\bLambda = (\lambda_{ij})_{0 \le i \le j \le k}} \Big[ \langle \bQ, \bLambda\rangle / 2 - \log(\det(\bLambda))/2  \Big] + \const\\\
 \stackrel{\cdot}{=}&amp;amp; \frac{1}{2} \log \det(\bQ),
 \end{aligned}
@@ -734,6 +734,6 @@ This turns out to be the correct answer!&lt;/p&gt;
 
 &lt;p id=&quot;ref2&quot;&gt;[2] Baik, Jinho, Gérard Ben Arous, and Sandrine Péché. “Phase transition of the largest eigenvalue for nonnull complex sample covariance matrices.” The Annals of Probability 33.5 (2005): 1643-1697.&lt;/p&gt;
 
-&lt;p id=&quot;ref3&quot;&gt;[3] Péché, Sandrine. “The largest eigenvalue of small rank perturbations of Hermitian random matrices.” Probability Theory and Related Fields 134.1 (2006): 127-173.&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html"></summary></entry><entry><title type="html">The topics of this Blog</title><link href="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html" rel="alternate" type="text/html" title="The topics of this Blog" /><published>2019-07-19T23:09:06-07:00</published><updated>2019-07-19T23:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html">&lt;p&gt;Hello everyone, I am starting my research blog today.&lt;/p&gt;
+&lt;p id=&quot;ref3&quot;&gt;[3] Péché, Sandrine. “The largest eigenvalue of small rank perturbations of Hermitian random matrices.” Probability Theory and Related Fields 134.1 (2006): 127-173.&lt;/p&gt;</content><author><name>Song Mei</name></author><category term="jekyll" /><category term="update" /><summary type="html"></summary></entry><entry><title type="html">The topics of this Blog</title><link href="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html" rel="alternate" type="text/html" title="The topics of this Blog" /><published>2019-07-19T23:09:06-07:00</published><updated>2019-07-19T23:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/07/19/welcome-to-jekyll.html">&lt;p&gt;Hello everyone, I am starting my research blog today.&lt;/p&gt;
 
-&lt;p&gt;In my first several posts, I will discuss about methods from statistical physics, with applications to random matrix theory. Hope you will have fun!&lt;/p&gt;</content><author><name>Song Mei</name></author><summary type="html">Hello everyone, I am starting my research blog today.</summary></entry></feed>
+&lt;p&gt;In my first several posts, I will discuss about methods from statistical physics, with applications to random matrix theory. Hope you will have fun!&lt;/p&gt;</content><author><name>Song Mei</name></author><category term="jekyll" /><category term="update" /><summary type="html">Hello everyone, I am starting my research blog today.</summary></entry></feed>

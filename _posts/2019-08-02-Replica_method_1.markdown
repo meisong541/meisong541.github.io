@@ -292,23 +292,23 @@ Using the formula of Gaussian moment generating function $$\E_{G \sim \cN(0, 1)}
 
 In the following, we make use a heuristic argument (using Dirac delta function). Note we have
 \\[
-1 = \int \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \de \bQ
+1 = \int \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - q_{0i} \Big) \prod_{1 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \de \bQ
 \\]
 where $$\de \bQ \equiv \prod_{i \in [k]} \de q_{0i} \prod_{1 \le i < j \le k} \de q_{ij}$$. Using this equality, we get
 \\[
 \begin{aligned}
-\E[Z(\beta, \lambda, n)^k] =&  \int \de \bQ \exp\Big\\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 \Big\\} \cdot \int_{(\R^n)^k} \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\\
+\E[Z(\beta, \lambda, n)^k] =&  \int \de \bQ \exp\Big\\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 \Big\\} \cdot \int_{(\R^n)^k} \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - q_{0i} \Big) \prod_{1 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\\
 =& \int \de \bQ  \exp\Big\\{\beta n \lambda \sum_{i = 1}^k  q_{0i}^2 + n \beta^2  \sum_{i, j=1}^k q_{ij}^2 + n H_n(\bQ) \Big\\}, \\
 \end{aligned}
 \\]
 where $$\bQ \in \R^{(k + 1) \times (k + 1)}$$ is given by Eq. \eqref{eqn:def_Q} and
 \\\[
 \begin{aligned}
-H_n(\bQ) =& \frac{1}{n} \log \int_{(\R^n)^k}  \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - n q_{0i} \Big) \prod_{1 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\\
-=& \frac{1}{n} \log \int_{(\R^n)^{k+1}} \prod_{0 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - n q_{ij} \Big) \prod_{0 \le i \le k} \nu_0( \bsigma_i), 
+H_n(\bQ) =& \frac{1}{n} \log \int_{(\R^n)^k}  \prod_{i=1}^k \delta \Big( \langle \bu,\bsigma_i\rangle - q_{0i} \Big) \prod_{1 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \prod_{i \in [k]} \nu_0(\de \bsigma_i) \\\
+=& \frac{1}{n} \log \int_{(\R^n)^{k+1}} \prod_{0 \le i < j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \prod_{0 \le i \le k} \nu_0( \bsigma_i), 
 \end{aligned}
 \\\]
-which serves as the rate function of the random matrix $$\bSigma = (\langle \bsigma_i, \bsigma_j \rangle / n)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}$$ when $$(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})$$. This rate function can be found in standard textbooks
+which serves as the rate function of the random matrix $$\bSigma = (\langle \bsigma_i, \bsigma_j \rangle)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}$$ when $$(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})$$. This rate function can be found in standard textbooks
 \\[
 \lim_{n \to \infty} H_n(\bQ) = \frac{1}{2}\log \det(\bQ). 
 \\]
@@ -316,7 +316,7 @@ Here we give a heuristic argument to calculate the entropy term $$H_n(\bQ)$$, (h
 <p>
 \[
 \begin{aligned}
-H_n(\bQ) \stackrel{\cdot}{=}& \frac{1}{n} \P_{(\bsigma_i)_{i \in [k]} \sim \Unif(\S^{n-1})} \Big(  \big(\langle \bsigma_i, \bsigma_j \rangle / n \big)_{i, j \in [k]}\approx \bQ  \Big)\\\
+H_n(\bQ) \stackrel{\cdot}{=}& \frac{1}{n} \log \P_{(\bsigma_i)_{i \in [k]} \sim \Unif(\S^{n-1}(\sqrt{n}))} \Big(  \big(\langle \bsigma_i, \bsigma_j \rangle / n \big)_{i, j \in [k]}\approx \bQ  \Big)\\\
 \stackrel{\cdot}{=}& \inf_{\lambda_{ij}} \frac{1}{n} \log  \int_{(\R^n)^{k+1}} \prod_{0 \le i \le j\le k} \exp\Big\{ - \lambda_{ij}\langle\bsigma_i, \bsigma_j\rangle / 2 + n q_{ij} \lambda_{ij} / 2 \Big\} \prod_{0 \le i \le k} \de \bsigma_i + \const\\\
 =& \inf_{\lambda_{ij}} \log  \int_{\R^{k+1}} \prod_{0 \le i \le j\le k} \exp\Big\{ -  \lambda_{ij} \sigma_i\sigma_j / 2 + q_{ij} \lambda_{ij}/2 \Big\} \prod_{0 \le i \le k} \de \sigma_i + \const\\\
 =& \inf_{\bLambda = (\lambda_{ij})_{0 \le i \le j \le k}} \Big[ \langle \bQ, \bLambda\rangle / 2 - \log(\det(\bLambda))/2  \Big] + \const\\\

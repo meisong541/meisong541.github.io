@@ -231,6 +231,14 @@ table {
 ri {
   font-style: normal; }
 
+figure_center1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-style: italic;
+  width: 60%; }
+
 /**
  * Site header
  */
