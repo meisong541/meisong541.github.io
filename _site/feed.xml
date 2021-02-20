@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-20T02:13:31-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog about machine learning and statistics. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.7">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-02-20T02:28:57-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Entropic Flow</title><subtitle>A research blog about machine learning and statistics. 
 </subtitle><author><name>Song Mei</name></author><entry><title type="html">Replica method and random matrices (II)</title><link href="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html" rel="alternate" type="text/html" title="Replica method and random matrices (II)" /><published>2019-09-12T00:09:06-07:00</published><updated>2019-09-12T00:09:06-07:00</updated><id>http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/09/12/Replica_method_2.html">&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;\def\cP{\mathcal P}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\de{\text{d}}&lt;/script&gt;
 &lt;script type=&quot;math/tex&quot;&gt;\def\N{\mathbb N}&lt;/script&gt;
@@ -572,7 +572,7 @@ H_n(\bQ) =&amp;amp; \frac{1}{n} \log \int_{(\R^n)^k}  \prod_{i=1}^k \delta \Big(
 =&amp;amp; \frac{1}{n} \log \int_{(\R^n)^{k+1}} \prod_{0 \le i &amp;lt; j\le k} \delta\Big( \langle\bsigma_i, \bsigma_j\rangle - q_{ij} \Big) \prod_{0 \le i \le k} \nu_0( \bsigma_i), 
 \end{aligned}
 \]
-which serves as the rate function of the random matrix &lt;script type=&quot;math/tex&quot;&gt;\bSigma = (\langle \bsigma_i, \bsigma_j \rangle / n)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})&lt;/script&gt;. This rate function can be found in standard textbooks
+which serves as the rate function of the random matrix &lt;script type=&quot;math/tex&quot;&gt;\bSigma = (\langle \bsigma_i, \bsigma_j \rangle)_{0 \le i, j \le k} \in \R^{(k+1) \times (k+1)}&lt;/script&gt; when &lt;script type=&quot;math/tex&quot;&gt;(\bsigma_i)_{0 \le i \le k} \sim_{iid} \Unif(\S^{n-1})&lt;/script&gt;. This rate function can be found in standard textbooks
 \[
 \lim_{n \to \infty} H_n(\bQ) = \frac{1}{2}\log \det(\bQ). 
 \]
