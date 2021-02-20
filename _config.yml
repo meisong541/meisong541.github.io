@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: Entropic Flow
 author: Song Mei
-email: songmei@stanford.edu
+email: songmei@berkeley.edu
 description: > # this means to ignore newlines until "show_excerpts:"
     A research blog about machine learning and statistics. 
 
